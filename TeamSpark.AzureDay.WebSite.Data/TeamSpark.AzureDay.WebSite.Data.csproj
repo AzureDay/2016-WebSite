@@ -68,6 +68,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entity\Table\Attendee.cs" />
+    <Compile Include="Entity\Table\QuickAuthToken.cs" />
     <Compile Include="Entity\Table\SpeakerTopic.cs" />
     <Compile Include="Entity\Table\Country.cs" />
     <Compile Include="Entity\Table\Timetable.cs" />

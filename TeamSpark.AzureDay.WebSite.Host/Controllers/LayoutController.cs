@@ -21,5 +21,11 @@ namespace TeamSpark.AzureDay.WebSite.Host.Controllers
 		{
 			return View("_Footer");
 		}
+
+		[ChildActionOnly]
+		public ActionResult ModalWait()
+		{
+			return View("_ModalWait");
+		}
 	}
 }

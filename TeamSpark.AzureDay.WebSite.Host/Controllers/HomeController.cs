@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Web.Http;
+using System.Web.Mvc;
 
 namespace TeamSpark.AzureDay.WebSite.Host.Controllers
 {
@@ -12,6 +13,11 @@ namespace TeamSpark.AzureDay.WebSite.Host.Controllers
 		public ActionResult Schedule()
 		{
 			return View();
+		}
+
+		public ActionResult Redirect([FromUri] string quickAuthToken, [FromUri] string redirectUrl)
+		{
+			return Redirect(redirectUrl);
 		}
 	}
 }

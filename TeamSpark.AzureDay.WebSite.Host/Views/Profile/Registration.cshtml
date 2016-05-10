@@ -1,0 +1,84 @@
+﻿@model TeamSpark.AzureDay.WebSite.Host.Models.Profile.RegistrationModel
+
+
+<div class="boxedcontent">
+	@Html.Action("Header", "Layout")
+
+	<h1>Registration</h1>
+
+	<form method="POST">
+
+		<input name="email" data-bind="textInput: email"/>
+
+		<input name="password" type="password" data-bind="textInput: password" placeholder="Password" />
+
+		<input type="password" data-bind="textInput: password2" placeholder="Password again"/>
+
+		<div data-bind="style: { display: isPasswordValid() ? 'none' : 'block' }">Passwords should match</div>
+		<div data-bind="style: { display: isPasswordLengthValid() && isPasswordLength2Valid() ? 'none' : 'block' }">Minimal password length is 6</div>
+
+		<input name="firstName" data-bind="textInput: fName"/>
+
+		<input name="lastName" data-bind="textInput: lName"/>
+
+		<input name="company" data-bind="textInput: company" />
+
+		<button type="submit" data-bind="enable: isModelValid">Register</button>
+
+		<div data-bind="style: { display: isModelValid() ? 'none' : 'block' }">All fields are mandatory</div>
+
+	</form>
+
+	@Html.Action("Footer", "Layout")
+
+</div><!-- end boxedcontent -->
+
+@Html.Action("ModalWait", "Layout")
+
+@section Scripts
+{
+	@Scripts.Render("~/cdn/knockout/js")
+
+	<script>
+		$(document).ready(function() {
+			var registrationModel = {
+				email: ko.observable(''),
+				password: ko.observable(''),
+				password2: ko.observable(''),
+				fName: ko.observable(''),
+				lName: ko.observable(''),
+				company: ko.observable('')
+			};
+
+			registrationModel.isPasswordLengthValid = ko.computed(function () {
+				var pwd = registrationModel.password();
+				return !!pwd && pwd.length >= 6;
+			});
+
+			registrationModel.isPasswordLength2Valid = ko.computed(function () {
+				var pwd = registrationModel.password2();
+				return !!pwd && pwd.length >= 6;
+			});
+
+			registrationModel.isPasswordValid = ko.computed(function() {
+				var pwd = registrationModel.password();
+				var pwd2 = registrationModel.password2();
+
+				return pwd === pwd2 && registrationModel.isPasswordLengthValid() && registrationModel.isPasswordLength2Valid();
+			});
+
+			registrationModel.isModelValid = ko.computed(function() {
+				var email = registrationModel.email();
+				var fName = registrationModel.fName();
+				var lName = registrationModel.lName();
+				var company = registrationModel.company();
+
+				return registrationModel.isPasswordValid() && !!email && !!fName && !!lName && !!company;
+			});
+
+			ko.applyBindings(registrationModel);
+
+			modal.showModal();
+		});
+	</script>
+}

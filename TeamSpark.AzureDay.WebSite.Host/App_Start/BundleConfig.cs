@@ -28,8 +28,11 @@ namespace TeamSpark.AzureDay.WebSite.Host
 				"~/Theme/css/wowslider.css",
 				"~/Theme/style.css"));
 
+			bundles.Add(new StyleBundle("~/cdn/jqueryui/css").Include(
+				"~/Content/themes/base/all.css"));
+
 			bundles.Add(new ScriptBundle("~/cdn/theme/js").Include(
-				"~/Theme/js/jquery.js",
+				//"~/Theme/js/jquery.js",
 				"~/Theme/js/bootstrap.js",
 				"~/Theme/js/jquery.fitvids.js",
 				"~/Theme/js/jquery.easing.1.3.js",
@@ -43,7 +46,16 @@ namespace TeamSpark.AzureDay.WebSite.Host
 				"~/Theme/js/flexslidertestimonials.js",
 				"~/Theme/js/testimonial.js"));
 
-	        BundleTable.EnableOptimizations = true;
+			bundles.Add(new ScriptBundle("~/cdn/knockout/js").Include(
+				"~/Scripts/knockout-3.4.0.js"));
+
+			bundles.Add(new ScriptBundle("~/cdn/jquery/js").Include(
+				"~/Scripts/jquery-1.11.0.min.js"));
+
+			bundles.Add(new ScriptBundle("~/cdn/jqueryui/js").Include(
+				"~/Scripts/jquery-ui-1.11.0.min.js"));
+
+			BundleTable.EnableOptimizations = true;
         }
 	}
 }
