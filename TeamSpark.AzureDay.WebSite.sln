@@ -1,9 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamSpark.AzureDay.WebSite.Host", "TeamSpark.AzureDay.WebSite.Host\TeamSpark.AzureDay.WebSite.Host.csproj", "{360FD399-F923-4DB7-961D-910A9FF96D77}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamSpark.AzureDay.WebSite.Data", "TeamSpark.AzureDay.WebSite.Data\TeamSpark.AzureDay.WebSite.Data.csproj", "{161E6BB3-0647-4DE0-B474-B75E5F3C9913}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamSpark.AzureDay.WebSite.Config", "TeamSpark.AzureDay.WebSite.Config\TeamSpark.AzureDay.WebSite.Config.csproj", "{4D1EE387-7F67-4771-8D7A-43B73106696D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamSpark.AzureDay.WebSite.App", "TeamSpark.AzureDay.WebSite.App\TeamSpark.AzureDay.WebSite.App.csproj", "{1AD440D3-D731-46CD-AA53-8AA5FCBFCFB4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamSpark.AzureDay.WebSite.CLI", "TeamSpark.AzureDay.WebSite.CLI\TeamSpark.AzureDay.WebSite.CLI.csproj", "{F4081BE2-E8B8-44E2-9109-4E36E22FB165}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +23,22 @@ Global
 		{360FD399-F923-4DB7-961D-910A9FF96D77}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{360FD399-F923-4DB7-961D-910A9FF96D77}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{360FD399-F923-4DB7-961D-910A9FF96D77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{161E6BB3-0647-4DE0-B474-B75E5F3C9913}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{161E6BB3-0647-4DE0-B474-B75E5F3C9913}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{161E6BB3-0647-4DE0-B474-B75E5F3C9913}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{161E6BB3-0647-4DE0-B474-B75E5F3C9913}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D1EE387-7F67-4771-8D7A-43B73106696D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D1EE387-7F67-4771-8D7A-43B73106696D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D1EE387-7F67-4771-8D7A-43B73106696D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D1EE387-7F67-4771-8D7A-43B73106696D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AD440D3-D731-46CD-AA53-8AA5FCBFCFB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AD440D3-D731-46CD-AA53-8AA5FCBFCFB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AD440D3-D731-46CD-AA53-8AA5FCBFCFB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AD440D3-D731-46CD-AA53-8AA5FCBFCFB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4081BE2-E8B8-44E2-9109-4E36E22FB165}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4081BE2-E8B8-44E2-9109-4E36E22FB165}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4081BE2-E8B8-44E2-9109-4E36E22FB165}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4081BE2-E8B8-44E2-9109-4E36E22FB165}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
