@@ -37,6 +37,20 @@ namespace TeamSpark.AzureDay.WebSite.Data.Service.Table
 			return (T)result.Result;
 		}
 
+		public async Task InsertAsync(T entity)
+		{
+			var operation = TableOperation.Insert(entity);
+
+			await Table.ExecuteAsync(operation);
+		}
+
+		public async Task ReplaceAsync(T entity)
+		{
+			var operation = TableOperation.Replace(entity);
+
+			await Table.ExecuteAsync(operation);
+		}
+
 		public TableBatchOperation CreateBatch()
 		{
 			var batch = new TableBatchOperation();
