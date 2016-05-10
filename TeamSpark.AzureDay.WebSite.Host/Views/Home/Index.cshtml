@@ -1,31 +1,650 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
+﻿<div class="boxedcontent">
+	@Html.Action("Header", "Layout")
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+	@Html.Action("Banner", "Layout")
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+	<section class="introblock whites">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<h1>
+						<span class="animated fadeInDown">
+							AZUREDAY 2016 - 2я специализированная <span class='colortext'>облачная</span> конференция в Украине, -<br>
+							это технологии, люди, опыт, инновации и сообщество профессионалов.
+						</span>
+					</h1>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- end introblock -->
+
+	<section class="service-box whites">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3 text-center">
+					<div class="icon-box-top">
+						<a href="#">
+							<i class="fontawesome-icon medium circle-white center fa fa-plane"></i>
+						</a>
+						<h1>ЗА ПРЕДЕЛАМИ УКРАИНЫ</h1>
+						<p>
+							Зарубежные докладчики, слушатели и последователи конференции в других странах.
+						</p>
+					</div>
+				</div>
+				<div class="col-md-3 text-center">
+					<div class="icon-box-top active">
+						<a href="#">
+							<i class="fontawesome-icon medium circle-white center fa fa-rocket"></i>
+						</a>
+						<h1>ИДЕИ И ИННОВАЦИИ</h1>
+						<p>
+							Опыт и инновации из мира облаков, представленные экспертами украинского и зарубежного рынков.
+						</p>
+					</div>
+				</div>
+				<div class="col-md-3 text-center">
+					<div class="icon-box-top">
+						<a href="#">
+							<i class="fontawesome-icon medium circle-white center fa fa-code"></i>
+						</a>
+						<h1>ПРИМЕРЫ И ПРАКТИКА</h1>
+						<p>
+							Все докладчики имеют богатый практический опыт. Отдельно представлен поток лабораторных работ.
+						</p>
+					</div>
+				</div>
+				<div class="col-md-3 text-center">
+					<div class="icon-box-top">
+						<a href="#">
+							<i class="fontawesome-icon medium circle-white center fa fa-users"></i>
+						</a>
+						<h1>СООБЩЕСТВО И КОНТАКТЫ</h1>
+						<p>
+							Станьте частью облачного сообщества и познакомьтесь с новыми коллегами, партнерами, сотрудниками.
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- end servicesbox -->
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="titleborder center">
+					<div>
+						<h1 class="animated fadeInDownBig">Кратко об AZUREDAY</h1>
+					</div>
+				</div>
+
+				<div class="shortcode row">
+					<div class="col-md-6">
+						<!-- begin box shadow -->
+						<div class="box effect2">
+							Цель AZUREDAY -  собрать вместе профессионалов, которые уже имеют <span class='colortext'>практический опыт использования Azure</span>, а также новичков, которые только начинают с ним работать, для эффективного обмена опытом и знаниями.
+						</div>
+						<!-- end box shadow -->
+					</div>
+					<div class="col-md-6">
+						<div class="box effect2">
+							На AZUREDAY планируется организовать <span class='colortext'>распределённые потоки докладов</span>, которые смогут наиболее полно покрыть всю гамму направлений работы с облачными технологиями.
+						</div>
+					</div>
+				</div>
+
+				<div class="shortcode row">
+					<div class="col-md-6">
+						<!-- begin box shadow -->
+						<div class="box effect6">
+							Докладчики на AZUREDAY - как украинские, так и приглашенные из других стран облачные эксперты и владельцы бизнеса.
+						</div>
+						<!-- end box shadow -->
+					</div>
+					<div class="col-md-6">
+						<div class="box effect6">
+							Участие в AZUREDAY платное, <span class='colortext'>в стоимость билета входят кофе брейки и обед</span>. Есть скидки для студентов, партнёров и скидки по программе early bird.
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+
+	<section class="bgsizecover" style="background-image: url('Theme/img/_bgnd/bgnd02b.jpg'); background-attachment: fixed; background-position: relative; height: 250px;">
+		<div class="transp">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+					</div>
+					<div class="col-md-6 text-center">
+						<h1 class="maintitle" style="color: #fff;"></h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- end parallax -->
+
+	<section class="introblock whites">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<h1>
+						<span class="animated fadeInRightBig">На AZUREDAY будут <span class='colortext'>распределённые потоки докладов</span>, которые смогут наиболее полно покрыть всю гамму направлений работы с облачными технологиями, <br />а также отдельный поток <span class='colortext'>лабораторных работ</span>.</span>
+					</h1>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<!-- begin team -->
+				<div class="shortcode row">
+					<div class="col-md-12">
+						<div class="titleborder left">
+							<div>
+								<h1 class="animated fadeInRightBig">Наши докладчики</h1>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="thumbnail">
+							<img src="http://www.wowthemes.net/demo/biscaya/img/demo/team1.jpg" alt="">
+							<div class="caption">
+								<h4>Emma M. Coffey</h4>
+								<span class="fontitalic">Manager at WowThemes</span>
+								<p>
+									Praesent id metus ante, ut condimentum magna. Nam bibendum, felis eget.<br>
+								</p>
+								<ul class="social-icons">
+									<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+									<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+									<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+									<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+									<li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="thumbnail">
+							<img src="http://www.wowthemes.net/demo/biscaya/img/demo/team2.jpg" alt="">
+							<div class="caption">
+								<h4>Gloria G. Andersen</h4>
+								<span class="fontitalic">Owner of BreCafe</span>
+								<p>
+									Praesent id metus ante, ut condimentum magna. Nam bibendum, felis eget.<br>
+								</p>
+								<ul class="social-icons">
+									<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+									<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+									<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+									<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+									<li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="thumbnail">
+							<img src="http://www.wowthemes.net/demo/biscaya/img/demo/team3.jpg" alt="">
+							<div class="caption">
+								<h4>Lorie W. Bush</h4>
+								<span class="fontitalic">Public Relations</span>
+								<p>
+									Praesent id metus ante, ut condimentum magna. Nam bibendum, felis eget.<br>
+								</p>
+								<ul class="social-icons">
+									<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+									<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+									<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+									<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+									<li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- end team -->
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+
+		<div class="row">
+			<div class="col-md-12">
+				<div class="titleborder left">
+					<div>
+						<h1 class="animated fadeInRightBig">Доклады на AZUREDAY 2016</h1>
+					</div>
+				</div>
+				<!-- begin bootstrap accordion -->
+				<div class="accordion" id="accordion-5">
+					<div class="accordion-group">
+						<div class="accordion-heading fontbold">
+							<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-5" href="#collapse_5_collapse-1">
+								Поток 01
+							</a>
+						</div>
+						<div id="collapse_5_collapse-1" class="accordion-body collapse in">
+							<div class="accordion-inner">
+								Nullam tincidunt, felis vel varius tristique, dui nisi mollis massa, vel porta elit libero ullamcorper lacus. Donec fringilla vel varius tristique, dui nisi mollis massa, vel porta elit libero ullamcorper lacus.
+							</div>
+						</div>
+					</div>
+					<div class="accordion-group">
+						<div class="accordion-heading fontbold">
+							<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-5" href="#collapse_6_copllapse-2">
+								Поток 02
+							</a>
+						</div>
+						<div id="collapse_6_copllapse-2" class="accordion-body collapse ">
+							<div class="accordion-inner">
+								…
+							</div>
+						</div>
+					</div>
+					<div class="accordion-group">
+						<div class="accordion-heading fontbold">
+							<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-5" href="#collapse_7_copllapse-3">
+								Поток 03
+							</a>
+						</div>
+						<div id="collapse_7_copllapse-3" class="accordion-body collapse ">
+							<div class="accordion-inner">
+								…
+							</div>
+						</div>
+					</div>
+					<div class="accordion-group">
+						<div class="accordion-heading fontbold">
+							<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-5" href="#collapse_8_copllapse-4">
+								Поток 04
+							</a>
+						</div>
+						<div id="collapse_8_copllapse-4" class="accordion-body collapse ">
+							<div class="accordion-inner">
+								…
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- end bootstrap accordion -->
+			</div>
+		</div>
+
+	</div>
+
+	<section class="bgsizecover" style="background-image: url('Theme/img/_bgnd/bgnd03b.jpg'); background-attachment: fixed; background-position: relative; height: 250px;">
+		<div class="transp">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+					</div>
+					<div class="col-md-6 text-center">
+						<h1 class="maintitle" style="color: #fff;"></h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- end parallax -->
+
+	<div class="container">
+		<div class="row">
+			<div class="panel1">
+				<div class="col-md-9">
+					<h4 class="animated fadeInLeft">Хотите поддержать AZUREDAY?</h4>
+					Если вы хотите поддержать AZUREDAY - предоставить конференции докладчика, призы для участников или же стать информационным партнёром, - принимайте участие в нашей партнерской программе.<br />
+					Более подробно о партнерской программе вы можете узнать, связавшись с организаторами конференции.
+				</div>
+				<div class="col-md-3">
+					<a href="#" class="sbutton square noshadow medium mainthemebgcolor"><i class="fa fa-comment"></i> Свяжитесь с нами</a>
+				</div>
+				<div class="clearfix">
+				</div>
+			</div>
+			<!-- end panel -->
+		</div>
+	</div>
+
+	<section class="homerecentportfolio grays">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1 class="heading">
+						Как это было в 2015 году<a href="#">/ Смотреть галерею</a>
+					</h1>
+					<div class="recent-portfolio">
+						<div class="list_carousel">
+							<div class="carousel_nav">
+								<a class="prev" id="car_prev" href="#"><span>prev</span></a><a class="next" id="car_next" href="#"><span>next</span></a>
+							</div>
+							<div class="clearfix">
+							</div>
+							<ul id="recent-portfolio">
+								<li>
+									<div class="boxcontainer">
+										<a class="imgOpa imgproject" href="portfoliosingle.html"><img width="600" height="350" src="http://www.wowthemes.net/demo-asher/wp-content/uploads/sites/9/2014/02/tumblr_mvyxfkaRb41st5lhmo1_1280-600x350.jpg" class="attachment-recentprojects-thumb wp-post-image" alt="tumblr_mvyxfkaRb41st5lhmo1_1280" /></a>
+										<div class="roll">
+											<div class="wrapcaption">
+												<a href="portfoliosingle.html"><i class="fa fa-link captionicons"></i></a><a data-gal="prettyPhoto[gallery1]" href="http://www.wowthemes.net/demo-asher/wp-content/uploads/sites/9/2014/02/tumblr_mvyxfkaRb41st5lhmo1_1280.jpg" title="Asher Theme"><i class="fa fa-search-plus captionicons"></i></a>
+											</div>
+										</div>
+										<h1><a href="portfoliosingle.html">Asher Theme</a></h1>
+										<p>
+											multipurpose theme
+										</p>
+									</div>
+								</li>
+								<li>
+									<div class="boxcontainer">
+										<a class="imgOpa imgproject" href="portfoliosingle.html"><img width="600" height="350" src="http://www.wowthemes.net/demo-asher/wp-content/uploads/sites/9/2014/02/tumblr_mvyxgqpNHE1st5lhmo1_1280-600x350.jpg" class="attachment-recentprojects-thumb wp-post-image" alt="tumblr_mvyxgqpNHE1st5lhmo1_1280" /></a>
+										<div class="roll">
+											<div class="wrapcaption">
+												<a href="portfoliosingle.html"><i class="fa fa-link captionicons"></i></a><a data-gal="prettyPhoto[gallery1]" href="http://www.wowthemes.net/demo-asher/wp-content/uploads/sites/9/2014/02/tumblr_mvyxgqpNHE1st5lhmo1_1280.jpg" title="WowThemes"><i class="fa fa-search-plus captionicons"></i></a>
+											</div>
+										</div>
+										<h1><a href="portfoliosingle.html">WowThemes</a></h1>
+										<p>
+											biscaya author
+										</p>
+									</div>
+								</li>
+								<li>
+									<div class="boxcontainer">
+										<a class="imgOpa imgproject" href="portfoliosingle.html"><img width="600" height="350" src="http://www.wowthemes.net/demo-asher/wp-content/uploads/sites/9/2014/02/post1-600x350.jpg" class="attachment-recentprojects-thumb wp-post-image" alt="post1" /></a>
+										<div class="roll">
+											<div class="wrapcaption">
+												<a href="portfoliosingle.html"><i class="fa fa-link captionicons"></i></a><a data-gal="prettyPhoto[gallery1]" href="http://www.wowthemes.net/demo-asher/wp-content/uploads/sites/9/2014/02/post1.jpg" title="Salique"><i class="fa fa-search-plus captionicons"></i></a>
+											</div>
+										</div>
+										<h1><a href="portfoliosingle.html">Salique</a></h1>
+										<p>
+											multipurpose template
+										</p>
+									</div>
+								</li>
+								<li>
+									<div class="boxcontainer">
+										<a class="imgOpa imgproject" href="portfoliosingle.html"><img width="600" height="350" src="http://www.wowthemes.net/demo-asher/wp-content/uploads/sites/9/2013/08/tumblr_mzzr7n7idZ1st5lhmo1_1280-600x350.jpg" class="attachment-recentprojects-thumb wp-post-image" alt="tumblr_mzzr7n7idZ1st5lhmo1_1280" /></a>
+										<div class="roll">
+											<div class="wrapcaption">
+												<a href="portfoliosingle.html"><i class="fa fa-link captionicons"></i></a><a data-gal="prettyPhoto[gallery1]" href="http://www.wowthemes.net/demo-asher/wp-content/uploads/sites/9/2013/08/tumblr_mzzr7n7idZ1st5lhmo1_1280.jpg" title="Serenity"><i class="fa fa-search-plus captionicons"></i></a>
+											</div>
+										</div>
+										<h1><a href="portfoliosingle.html">Serenity</a></h1>
+										<p>
+											wordpress portfolio
+										</p>
+									</div>
+								</li>
+								<li>
+									<div class="boxcontainer">
+										<a class="imgOpa imgproject" href="portfoliosingle.html"><img width="600" height="350" src="http://www.wowthemes.net/demo-asher/wp-content/uploads/sites/9/2013/08/tumblr_mzzqwktTbR1st5lhmo1_1280-600x350.jpg" class="attachment-recentprojects-thumb wp-post-image" alt="tumblr_mzzqwktTbR1st5lhmo1_1280" /></a>
+										<div class="roll">
+											<div class="wrapcaption">
+												<a href="portfoliosingle.html"><i class="fa fa-link captionicons"></i></a><a data-gal="prettyPhoto[gallery1]" href="http://www.wowthemes.net/demo-asher/wp-content/uploads/sites/9/2013/08/tumblr_mzzqwktTbR1st5lhmo1_1280.jpg" title="BizLeaders"><i class="fa fa-search-plus captionicons"></i></a>
+											</div>
+										</div>
+										<h1><a href="portfoliosingle.html">BizLeaders</a></h1>
+										<p>
+											business html
+										</p>
+									</div>
+								</li>
+								<li>
+									<div class="boxcontainer">
+										<a class="imgOpa imgproject" href="portfoliosingle.html"><img width="600" height="350" src="http://www.wowthemes.net/demo-asher/wp-content/uploads/sites/9/2013/08/tumblr_myp9dgyhJ71st5lhmo1_1280-600x350.jpg" class="attachment-recentprojects-thumb wp-post-image" alt="tumblr_myp9dgyhJ71st5lhmo1_1280" /></a>
+										<div class="roll">
+											<div class="wrapcaption">
+												<a href="portfoliosingle.html"><i class="fa fa-link captionicons"></i></a><a data-gal="prettyPhoto[gallery1]" href="http://www.wowthemes.net/demo-asher/wp-content/uploads/sites/9/2013/08/tumblr_myp9dgyhJ71st5lhmo1_1280.jpg" title="Studio"><i class="fa fa-search-plus captionicons"></i></a>
+											</div>
+										</div>
+										<h1><a href="portfoliosingle.html">Vesta</a></h1>
+										<p>
+											wordpress theme
+										</p>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="clearfix">
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- end homerecentportfolio -->
+
+	<section class="whites testimonial fullwidth flexslider" id="testimonials-slider">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<ul class="slides">
+						<li>
+							<div class="slide-text">
+								<div>
+									<h2 class="animated fadeInDown"><span class="uppercase">Отзывы</span></h2>
+									<img src="http://wowthemes.net/demo/salique/salique-boxed/images/temp/avatar2.png" alt="">
+									<p>
+										The support... I can only say it's awesome. You make a product and you help people out any way you can even if it means that you have to log in on their dashboard to sort out any problems that customer might have. Simply Outstanding!
+									</p>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="slide-text">
+								<div>
+									<h2 class="animated fadeInDown"><span class="uppercase">Great Themes</span></h2>
+									<img src="http://wowthemes.net/demo/salique/salique-boxed/images/temp/avatar4.png" alt="">
+									<p>
+										Great themes with equally amazing customer service to go with it. Very prompt responses and very knowledgable staff that truly cares about their customer. I stand 100% behind this website and will make sure to recommend it to my friends.
+									</p>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="slide-text">
+								<div>
+									<h2 class="animated fadeInDown"><span class="uppercase">Content Slider</span></h2>
+									<img src="http://wowthemes.net/demo/salique/salique-boxed/images/temp/avatar5.png" alt="">
+									<p>
+										This is a great theme for Bootstrap. Great features, catchy look. Also, I have on a few occasions needed to contact the support team, and they have been extremely helpful. I'm new to navigating these things so this has been invaluable!
+									</p>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- end testimonial -->
+
+	<section class="infoarea whites">
+		<div class="container">
+			<div class="row text-center">
+				<h1 class="maintitle">Need Support with Asher?</h1>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<i class="fa fa-microphone infoareaicon"></i>
+					<div class="infoareawrap">
+						<h1 class="text-center subtitle">General Questions</h1>
+						<p>
+							Want to buy a theme but not sure if it's got all the features you need? Trouble completing the payment? Or just want to say hi? Send us your message and we will answer as soon as possible!
+						</p>
+						<p class='text-center'>
+							<a href='#'>- Get in Touch -</a>
+						</p>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<i class="fa fa-comments infoareaicon"></i>
+					<div class="infoareawrap">
+						<h1 class="text-center subtitle">Theme Support</h1>
+						<p>
+							Theme support issues prevent the theme from working as advertised in the demo. This is a free and guaranteed service offered through our support forum which is found in each theme.
+						</p>
+						<p class='text-center'>
+							<a href='#'>- Select Theme -</a>
+						</p>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<i class="fa fa-bullhorn infoareaicon"></i>
+					<div class="infoareawrap">
+						<h1 class="text-center subtitle">Hire Us</h1>
+						<p>
+							If you wish to change an element to look or function differently than shown in the demo, we will be glad to assist you. This is a paid service due to theme support requests solved with priority.
+						</p>
+						<p class='text-center'>
+							<a href='#'>- Get in Touch -</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- end infoarea -->
+
+	<section class="videoarea bgsizecover" style="background-image: url(http://www.wowthemes.net/demo-asher/wp-content/uploads/sites/9/2014/02/tumblr_mzzqxabKjH1st5lhmo1_1280.jpg); background-attachment: fixed; background-position: relative;">
+		<div class="transp">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<iframe src='http://player.vimeo.com/video/40569948' style="width:100%; height:312px; border:0px;"></iframe>
+					</div>
+					<div class="col-md-6 text-center">
+						<h1 class="maintitle">Awesome Videos</h1>
+						<p>
+							Use your imagination, add shortcodes, create something unique!
+						</p>
+						<ul class='unstyle doublearrowlist'>
+							<li>Responsive Design</li>
+							<li>Multiple Layouts Width</li>
+							<li>Unlimited Skin Colors</li>
+							<li>Easy to Customize</li>
+							<li>Over 40 Shortcodes</li>
+						</ul>
+						<p>
+							<a href='#' class='sbutton round noshadow medium blue'><i class='fa fa-shopping-cart'></i> Download Asher</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- end videoarea -->
+
+	<section class="grays homerecentposts">
+		<div class="container">
+			<div class="row text-center">
+				<div class="col-md-12">
+					<h1 class="maintitle">
+						Latest Posts<br />
+						<a href="blog.html" class="colorblack"><i class="fa fa-angle-down"></i></a>
+					</h1>
+				</div>
+			</div>
+			<div class="row homerecentposts recent-posts text-center">
+				<div class="clearfix">
+				</div>
+				<ul class="unstyle">
+					<li class="col-md-3 unstyle">
+						<article>
+							<a class="imgOpa" href="#"><img width="600" height="350" src="http://www.wowthemes.net/demo-asher/wp-content/uploads/sites/9/2013/08/tumblr_mzzqwktTbR1st5lhmo1_1280-600x350.jpg" class="attachment-recentprojects-thumb wp-post-image" alt="tumblr_mzzqwktTbR1st5lhmo1_1280" /></a>
+							<div class="insidetext">
+								<h2><a href="blogsingle.html">WordPress Tuts</a></h2>
+								<div class="meta">
+									<i class="fa fa-clock-o"></i><span class="day">02</span> / <span class="month">02</span> / <span class="year">2014</span>
+								</div>
+								<p>
+									WordPress is web software you can use to create a beautiful website or blog. We like to say that WordPress is both free <a href="#"><span class="mute">[...]</span></a>
+								</p>
+							</div>
+						</article>
+					</li>
+					<li class="col-md-3 unstyle">
+						<article>
+							<a class="imgOpa" href="#/"><img width="600" height="350" src="http://www.wowthemes.net/demo-asher/wp-content/uploads/sites/9/2014/02/post1-600x350.jpg" class="attachment-recentprojects-thumb wp-post-image" alt="post1" /></a>
+							<div class="insidetext">
+								<h2><a href="blogsingle.html">Language Files</a></h2>
+								<div class="meta">
+									<i class="fa fa-clock-o"></i><span class="day">02</span> / <span class="month">02</span> / <span class="year">2014</span>
+								</div>
+								<p>
+									A WordPress Theme is a collection of files that work together to produce a graphical interface with an underlying unifying <a href="#"><span class="mute">[...]</span></a>
+								</p>
+							</div>
+						</article>
+					</li>
+					<li class="col-md-3 unstyle">
+						<article>
+							<a class="imgOpa" href="#"><img width="600" height="350" src="http://www.wowthemes.net/demo-asher/wp-content/uploads/sites/9/2014/02/tumblr_mzzqxabKjH1st5lhmo1_1280-600x350.jpg" class="attachment-recentprojects-thumb wp-post-image" alt="tumblr_mzzqxabKjH1st5lhmo1_1280" /></a>
+							<div class="insidetext">
+								<h2><a href="blogsingle.html">Operating Systems</a></h2>
+								<div class="meta">
+									<i class="fa fa-clock-o"></i><span class="day">01</span> / <span class="month">02</span> / <span class="year">2014</span>
+								</div>
+								<p>
+									Themes are often used to change the look and feel of a wide range of things at once, which makes them much <a href="#"><span class="mute">[...]</span></a>
+								</p>
+							</div>
+						</article>
+					</li>
+					<li class="col-md-3 unstyle">
+						<article>
+							<a class="imgOpa" href="#"><img width="600" height="350" src="http://www.wowthemes.net/demo-asher/wp-content/uploads/sites/9/2014/02/tumblr_muuig0890N1st5lhmo1_1280-600x350.jpg" class="attachment-recentprojects-thumb wp-post-image" alt="tumblr_muuig0890N1st5lhmo1_1280" /></a>
+							<div class="insidetext">
+								<h2><a href="blogsingle.html">Web Concerns</a></h2>
+								<div class="meta">
+									<i class="fa fa-clock-o"></i><span class="day">01</span> / <span class="month">02</span> / <span class="year">2014</span>
+								</div>
+								<p>
+									A common goal among experienced web developers is to develop and deploy applications today, tomorrow and always <a href="#"><span class="mute">[...]</span></a>
+								</p>
+							</div>
+						</article>
+					</li>
+				</ul>
+			</div>
+			<div class="clearfix">
+			</div>
+		</div>
+	</section>
+	<!-- end homerecentposts -->
+
+	<section class="whites calltoactionarea">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="text-center">
+						<h1>
+							Praesent <span class='fontpacifico colortext'>WowThemes</span> sapien, a vulputate enim auctor vitae
+						</h1>
+						<p>
+							Duis non lorem porta, adipiscing eros sit amet, tempor sem. Donec nunc arcu, semper a tempus et, consequat
+						</p>
+						<a href='#' class='buttonblack'><i class='fa fa-shopping-cart'></i> get asher</a>
+						<a href='#' class='buttoncolor'><i class='fa fa-link'></i> learn more</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- end calltoactionarea -->
+
+	@Html.Action("Footer", "Layout")
+
+</div><!-- end boxedcontent -->
