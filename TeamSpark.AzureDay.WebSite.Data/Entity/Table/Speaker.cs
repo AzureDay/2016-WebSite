@@ -19,6 +19,12 @@ namespace TeamSpark.AzureDay.WebSite.Data.Entity.Table
 		public string Bio { get; set; }
 		public Guid CountryId { get; set; }
 
+		public string FacebookUrl { get; set; }
+		public string LinkedInUrl { get; set; }
+		public string GoogleUrl { get; set; }
+		public string YouTubeUrl { get; set; }
+		public string TwitterUrl { get; set; }
+
 		public Speaker()
 		{
 			PartitionKey = Configuration.Year;
