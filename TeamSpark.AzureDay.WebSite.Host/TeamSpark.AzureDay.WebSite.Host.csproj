@@ -404,9 +404,9 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TeamSpark.AzureDay.WebSite.Data\TeamSpark.AzureDay.WebSite.Data.csproj">
-      <Project>{161e6bb3-0647-4de0-b474-b75e5f3c9913}</Project>
-      <Name>TeamSpark.AzureDay.WebSite.Data</Name>
+    <ProjectReference Include="..\TeamSpark.AzureDay.WebSite.App\TeamSpark.AzureDay.WebSite.App.csproj">
+      <Project>{1ad440d3-d731-46cd-aa53-8aa5fcbfcfb4}</Project>
+      <Name>TeamSpark.AzureDay.WebSite.App</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
