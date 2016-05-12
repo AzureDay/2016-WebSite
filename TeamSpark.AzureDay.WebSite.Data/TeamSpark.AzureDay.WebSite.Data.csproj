@@ -69,6 +69,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataFactory.cs" />
     <Compile Include="Entity\Table\Attendee.cs" />
     <Compile Include="Entity\Table\QuickAuthToken.cs" />
     <Compile Include="Entity\Table\SpeakerTopic.cs" />

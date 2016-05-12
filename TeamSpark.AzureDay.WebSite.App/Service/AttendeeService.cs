@@ -4,6 +4,7 @@ using AutoMapper;
 using TeamSpark.AzureDay.WebSite.App.Entity;
 using TeamSpark.AzureDay.WebSite.App.Enum;
 using TeamSpark.AzureDay.WebSite.Config;
+using TeamSpark.AzureDay.WebSite.Data;
 
 namespace TeamSpark.AzureDay.WebSite.App.Service
 {
