@@ -7,8 +7,18 @@
 			<nav class="navbar pull-right" role="navigation">
 				<div class="collapse navbar-collapse">
 					<ul id="main-menu" class="nav navbar-nav">
-						<li><a href="index.html">Home</a></li>
-						<li class="dropdown">
+						<li><a href="/">Home</a></li>
+						<li><a href="/schedule">Schedule</a></li>
+						@if (Request.IsAuthenticated)
+						{
+							<li><a href="/profile/logout">Logout</a></li>
+						}
+						else
+						{
+							<li><a href="/profile/registration">Registration</a></li>
+							<li><a href="/profile/login">Login</a></li>
+						}
+						@*<li class="dropdown">
 							<a data-target="#" href="#">Templates <i class="fa fa-angle-down menucaret"></i></a>
 							<ul class="dropdown-menu">
 								<li><a href="services.html">Services</a></li>
@@ -60,7 +70,7 @@
 								<li><a href="no-map-contact.html">No Map Contact</a></li>
 								<li><a href="basic-contact.html">Basic Contact</a></li>
 							</ul>
-						</li>
+						</li>*@
 					</ul>
 				</div>
 			</nav>

@@ -3,6 +3,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using TeamSpark.AzureDay.WebSite.Data;
 
 namespace TeamSpark.AzureDay.WebSite.Host
 {
@@ -15,6 +16,12 @@ namespace TeamSpark.AzureDay.WebSite.Host
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+			#region initialize
+
+	        DataFactory.InitializeAsync().Wait();
+
+	        #endregion
         }
     }
 }

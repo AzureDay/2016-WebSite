@@ -12,6 +12,12 @@ namespace TeamSpark.AzureDay.WebSite.App.Entity
 		public string Bio { get; set; }
 		public Country Country { get; set; }
 
+		public string FacebookUrl { get; set; }
+		public string LinkedInUrl { get; set; }
+		public string GoogleUrl { get; set; }
+		public string YouTubeUrl { get; set; }
+		public string TwitterUrl { get; set; }
+
 		public List<Topic> Topics { get; set; }
 
 		public Speaker()

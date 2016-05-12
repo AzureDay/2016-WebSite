@@ -4,7 +4,7 @@ using TeamSpark.AzureDay.WebSite.Config;
 
 namespace TeamSpark.AzureDay.WebSite.Data.Entity.Table
 {
-	sealed class Country : TableEntity
+	public sealed class Country : TableEntity
 	{
 		[IgnoreProperty]
 		public Guid Id
