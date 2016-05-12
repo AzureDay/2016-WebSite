@@ -1,7 +1,5 @@
-﻿using System;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using System.Threading.Tasks;
-using AutoMapper;
 using TeamSpark.AzureDay.WebSite.App.Entity;
 using TeamSpark.AzureDay.WebSite.App.Enum;
 using TeamSpark.AzureDay.WebSite.Config;
