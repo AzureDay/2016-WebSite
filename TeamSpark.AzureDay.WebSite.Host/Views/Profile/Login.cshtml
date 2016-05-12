@@ -3,18 +3,56 @@
 <div class="boxedcontent">
 	@Html.Action("Header", "Layout")
 
-	<h1>Login</h1>
+	<h1>Вход</h1>
 
-	<form method="POST">
-		
-		@Html.TextBoxFor(m => Model.Email)
+	@if (!string.IsNullOrWhiteSpace(Model.ErrorMessage))
+	{
+		<div>@Model.ErrorMessage</div>
+	}
 
-		@Html.PasswordFor(m => Model.Password)
+	<form method="POST" data-bind="submit: showModal">
 
-		<button type="submit">LogIn</button>
+		<input type="email" name="Email" placeholder="Email" data-bind="textInput: email" value="@Model.Email"/>
+
+		<input type="password" name="Password" placeholder="Пароль" data-bind="textInput: password" value="@Model.Password"/>
+
+		<button type="submit" data-bind="enable: isModelValid">Войти</button>
 
 	</form>
 
 	@Html.Action("Footer", "Layout")
 
-</div><!-- end boxedcontent -->
+</div>
+
+
+@Html.Action("ModalWait", "Layout")
+
+@section Scripts
+{
+	@Scripts.Render("~/cdn/knockout/js")
+
+	<script>
+		$(document).ready(function() {
+			var loginModel = {
+				email: ko.observable(''),
+				password: ko.observable('')
+			};
+
+			loginModel.isModelValid = ko.computed(function() {
+				var email = loginModel.email();
+				var password = loginModel.password();
+
+				return !!email && !!password;
+			});
+
+			loginModel.showModal = function() {
+				setTimeout(function() {
+					modal.showModal();
+				});
+				return true;
+			}
+
+			ko.applyBindings(loginModel);
+		});
+	</script>
+}

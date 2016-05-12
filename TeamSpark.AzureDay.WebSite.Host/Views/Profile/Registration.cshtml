@@ -4,34 +4,34 @@
 <div class="boxedcontent">
 	@Html.Action("Header", "Layout")
 
-	<h1>Registration</h1>
+	<h1>Регистрация</h1>
 
-	<form method="POST">
+	<form method="POST" data-bind="submit: showModal">
 
-		<input name="email" data-bind="textInput: email"/>
+		<input name="email" data-bind="textInput: email" placeholder="Email" />
 
-		<input name="password" type="password" data-bind="textInput: password" placeholder="Password" />
+		<input name="password" type="password" data-bind="textInput: password" placeholder="Пароль" />
 
-		<input type="password" data-bind="textInput: password2" placeholder="Password again"/>
+		<input type="password" data-bind="textInput: password2" placeholder="Пароль еще раз"/>
 
-		<div data-bind="style: { display: isPasswordValid() ? 'none' : 'block' }">Passwords should match</div>
-		<div data-bind="style: { display: isPasswordLengthValid() && isPasswordLength2Valid() ? 'none' : 'block' }">Minimal password length is 6</div>
+		<div data-bind="style: { display: isPasswordValid() ? 'none' : 'block' }">Пароли должны совпадать</div>
+		<div data-bind="style: { display: isPasswordLengthValid() && isPasswordLength2Valid() ? 'none' : 'block' }">Минимальная длина пароля 6 символов</div>
 
-		<input name="firstName" data-bind="textInput: fName"/>
+		<input name="firstName" data-bind="textInput: fName" placeholder="Имя" />
 
-		<input name="lastName" data-bind="textInput: lName"/>
+		<input name="lastName" data-bind="textInput: lName" placeholder="Фамилия" />
 
-		<input name="company" data-bind="textInput: company" />
+		<input name="company" data-bind="textInput: company" placeholder="Компания" />
 
-		<button type="submit" data-bind="enable: isModelValid">Register</button>
+		<button type="submit" data-bind="enable: isModelValid">Зарегистрироваться</button>
 
-		<div data-bind="style: { display: isModelValid() ? 'none' : 'block' }">All fields are mandatory</div>
+		<div data-bind="style: { display: isModelValid() ? 'none' : 'block' }">Все поля обязательны для заполнения</div>
 
 	</form>
 
 	@Html.Action("Footer", "Layout")
 
-</div><!-- end boxedcontent -->
+</div>
 
 @Html.Action("ModalWait", "Layout")
 
@@ -50,12 +50,12 @@
 				company: ko.observable('')
 			};
 
-			registrationModel.isPasswordLengthValid = ko.computed(function () {
+			registrationModel.isPasswordLengthValid = ko.computed(function() {
 				var pwd = registrationModel.password();
 				return !!pwd && pwd.length >= 6;
 			});
 
-			registrationModel.isPasswordLength2Valid = ko.computed(function () {
+			registrationModel.isPasswordLength2Valid = ko.computed(function() {
 				var pwd = registrationModel.password2();
 				return !!pwd && pwd.length >= 6;
 			});
@@ -76,9 +76,14 @@
 				return registrationModel.isPasswordValid() && !!email && !!fName && !!lName && !!company;
 			});
 
-			ko.applyBindings(registrationModel);
+			registrationModel.showModal = function() {
+				setTimeout(function () {
+					modal.showModal();
+				});
+				return true;
+			}
 
-			modal.showModal();
+			ko.applyBindings(registrationModel);
 		});
 	</script>
 }

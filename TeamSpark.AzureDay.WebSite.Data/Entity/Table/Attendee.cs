@@ -13,7 +13,7 @@ namespace TeamSpark.AzureDay.WebSite.Data.Entity.Table
 		}
 
 		public byte[] Salt { get; set; }
-		public byte[] Password { get; set; }
+		public byte[] PasswordHash { get; set; }
 
 		public string FirstName { get; set; }
 		public string LastName { get; set; }

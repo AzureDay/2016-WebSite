@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using AutoMapper;
 using TeamSpark.AzureDay.WebSite.App.Entity;
@@ -21,17 +22,46 @@ namespace TeamSpark.AzureDay.WebSite.App.Service
 		{
 			var entity = await DataFactory.AttendeeService.Value.GetByKeysAsync(Configuration.Year, email);
 
-			return Mapper.Map<Attendee>(entity);
+			return AppFactory.Mapper.Value.Map<Attendee>(entity);
 		}
 
 		public bool IsPasswordValid(Attendee attendee, string plainPassword)
 		{
-			throw new NotImplementedException();
+			var hashedPassword = Hash(plainPassword, attendee.Salt);
+			return SlowEquals(attendee.PasswordHash, hashedPassword);
+		}
+
+		public byte[] GenerateSalt()
+		{
+			var rng = new RNGCryptoServiceProvider();
+			var salt = new byte[256];
+			rng.GetBytes(salt);
+			return salt;
+		}
+
+		public byte[] Hash(string plainText, byte[] salt)
+		{
+			var hashFunc = new SHA512Cng();
+			var plainBytes = System.Text.Encoding.ASCII.GetBytes(plainText);
+			var toHash = new byte[plainBytes.Length + salt.Length];
+			plainBytes.CopyTo(toHash, 0);
+			salt.CopyTo(toHash, plainBytes.Length);
+			return hashFunc.ComputeHash(toHash);
+		}
+
+		public bool SlowEquals(byte[] a, byte[] b)
+		{
+			var diff = a.Length ^ b.Length;
+			for (var i = 0; i < a.Length && i < b.Length; i++)
+			{
+				diff |= a[i] ^ b[i];
+			}
+			return diff == 0;
 		}
 
 		public async Task RegisterAsync(Attendee attendee)
 		{
-			var data = Mapper.Map<Data.Entity.Table.Attendee>(attendee);
+			var data = AppFactory.Mapper.Value.Map<Data.Entity.Table.Attendee>(attendee);
 
 			await DataFactory.AttendeeService.Value.InsertAsync(data);
 		}
