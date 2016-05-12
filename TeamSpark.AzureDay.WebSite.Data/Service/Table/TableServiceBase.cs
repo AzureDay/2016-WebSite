@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.WindowsAzure.Storage.Table;
 
 namespace TeamSpark.AzureDay.WebSite.Data.Service.Table
 {
-	public abstract class TableServiceBase<T> : StorageServiceBase where T : TableEntity
+	public abstract class TableServiceBase<T> : StorageServiceBase where T : TableEntity, new()
 	{
 		protected abstract string TableName { get; }
 
@@ -35,6 +36,29 @@ namespace TeamSpark.AzureDay.WebSite.Data.Service.Table
 			var result = await Table.ExecuteAsync(operation);
 
 			return (T)result.Result;
+		}
+
+		public async Task<List<T>> GetByPartitionKeyAsync(string partitionKey)
+		{
+			var filter = TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, partitionKey);
+
+			var query = new TableQuery<T>().Where(filter);
+
+			return (await Table.ExecuteQuerySegmentedAsync(query, null)).Results;
+		}
+
+		public async Task InsertAsync(T entity)
+		{
+			var operation = TableOperation.Insert(entity);
+
+			await Table.ExecuteAsync(operation);
+		}
+
+		public async Task ReplaceAsync(T entity)
+		{
+			var operation = TableOperation.Replace(entity);
+
+			await Table.ExecuteAsync(operation);
 		}
 
 		public TableBatchOperation CreateBatch()

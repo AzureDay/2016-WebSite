@@ -4,6 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+	<link href="~/Content/spinner/spinner01.css" rel="stylesheet" />
+
 	<link rel="shortcut icon" href="/Theme/img/favicon.png" />
 	<link href="~/Theme/css/bootstrap.min.css" rel="stylesheet">
 	<link href="~/Theme/inc/shortcodes/css/shortcodes.css" rel="stylesheet">
@@ -11,6 +13,9 @@
 	<link href="~/Theme/css/animate.css" rel="stylesheet">
 	<link href="~/Theme/css/wowslider.css" rel="stylesheet">
 	<link href="~/Theme/style.css" rel="stylesheet">
+
+	<link href="~/Content/themes/base/all.css" rel="stylesheet"/>
+	<link href="~/Content/jqueryui-fix.css" rel="stylesheet"/>
 
 	<!-- Remove the following line to activate boxed layout-->
 	<link href="~/Theme/css/fullwidth.css" rel="stylesheet">
@@ -39,6 +44,9 @@
 <body class="boxedlayout">
     @RenderBody()
 
+	@Scripts.Render("~/cdn/jquery/js")
+	@Scripts.Render("~/cdn/jqueryui/js")
+	@Scripts.Render("~/cdn/bootstrap/js")
 	@Scripts.Render("~/cdn/theme/js")
 
 	@RenderSection("Scripts", required: false)

@@ -1,0 +1,58 @@
+﻿@model TeamSpark.AzureDay.WebSite.Host.Models.Profile.LoginModel
+
+<div class="boxedcontent">
+	@Html.Action("Header", "Layout")
+
+	<h1>Вход</h1>
+
+	@if (!string.IsNullOrWhiteSpace(Model.ErrorMessage))
+	{
+		<div>@Model.ErrorMessage</div>
+	}
+
+	<form method="POST" data-bind="submit: showModal">
+
+		<input type="email" name="Email" placeholder="Email" data-bind="textInput: email" value="@Model.Email"/>
+
+		<input type="password" name="Password" placeholder="Пароль" data-bind="textInput: password" value="@Model.Password"/>
+
+		<button type="submit" data-bind="enable: isModelValid">Войти</button>
+
+	</form>
+
+	@Html.Action("Footer", "Layout")
+
+</div>
+
+
+@Html.Action("ModalWait", "Layout")
+
+@section Scripts
+{
+	@Scripts.Render("~/cdn/knockout/js")
+
+	<script>
+		$(document).ready(function() {
+			var loginModel = {
+				email: ko.observable(''),
+				password: ko.observable('')
+			};
+
+			loginModel.isModelValid = ko.computed(function() {
+				var email = loginModel.email();
+				var password = loginModel.password();
+
+				return !!email && !!password;
+			});
+
+			loginModel.showModal = function() {
+				setTimeout(function() {
+					modal.showModal();
+				});
+				return true;
+			}
+
+			ko.applyBindings(loginModel);
+		});
+	</script>
+}

@@ -1,15 +1,15 @@
 /*!
- * jQuery JavaScript Library v1.11.0-pre
+ * jQuery JavaScript Library v1.11.0
  * http://jquery.com/
  *
  * Includes Sizzle.js
  * http://sizzlejs.com/
  *
- * Copyright 2005, 2013 jQuery Foundation, Inc. and other contributors
+ * Copyright 2005, 2014 jQuery Foundation, Inc. and other contributors
  * Released under the MIT license
  * http://jquery.org/license
  *
- * Date: 2013-11-17T00:18Z
+ * Date: 2014-01-23T21:02Z
  */
 
 (function( global, factory ) {
@@ -23,7 +23,7 @@
 		// e.g. var jQuery = require("jquery")(window);
 		// See ticket #14549 for more info
 		module.exports = global.document ?
-			factory( global ) :
+			factory( global, true ) :
 			function( w ) {
 				if ( !w.document ) {
 					throw new Error( "jQuery requires a window with a document" );
@@ -34,8 +34,8 @@
 		factory( global );
 	}
 
-// Pass this, window may not be defined yet
-}(this, function( window ) {
+// Pass this if window is not defined yet
+}(typeof window !== "undefined" ? window : this, function( window, noGlobal ) {
 
 // Can't do this because several apps including ASP.NET trace
 // the stack via arguments.caller.callee and Firefox dies if
@@ -66,13 +66,7 @@ var support = {};
 
 
 var
-	// Map over jQuery in case of overwrite
-	_jQuery = window.jQuery,
-
-	// Map over the $ in case of overwrite
-	_$ = window.$,
-
-	version = "1.11.0-pre",
+	version = "1.11.0",
 
 	// Define a local copy of jQuery
 	jQuery = function( selector, context ) {
@@ -255,18 +249,6 @@ jQuery.extend({
 	},
 
 	noop: function() {},
-
-	noConflict: function( deep ) {
-		if ( window.$ === jQuery ) {
-			window.$ = _$;
-		}
-
-		if ( deep && window.jQuery === jQuery ) {
-			window.jQuery = _jQuery;
-		}
-
-		return jQuery;
-	},
 
 	// See test/unit/core.js for details concerning isFunction.
 	// Since version 1.3, DOM methods and functions like alert
@@ -611,20 +593,19 @@ function isArraylike( obj ) {
 }
 var Sizzle =
 /*!
- * Sizzle CSS Selector Engine v1.10.12
+ * Sizzle CSS Selector Engine v1.10.16
  * http://sizzlejs.com/
  *
  * Copyright 2013 jQuery Foundation, Inc. and other contributors
  * Released under the MIT license
  * http://jquery.org/license
  *
- * Date: 2013-11-13
+ * Date: 2014-01-13
  */
 (function( window ) {
 
 var i,
 	support,
-	cachedruns,
 	Expr,
 	getText,
 	isXML,
@@ -713,7 +694,7 @@ var i,
 	rcomma = new RegExp( "^" + whitespace + "*," + whitespace + "*" ),
 	rcombinators = new RegExp( "^" + whitespace + "*([>+~]|" + whitespace + ")" + whitespace + "*" ),
 
-	rattributeQuotes = new RegExp( "=" + whitespace + "*([^\\]'\"]*)" + whitespace + "*\\]", "g" ),
+	rattributeQuotes = new RegExp( "=" + whitespace + "*([^\\]'\"]*?)" + whitespace + "*\\]", "g" ),
 
 	rpseudo = new RegExp( pseudos ),
 	ridentifier = new RegExp( "^" + identifier + "$" ),
@@ -1086,10 +1067,17 @@ setDocument = Sizzle.setDocument = function( node ) {
 	// If iframe document is assigned to "document" variable and if iframe has been reloaded,
 	// IE will throw "permission denied" error when accessing "document" variable, see jQuery #13936
 	// IE6-8 do not support the defaultView property so parent will be undefined
-	if ( parent && parent.attachEvent && parent !== parent.top ) {
-		parent.attachEvent( "onbeforeunload", function() {
-			setDocument();
-		});
+	if ( parent && parent !== parent.top ) {
+		// IE11 does not have attachEvent, so all must suffer
+		if ( parent.addEventListener ) {
+			parent.addEventListener( "unload", function() {
+				setDocument();
+			}, false );
+		} else if ( parent.attachEvent ) {
+			parent.attachEvent( "onunload", function() {
+				setDocument();
+			});
+		}
 	}
 
 	/* Attributes
@@ -1219,7 +1207,13 @@ setDocument = Sizzle.setDocument = function( node ) {
 			// setting a boolean content attribute,
 			// since its presence should be enough
 			// http://bugs.jquery.com/ticket/12359
-			div.innerHTML = "<select><option selected=''></option></select>";
+			div.innerHTML = "<select t=''><option selected=''></option></select>";
+
+			// Support: IE8, Opera 10-12
+			// Nothing should be selected when empty strings follow ^= or $= or *=
+			if ( div.querySelectorAll("[t^='']").length ) {
+				rbuggyQSA.push( "[*^$]=" + whitespace + "*(?:''|\"\")" );
+			}
 
 			// Support: IE8
 			// Boolean attributes and "value" are not treated correctly
@@ -1236,18 +1230,16 @@ setDocument = Sizzle.setDocument = function( node ) {
 		});
 
 		assert(function( div ) {
-
-			// Support: Opera 10-12/IE8
-			// ^= $= *= and empty values
-			// Should not select anything
 			// Support: Windows 8 Native Apps
-			// The type attribute is restricted during .innerHTML assignment
+			// The type and name attributes are restricted during .innerHTML assignment
 			var input = doc.createElement("input");
 			input.setAttribute( "type", "hidden" );
-			div.appendChild( input ).setAttribute( "t", "" );
+			div.appendChild( input ).setAttribute( "name", "D" );
 
-			if ( div.querySelectorAll("[t^='']").length ) {
-				rbuggyQSA.push( "[*^$]=" + whitespace + "*(?:''|\"\")" );
+			// Support: IE8
+			// Enforce case-sensitivity of name attribute
+			if ( div.querySelectorAll("[name=d]").length ) {
+				rbuggyQSA.push( "name" + whitespace + "*[*^$|!~]?=" );
 			}
 
 			// FF 3.5 - :enabled/:disabled and hidden elements (hidden elements are still enabled)
@@ -2122,8 +2114,8 @@ function addCombinator( matcher, combinator, base ) {
 
 		// Check against all ancestor/preceding elements
 		function( elem, context, xml ) {
-			var data, cache, outerCache,
-				dirkey = dirruns + " " + doneName;
+			var oldCache, outerCache,
+				newCache = [ dirruns, doneName ];
 
 			// We can't set arbitrary data on XML nodes, so they don't benefit from dir caching
 			if ( xml ) {
@@ -2138,14 +2130,17 @@ function addCombinator( matcher, combinator, base ) {
 				while ( (elem = elem[ dir ]) ) {
 					if ( elem.nodeType === 1 || checkNonElements ) {
 						outerCache = elem[ expando ] || (elem[ expando ] = {});
-						if ( (cache = outerCache[ dir ]) && cache[0] === dirkey ) {
-							if ( (data = cache[1]) === true || data === cachedruns ) {
-								return data === true;
-							}
+						if ( (oldCache = outerCache[ dir ]) &&
+							oldCache[ 0 ] === dirruns && oldCache[ 1 ] === doneName ) {
+
+							// Assign to newCache so results back-propagate to previous elements
+							return (newCache[ 2 ] = oldCache[ 2 ]);
 						} else {
-							cache = outerCache[ dir ] = [ dirkey ];
-							cache[1] = matcher( elem, context, xml ) || cachedruns;
-							if ( cache[1] === true ) {
+							// Reuse newcache so results back-propagate to previous elements
+							outerCache[ dir ] = newCache;
+
+							// A match means we're done; a fail means we have to keep checking
+							if ( (newCache[ 2 ] = matcher( elem, context, xml )) ) {
 								return true;
 							}
 						}
@@ -2339,9 +2334,7 @@ function matcherFromTokens( tokens ) {
 }
 
 function matcherFromGroupMatchers( elementMatchers, setMatchers ) {
-	// A counter to specify which element is currently being matched
-	var matcherCachedRuns = 0,
-		bySet = setMatchers.length > 0,
+	var bySet = setMatchers.length > 0,
 		byElement = elementMatchers.length > 0,
 		superMatcher = function( seed, context, xml, results, outermost ) {
 			var elem, j, matcher,
@@ -2358,7 +2351,6 @@ function matcherFromGroupMatchers( elementMatchers, setMatchers ) {
 
 			if ( outermost ) {
 				outermostContext = context !== document && context;
-				cachedruns = matcherCachedRuns;
 			}
 
 			// Add elements passing elementMatchers directly to results
@@ -2376,7 +2368,6 @@ function matcherFromGroupMatchers( elementMatchers, setMatchers ) {
 					}
 					if ( outermost ) {
 						dirruns = dirrunsUnique;
-						cachedruns = ++matcherCachedRuns;
 					}
 				}
 
@@ -2945,12 +2936,11 @@ jQuery.fn.extend({
 	},
 
 	add: function( selector, context ) {
-		var set = typeof selector === "string" ?
-				jQuery( selector, context ) :
-				jQuery.makeArray( selector && selector.nodeType ? [ selector ] : selector ),
-			all = jQuery.merge( this.get(), set );
-
-		return this.pushStack( jQuery.unique(all) );
+		return this.pushStack(
+			jQuery.unique(
+				jQuery.merge( this.get(), jQuery( selector, context ) )
+			)
+		);
 	},
 
 	addBack: function( selector ) {
@@ -4151,8 +4141,6 @@ var rcheckableType = (/^(?:checkbox|radio)$/i);
 		div = document.createElement("div"),
 		input = document.createElement("input");
 
-	input.type = "checkbox";
-
 	// Setup
 	div.setAttribute( "className", "t" );
 	div.innerHTML = "  <link/><table></table><a href='/a'>a</a>";
@@ -4173,14 +4161,17 @@ var rcheckableType = (/^(?:checkbox|radio)$/i);
 	support.html5Clone =
 		document.createElement( "nav" ).cloneNode( true ).outerHTML !== "<:nav></:nav>";
 
-	// Make sure checked status is properly cloned
-	input.checked = true;
-	support.noCloneChecked = input.cloneNode( true ).checked;
-
 	// Check if a disconnected checkbox will retain its checked
 	// value of true after appended to the DOM (IE6/7)
+	input.type = "checkbox";
+	input.checked = true;
 	fragment.appendChild( input );
 	support.appendChecked = input.checked;
+
+	// Make sure textarea (and checkbox) defaultValue is properly cloned
+	// Support: IE6-IE11+
+	div.innerHTML = "<textarea>x</textarea>";
+	support.noCloneChecked = !!div.cloneNode( true ).lastChild.defaultValue;
 
 	// #11217 - WebKit loses check when the name is after the checked attribute
 	fragment.appendChild( div );
@@ -7654,8 +7645,11 @@ jQuery.fx.tick = function() {
 };
 
 jQuery.fx.timer = function( timer ) {
-	if ( timer() && jQuery.timers.push( timer ) ) {
+	jQuery.timers.push( timer );
+	if ( timer() ) {
 		jQuery.fx.start();
+	} else {
+		jQuery.timers.pop();
 	}
 };
 
@@ -7820,11 +7814,10 @@ jQuery.extend({
 	valHooks: {
 		option: {
 			get: function( elem ) {
-				// Use proper attribute retrieval(#6932, #12072)
 				var val = jQuery.find.attr( elem, "value" );
 				return val != null ?
 					val :
-					elem.text;
+					jQuery.text( elem );
 			}
 		},
 		select: {
@@ -7873,16 +7866,33 @@ jQuery.extend({
 
 				while ( i-- ) {
 					option = options[ i ];
-					if ( (option.selected = jQuery.inArray( jQuery(option).val(), values ) >= 0) ) {
-						optionSet = true;
+
+					if ( jQuery.inArray( jQuery.valHooks.option.get( option ), values ) >= 0 ) {
+
+						// Support: IE6
+						// When new option element is added to select box we need to
+						// force reflow of newly added node in order to workaround delay
+						// of initialization properties
+						try {
+							option.selected = optionSet = true;
+
+						} catch ( _ ) {
+
+							// Will be executed only in IE6
+							option.scrollHeight;
+						}
+
+					} else {
+						option.selected = false;
 					}
 				}
 
-				// force browsers to behave consistently when non-matching value is set
+				// Force browsers to behave consistently when non-matching value is set
 				if ( !optionSet ) {
 					elem.selectedIndex = -1;
 				}
-				return values;
+
+				return options;
 			}
 		}
 	}
@@ -9562,9 +9572,20 @@ jQuery.fn.extend({
 // (This is still attached to ajaxSettings for backward compatibility)
 jQuery.ajaxSettings.xhr = window.ActiveXObject !== undefined ?
 	// Support: IE6+
-	// XHR cannot access local files, always use ActiveX for that case
 	function() {
-		return !this.isLocal && createStandardXHR() || createActiveXHR();
+
+		// XHR cannot access local files, always use ActiveX for that case
+		return !this.isLocal &&
+
+			// Support: IE7-8
+			// oldIE XHR does not support non-RFC2616 methods (#13240)
+			// See http://msdn.microsoft.com/en-us/library/ie/ms536648(v=vs.85).aspx
+			// and http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html#sec9
+			// Although this check for six methods instead of eight
+			// since IE also does not support "trace" and "connect"
+			/^(get|post|head|put|delete|options)$/i.test( this.type ) &&
+
+			createStandardXHR() || createActiveXHR();
 	} :
 	// For all other browsers, use the standard XMLHttpRequest object
 	createStandardXHR;
@@ -10127,7 +10148,7 @@ jQuery.fn.extend({
 			parentOffset = { top: 0, left: 0 },
 			elem = this[ 0 ];
 
-		// fixed elements are offset from window (parentOffset = {top:0, left: 0}, because it is it's only offset parent
+		// fixed elements are offset from window (parentOffset = {top:0, left: 0}, because it is its only offset parent
 		if ( jQuery.css( elem, "position" ) === "fixed" ) {
 			// we assume that getBoundingClientRect is available when computed position is fixed
 			offset = elem.getBoundingClientRect();
@@ -10282,9 +10303,35 @@ if ( typeof define === "function" && define.amd ) {
 
 
 
+var
+	// Map over jQuery in case of overwrite
+	_jQuery = window.jQuery,
+
+	// Map over the $ in case of overwrite
+	_$ = window.$;
+
+jQuery.noConflict = function( deep ) {
+	if ( window.$ === jQuery ) {
+		window.$ = _$;
+	}
+
+	if ( deep && window.jQuery === jQuery ) {
+		window.jQuery = _jQuery;
+	}
+
+	return jQuery;
+};
+
 // Expose jQuery and $ identifiers, even in
 // AMD (#7102#comment:10, https://github.com/jquery/jquery/pull/557)
 // and CommonJS for browser emulators (#13566)
-return (window.jQuery = window.$ = jQuery);
+if ( typeof noGlobal === strundefined ) {
+	window.jQuery = window.$ = jQuery;
+}
+
+
+
+
+return jQuery;
 
 }));
