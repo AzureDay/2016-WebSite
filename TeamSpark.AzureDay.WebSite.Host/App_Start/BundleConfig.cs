@@ -33,7 +33,7 @@ namespace TeamSpark.AzureDay.WebSite.Host
 
 			bundles.Add(new ScriptBundle("~/cdn/theme/js").Include(
 				//"~/Theme/js/jquery.js",
-				"~/Theme/js/bootstrap.js",
+				//"~/Theme/js/bootstrap.js",
 				"~/Theme/js/jquery.fitvids.js",
 				"~/Theme/js/jquery.easing.1.3.js",
 				"~/Theme/js/common.js",
@@ -48,6 +48,9 @@ namespace TeamSpark.AzureDay.WebSite.Host
 
 			bundles.Add(new ScriptBundle("~/cdn/knockout/js").Include(
 				"~/Scripts/knockout-3.4.0.js"));
+
+			bundles.Add(new ScriptBundle("~/cdn/bootstrap/js").Include(
+				"~/Scripts/bootstrap.min.js"));
 
 			bundles.Add(new ScriptBundle("~/cdn/jquery/js").Include(
 				"~/Scripts/jquery-1.11.0.min.js"));
