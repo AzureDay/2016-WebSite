@@ -14,6 +14,7 @@ namespace TeamSpark.AzureDay.WebSite.App.Service
 			var countries = await DataFactory.CountryService.Value.GetByPartitionKeyAsync(Config.Configuration.Year);
 
 			return countries
+				.OrderBy(c => c.Title)
 				.Select(c => Mapper.Map<Country>(c))
 				.ToList();
 		}
