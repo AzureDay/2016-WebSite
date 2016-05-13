@@ -16,6 +16,9 @@ namespace TeamSpark.AzureDay.WebSite.App
 
 				cfg.CreateMap<Speaker, Data.Entity.Table.Speaker>();
 				cfg.CreateMap<Data.Entity.Table.Speaker, Speaker>();
+
+				cfg.CreateMap<Country, Data.Entity.Table.Country>();
+				cfg.CreateMap<Data.Entity.Table.Country, Country>();
 			});
 
 			var mapper = config.CreateMapper();
@@ -24,5 +27,6 @@ namespace TeamSpark.AzureDay.WebSite.App
 		});
 
 		public static readonly Lazy<AttendeeService> AttendeeService = new Lazy<AttendeeService>(() => new AttendeeService());
+		public static readonly Lazy<SpeakerService> SpeakerService = new Lazy<SpeakerService>(() => new SpeakerService());
 	}
 }

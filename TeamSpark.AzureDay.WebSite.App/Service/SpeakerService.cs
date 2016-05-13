@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AutoMapper;
 using TeamSpark.AzureDay.WebSite.App.Entity;
 using TeamSpark.AzureDay.WebSite.Config;
 using TeamSpark.AzureDay.WebSite.Data;
@@ -24,9 +23,9 @@ namespace TeamSpark.AzureDay.WebSite.App.Service
 				.ThenBy(s => s.LastName)
 				.Select(s =>
 				{
-					var speaker = Mapper.Map<Speaker>(s);
+					var speaker = AppFactory.Mapper.Value.Map<Speaker>(s);
 
-					speaker.Country = Mapper.Map<Country>(countries.Single(c => c.Id == s.CountryId));
+					speaker.Country = AppFactory.Mapper.Value.Map<Country>(countries.Single(c => c.Id == s.CountryId));
 
 					return speaker;
 				})

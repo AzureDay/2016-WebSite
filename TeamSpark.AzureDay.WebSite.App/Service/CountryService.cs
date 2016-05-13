@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AutoMapper;
 using TeamSpark.AzureDay.WebSite.App.Entity;
 using TeamSpark.AzureDay.WebSite.Data;
 
@@ -15,7 +14,7 @@ namespace TeamSpark.AzureDay.WebSite.App.Service
 
 			return countries
 				.OrderBy(c => c.Title)
-				.Select(c => Mapper.Map<Country>(c))
+				.Select(c => AppFactory.Mapper.Value.Map<Country>(c))
 				.ToList();
 		}
 	}
