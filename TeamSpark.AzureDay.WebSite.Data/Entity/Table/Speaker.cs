@@ -4,7 +4,7 @@ using TeamSpark.AzureDay.WebSite.Config;
 
 namespace TeamSpark.AzureDay.WebSite.Data.Entity.Table
 {
-	sealed class Speaker : TableEntity
+	public sealed class Speaker : TableEntity
 	{
 		[IgnoreProperty]
 		public Guid Id
@@ -24,6 +24,9 @@ namespace TeamSpark.AzureDay.WebSite.Data.Entity.Table
 		public string GoogleUrl { get; set; }
 		public string YouTubeUrl { get; set; }
 		public string TwitterUrl { get; set; }
+		public string MsdnUrl { get; set; }
+		public string MvpUrl { get; set; }
+		public string GitHubUrl { get; set; }
 
 		public Speaker()
 		{

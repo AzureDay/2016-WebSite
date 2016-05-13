@@ -13,6 +13,9 @@ namespace TeamSpark.AzureDay.WebSite.App
 			{
 				cfg.CreateMap<Attendee, Data.Entity.Table.Attendee>();
 				cfg.CreateMap<Data.Entity.Table.Attendee, Attendee>();
+
+				cfg.CreateMap<Speaker, Data.Entity.Table.Speaker>();
+				cfg.CreateMap<Data.Entity.Table.Speaker, Speaker>();
 			});
 
 			var mapper = config.CreateMapper();

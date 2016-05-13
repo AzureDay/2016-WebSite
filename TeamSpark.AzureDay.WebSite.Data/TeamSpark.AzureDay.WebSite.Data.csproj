@@ -86,6 +86,7 @@
     <Compile Include="Service\Table\AttendeeService.cs" />
     <Compile Include="Service\Table\CountryService.cs" />
     <Compile Include="Service\Table\QuickAuthTokenService.cs" />
+    <Compile Include="Service\Table\SpeakerService.cs" />
     <Compile Include="Service\Table\TableServiceBase.cs" />
   </ItemGroup>
   <ItemGroup>

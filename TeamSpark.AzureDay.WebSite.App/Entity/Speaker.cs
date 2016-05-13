@@ -17,6 +17,9 @@ namespace TeamSpark.AzureDay.WebSite.App.Entity
 		public string GoogleUrl { get; set; }
 		public string YouTubeUrl { get; set; }
 		public string TwitterUrl { get; set; }
+		public string MsdnUrl { get; set; }
+		public string MvpUrl { get; set; }
+		public string GitHubUrl { get; set; }
 
 		public List<Topic> Topics { get; set; }
 
