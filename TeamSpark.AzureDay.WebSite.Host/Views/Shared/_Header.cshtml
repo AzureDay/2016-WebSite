@@ -7,17 +7,7 @@
 			<nav class="navbar pull-right" role="navigation">
 				<div class="collapse navbar-collapse">
 					<ul id="main-menu" class="nav navbar-nav">
-						<li><a href="/">Главная</a></li>
-						@*<li><a href="/schedule">Расписание</a></li>*@
-						@if (Request.IsAuthenticated)
-						{
-							<li><a href="/profile/logout">Выйти</a></li>
-						}
-						else
-						{
-							<li><a href="/profile/registration">Регистрация</a></li>
-							<li><a href="/profile/login">Войти</a></li>
-						}
+						@Html.Partial("_MenuItems")
 						@*<li class="dropdown">
 							<a data-target="#" href="#">Templates <i class="fa fa-angle-down menucaret"></i></a>
 							<ul class="dropdown-menu">
@@ -77,4 +67,3 @@
 		</div>
 	</div>
 </div>
-<!-- end fixedmenu -->
