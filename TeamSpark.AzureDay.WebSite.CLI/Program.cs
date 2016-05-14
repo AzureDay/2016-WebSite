@@ -10,7 +10,8 @@ namespace TeamSpark.AzureDay.WebSite.CLI
 		{
 			//DataFactory.InitializeAsync().Wait();
 
-			Speaker.Add();
+			//Speaker.Add();
+			Country.Add();
 
 			Console.WriteLine("Press 'enter' to close.");
 			Console.ReadLine();

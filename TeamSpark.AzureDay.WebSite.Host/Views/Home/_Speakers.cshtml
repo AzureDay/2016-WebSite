@@ -1,0 +1,67 @@
+﻿@model TeamSpark.AzureDay.WebSite.Host.Models.Home.SpeakersModel
+
+<section class="whites testimonial fullwidth flexslider" id="testimonials-slider">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<ul class="slides">
+					@foreach (var speakerCollection in Model.SpeakersCollections)
+					{
+						<li>
+							<!-- begin team -->
+							<div class="shortcode row">
+								<div class="col-md-1">
+									&nbsp;
+								</div>
+								<div class="col-md-10">
+									<div class="titleborder left">
+										<div>
+											<h1 class="animated fadeInRightBig">Наши докладчики</h1>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-1">
+									&nbsp;
+								</div>
+
+								@foreach (var speaker in speakerCollection)
+								{
+								<div class="col-md-3">
+									<div class="thumbnail">
+										<img src="@speaker.PhotoUrl" alt="@speaker.FullName"/>
+										<div class="caption">
+											<h4>@speaker.FullName</h4>
+											<span class="fontitalic">@speaker.Country.Title</span>
+											<p>
+												@speaker.Bio<br>
+											</p>
+											<div class="social-icons">
+												@if (!string.IsNullOrEmpty(speaker.FacebookUrl))
+												{
+													<a href="@speaker.FacebookUrl" target="_blank"><i class="fa fa-facebook"></i></a>
+												}
+												@if (!string.IsNullOrEmpty(speaker.LinkedInUrl))
+												{
+													<a href="@speaker.LinkedInUrl" ><i class="fa fa-linkedin"></i></a>
+												}
+												@if (!string.IsNullOrEmpty(speaker.GoogleUrl))
+												{
+													<a href="@speaker.GoogleUrl" target="_blank"><i class="fa fa-google-plus"></i></a>
+												}
+
+												<a href="#"><i class="fa fa-pinterest"></i></a>
+											</div>
+										</div>
+									</div>
+								</div>
+								}
+							</div>
+							<!-- end team -->
+						</li>
+					}
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- end testimonial -->

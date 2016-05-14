@@ -1,8 +1,60 @@
-﻿<div class="boxedcontent">
+﻿@model TeamSpark.AzureDay.WebSite.Host.Models.Profile.MyProfileModel
+
+<div class="boxedcontent">
 	@Html.Action("Header", "Layout")
 
-	<h1>My</h1>
+	<h1>Личный кабинет</h1>
+
+	<form method="POST" data-bind="submit: showModal">
+
+		<input name="email" readonly="readonly" disabled="disabled" value="@Model.Email" />
+
+		<input name="firstName" data-bind="textInput: fName" placeholder="Имя" value="@Model.FirstName" />
+
+		<input name="lastName" data-bind="textInput: lName" placeholder="Фамилия" value="@Model.LastName" />
+
+		<input name="company" data-bind="textInput: company" placeholder="Компания" value="@Model.Company" />
+
+		<button type="submit" data-bind="enable: isModelValid">Сохранить</button>
+
+		<div style="display: none;" data-bind="style: { display: isModelValid() ? 'none' : 'block' }">Все поля обязательны для заполнения</div>
+
+	</form>
 
 	@Html.Action("Footer", "Layout")
 
 </div><!-- end boxedcontent -->
+
+@Html.Partial("_ModalWait")
+
+@section Scripts
+{
+	@Scripts.Render("~/cdn/knockout/js")
+
+	<script>
+		$(document).ready(function() {
+			var profileModel = {
+				fName: ko.observable('@Model.FirstName'),
+				lName: ko.observable('@Model.LastName'),
+				company: ko.observable('@Model.Company')
+			};
+
+			profileModel.isModelValid = ko.computed(function() {
+				var fName = profileModel.fName();
+				var lName = profileModel.lName();
+				var company = profileModel.company();
+
+				return !!fName && !!lName && !!company;
+			});
+
+			profileModel.showModal = function() {
+				setTimeout(function () {
+					modal.showModal();
+				});
+				return true;
+			}
+
+			ko.applyBindings(profileModel);
+		});
+	</script>
+}

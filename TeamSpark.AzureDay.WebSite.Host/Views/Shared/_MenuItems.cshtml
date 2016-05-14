@@ -1,0 +1,12 @@
+﻿<li><a href="/">Главная</a></li>
+@*<li><a href="/schedule">Расписание</a></li>*@
+@if (Request.IsAuthenticated)
+{
+	<li><a href="/profile/logout">Личный кабинет</a></li>
+	<li><a href="/profile/logout">Выйти</a></li>
+}
+else
+{
+	<li><a href="/profile/registration">Регистрация</a></li>
+	<li><a href="/profile/login">Войти</a></li>
+}
