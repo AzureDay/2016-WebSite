@@ -180,6 +180,7 @@
     </Compile>
     <Compile Include="Models\Home\SpeakersModel.cs" />
     <Compile Include="Models\Profile\LoginModel.cs" />
+    <Compile Include="Models\Profile\MyProfileModel.cs" />
     <Compile Include="Models\Profile\RegistrationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

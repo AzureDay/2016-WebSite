@@ -11,9 +11,37 @@ namespace TeamSpark.AzureDay.WebSite.Host.Controllers
 	public class ProfileController : Controller
 	{
 		[Authorize]
-		public ActionResult My()
+		public async Task<ActionResult> My()
 		{
-			return View();
+			var email = User.Identity.Name;
+			var attendee = await AppFactory.AttendeeService.Value.GetAttendeeByEmailAsync(email);
+
+			var model = new MyProfileModel
+			{
+				Email = attendee.EMail,
+				LastName = attendee.LastName,
+				FirstName = attendee.FirstName,
+				Company = attendee.Company
+			};
+
+			return View(model);
+		}
+
+		[Authorize]
+		[HttpPost]
+		public async Task<ActionResult> My(MyProfileModel model)
+		{
+			var email = User.Identity.Name;
+			var attendee = await AppFactory.AttendeeService.Value.GetAttendeeByEmailAsync(email);
+
+			attendee.EMail = email;
+			attendee.LastName = model.LastName;
+			attendee.FirstName = model.FirstName;
+			attendee.Company = model.Company;
+
+			await AppFactory.AttendeeService.Value.UpdateProfileAsync(attendee);
+
+			return RedirectToAction("My");
 		}
 
 		[NonAuthorize]

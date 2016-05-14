@@ -64,6 +64,14 @@ namespace TeamSpark.AzureDay.WebSite.App.Service
 			await DataFactory.AttendeeService.Value.InsertAsync(data);
 		}
 
+		public async Task UpdateProfileAsync(Attendee attendee)
+		{
+			var data = AppFactory.Mapper.Value.Map<Data.Entity.Table.Attendee>(attendee);
+			data.ETag = "*";
+
+			await DataFactory.AttendeeService.Value.ReplaceAsync(data);
+		}
+
 		public async Task<RegistrationConfirmationResult> ConfirmRegistrationByTokenAsync(string token)
 		{
 			var authToken = await DataFactory.QuickAuthTokenService.Value.GetByKeysAsync(Configuration.Year, token);
