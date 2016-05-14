@@ -1,4 +1,6 @@
-﻿namespace TeamSpark.AzureDay.WebSite.Config
+﻿using System.Configuration;
+
+namespace TeamSpark.AzureDay.WebSite.Config
 {
 	public static class Configuration
 	{
@@ -15,12 +17,12 @@
 
 		public static string AccountName
 		{
-			get { return ""; }
+			get { return ConfigurationManager.AppSettings.Get("AccountName"); }
 		}
 
 		public static string AccountKey
 		{
-			get { return ""; }
+			get { return ConfigurationManager.AppSettings.Get("AccountKey"); }
 		}
 
 		#endregion
