@@ -1,6 +1,5 @@
 ﻿@model TeamSpark.AzureDay.WebSite.Host.Models.Home.SpeakersModel
 
-
 <section class="whites testimonial fullwidth flexslider" id="testimonials-slider">
 	<div class="container">
 		<div class="row">
@@ -29,9 +28,9 @@
 								{
 								<div class="col-md-3">
 									<div class="thumbnail">
-										<img src="http://www.wowthemes.net/demo/biscaya/img/demo/team1.jpg" alt="">
+										<img src="@speaker.PhotoUrl" alt="@speaker.FullName"/>
 										<div class="caption">
-											<h4>@speaker.FirstName&nbsp;@speaker.LastName</h4>
+											<h4>@speaker.FullName</h4>
 											<span class="fontitalic">@speaker.Country.Title</span>
 											<p>
 												@speaker.Bio<br>
