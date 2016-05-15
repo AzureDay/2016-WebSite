@@ -27,6 +27,20 @@ namespace TeamSpark.AzureDay.WebSite.Config
 
 		#endregion
 
+		#region application insight
+
+		public static string ApplicationInsightInstrumentationKey
+		{
+			get { return ConfigurationManager.AppSettings.Get("ApplicationInsightInstrumentationKey"); }
+		}
+
+		public static string ApplicationInsightEnvironmentTag
+		{
+			get { return ConfigurationManager.AppSettings.Get("ApplicationInsightEnvironmentTag"); }
+		}
+
+		#endregion
+
 		#region sendgrid
 
 		public static string SendGridApiKey
