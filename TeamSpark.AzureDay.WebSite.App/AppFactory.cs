@@ -19,6 +19,9 @@ namespace TeamSpark.AzureDay.WebSite.App
 
 				cfg.CreateMap<Country, Data.Entity.Table.Country>();
 				cfg.CreateMap<Data.Entity.Table.Country, Country>();
+
+				cfg.CreateMap<QuickAuthToken, Data.Entity.Table.QuickAuthToken>();
+				cfg.CreateMap<Data.Entity.Table.QuickAuthToken, QuickAuthToken>();
 			});
 
 			var mapper = config.CreateMapper();
@@ -28,5 +31,6 @@ namespace TeamSpark.AzureDay.WebSite.App
 
 		public static readonly Lazy<AttendeeService> AttendeeService = new Lazy<AttendeeService>(() => new AttendeeService());
 		public static readonly Lazy<SpeakerService> SpeakerService = new Lazy<SpeakerService>(() => new SpeakerService());
+		public static readonly Lazy<QuickAuthTokenService> QuickAuthTokenService = new Lazy<QuickAuthTokenService>(() => new QuickAuthTokenService());
 	}
 }
