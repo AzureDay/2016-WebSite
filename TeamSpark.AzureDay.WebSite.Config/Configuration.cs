@@ -26,5 +26,14 @@ namespace TeamSpark.AzureDay.WebSite.Config
 		}
 
 		#endregion
+
+		#region sendgrid
+
+		public static string SendGridApiKey
+		{
+			get { return ConfigurationManager.AppSettings.Get("SendGridApiKey"); }
+		}
+
+		#endregion
 	}
 }
