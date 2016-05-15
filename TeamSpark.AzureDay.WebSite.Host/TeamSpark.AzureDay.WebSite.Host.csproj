@@ -329,6 +329,10 @@
     <Content Include="Theme\img\_bgnd\bgnd01b.jpg" />
     <Content Include="Theme\img\_bgnd\bgnd02b.JPG" />
     <Content Include="Theme\img\_bgnd\bgnd03b.JPG" />
+    <Content Include="Theme\img\_slides\01.jpg" />
+    <Content Include="Theme\img\_slides\02.jpg" />
+    <Content Include="Theme\img\_slides\03.jpg" />
+    <Content Include="Theme\img\_slides\04.jpg" />
     <Content Include="Theme\img\_slides\kyiv01.jpg" />
     <Content Include="Theme\img\_slides\kyiv01b.jpg" />
     <Content Include="Theme\img\_slides\kyiv02.jpg" />
