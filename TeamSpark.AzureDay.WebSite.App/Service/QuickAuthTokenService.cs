@@ -7,7 +7,7 @@ namespace TeamSpark.AzureDay.WebSite.App.Service
 {
 	public sealed class QuickAuthTokenService
 	{
-		public async Task<QuickAuthToken> GetQuickAuthTokenByEmailAsync(string token, bool? isUsed = null)
+		public async Task<QuickAuthToken> GetQuickAuthTokenByValueAsync(string token, bool? isUsed = null)
 		{
 			var authToken = await DataFactory.QuickAuthTokenService.Value.GetByKeysAsync(Configuration.Year, token);
 
@@ -28,9 +28,20 @@ namespace TeamSpark.AzureDay.WebSite.App.Service
 			}
 		}
 
+		public async Task ExpireTokenByValueAsync(string token)
+		{
+			var authToken = await DataFactory.QuickAuthTokenService.Value.GetByKeysAsync(Configuration.Year, token);
+
+			if (authToken != null)
+			{
+				authToken.IsUsed = true;
+				await DataFactory.QuickAuthTokenService.Value.ReplaceAsync(authToken);
+			}
+		}
+
 		public async Task<bool> IsTokenValidForEmailAsync(string token, string email)
 		{
-			var authToken = await GetQuickAuthTokenByEmailAsync(token, false);
+			var authToken = await GetQuickAuthTokenByValueAsync(token, false);
 			return authToken != null && authToken.Email == email;
 		}
 

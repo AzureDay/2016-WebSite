@@ -48,6 +48,16 @@ namespace TeamSpark.AzureDay.WebSite.Config
 			get { return ConfigurationManager.AppSettings.Get("SendGridApiKey"); }
 		}
 
+		public static string SendGridFromEmail
+		{
+			get { return ConfigurationManager.AppSettings.Get("SendGridFromEmail"); }
+		}
+
+		public static string SendGridFromName
+		{
+			get { return ConfigurationManager.AppSettings.Get("SendGridFromName"); }
+		}
+
 		#endregion
 	}
 }

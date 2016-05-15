@@ -466,6 +466,8 @@
     <Content Include="Views\Home\_Speakers.cshtml" />
     <Content Include="Views\Shared\_MenuItems.cshtml" />
     <Content Include="Service References\Application Insights\ConnectedService.json" />
+    <Content Include="Views\Profile\ConfirmRegistration.cshtml" />
+    <Content Include="Views\Profile\ConfirmEmail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
