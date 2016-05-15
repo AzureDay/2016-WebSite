@@ -13,16 +13,16 @@ namespace TeamSpark.AzureDay.WebSite.Config
 
 		#endregion
 
-		#region storage
+		#region azure storage
 
-		public static string AccountName
+		public static string AzureStorageAccountName
 		{
-			get { return ConfigurationManager.AppSettings.Get("AccountName"); }
+			get { return ConfigurationManager.AppSettings.Get("AzureStorageAccountName"); }
 		}
 
-		public static string AccountKey
+		public static string AzureStorageAccountKey
 		{
-			get { return ConfigurationManager.AppSettings.Get("AccountKey"); }
+			get { return ConfigurationManager.AppSettings.Get("AzureStorageAccountKey"); }
 		}
 
 		#endregion
