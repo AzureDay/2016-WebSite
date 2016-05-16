@@ -133,16 +133,16 @@ namespace TeamSpark.AzureDay.WebSite.Host.Controllers
 			return Redirect("~/");
 		}
 
-		[Authorize]
-		public ActionResult Quiz()
-		{
-			return View();
-		}
+		//[Authorize]
+		//public ActionResult Quiz()
+		//{
+		//	return View();
+		//}
 
-		[Authorize]
-		public ActionResult Feedback()
-		{
-			return View();
-		}
+		//[Authorize]
+		//public ActionResult Feedback()
+		//{
+		//	return View();
+		//}
 	}
 }
