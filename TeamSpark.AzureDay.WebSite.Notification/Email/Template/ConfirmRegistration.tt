@@ -6,9 +6,12 @@
 
 <html>
 <head>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </head>
 <body>
-<h1>Confirm</h1>
-<h2><#= ConfirmationCode #></h2>
+<div style="font-family: Tahoma, Geneva, sans-serif; color: #f90; font-size: 1.3em; font-weight: bold; padding-bottom: 10px;">Подтверждение регистрации</div>
+<p style="font-family: Tahoma, Geneva, sans-serif;">
+ Пожалуйста, подтвердите ваш адрес электронной почты для регистрации на AZUREday, пройдя по этой <a style="color:#090; font-weight: bold;" target="_blank" href="http://AzureDay.net/Profile/ConfirmRegistration/<#= ConfirmationCode #>">ссылке</a>.
+</p>
 </body>
 </html>

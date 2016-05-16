@@ -28,14 +28,22 @@ namespace TeamSpark.AzureDay.WebSite.Notification.Email.Template
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write("\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n<h1>Confirm</h1>\r\n<h2>");
+            this.Write(@"
+<html>
+<head>
+ <meta http-equiv=""Content-Type"" content=""text/html; charset=utf-8"" />
+</head>
+<body>
+<div style=""font-family: Tahoma, Geneva, sans-serif; color: #f90; font-size: 1.3em; font-weight: bold; padding-bottom: 10px;"">Подтверждение регистрации</div>
+<p style=""font-family: Tahoma, Geneva, sans-serif;"">
+ Пожалуйста, подтвердите ваш адрес электронной почты для регистрации на AZUREday, пройдя по этой <a style=""color:#090; font-weight: bold;"" target=""_blank"" href=""http://AzureDay.net/Profile/ConfirmRegistration/");
             
-            #line 12 "D:\Projects\TeamSpark\Events\AzureDay-2016\2016-WebSite\TeamSpark.AzureDay.WebSite.Notification\Email\Template\ConfirmRegistration.tt"
+            #line 14 "D:\Projects\TeamSpark\Events\AzureDay-2016\2016-WebSite\TeamSpark.AzureDay.WebSite.Notification\Email\Template\ConfirmRegistration.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ConfirmationCode));
             
             #line default
             #line hidden
-            this.Write("</h2>\r\n</body>\r\n</html>");
+            this.Write("\">ссылке</a>.\r\n</p>\r\n</body>\r\n</html>");
             return this.GenerationEnvironment.ToString();
         }
     }

@@ -5,7 +5,7 @@ using TeamSpark.AzureDay.WebSite.Data.Enum;
 
 namespace TeamSpark.AzureDay.WebSite.Data.Entity.Table
 {
-	sealed class Room : TableEntity
+	public sealed class Room : TableEntity
 	{
 		[IgnoreProperty]
 		public Guid Id

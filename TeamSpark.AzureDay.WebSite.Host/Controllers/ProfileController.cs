@@ -66,10 +66,30 @@ namespace TeamSpark.AzureDay.WebSite.Host.Controllers
 				Salt = salt,
 				PasswordHash = passwordHash
 			};
-
+			
 			await AppFactory.AttendeeService.Value.RegisterAsync(attendee);
 
-			return Redirect("~/");
+			return RedirectToAction("ConfirmRegistration");
+		}
+
+		[NonAuthorize]
+		public async Task<ActionResult> ConfirmRegistration(string token)
+		{
+			if (string.IsNullOrEmpty(token))
+			{
+				return View("ConfirmEmail");
+			}
+
+			var authToken = await AppFactory.QuickAuthTokenService.Value.GetQuickAuthTokenByValueAsync(token, false);
+
+			if (authToken == null)
+			{
+				return Redirect("~/");
+			}
+
+			await AppFactory.AttendeeService.Value.ConfirmRegistrationByTokenAsync(token);
+
+			return View("ConfirmRegistration");
 		}
 
 		[NonAuthorize]
@@ -113,16 +133,16 @@ namespace TeamSpark.AzureDay.WebSite.Host.Controllers
 			return Redirect("~/");
 		}
 
-		[Authorize]
-		public ActionResult Quiz()
-		{
-			return View();
-		}
+		//[Authorize]
+		//public ActionResult Quiz()
+		//{
+		//	return View();
+		//}
 
-		[Authorize]
-		public ActionResult Feedback()
-		{
-			return View();
-		}
+		//[Authorize]
+		//public ActionResult Feedback()
+		//{
+		//	return View();
+		//}
 	}
 }
