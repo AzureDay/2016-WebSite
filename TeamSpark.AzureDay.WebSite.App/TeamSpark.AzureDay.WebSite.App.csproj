@@ -104,7 +104,9 @@
     <Compile Include="Service\AttendeeService.cs" />
     <Compile Include="Service\CountryService.cs" />
     <Compile Include="Service\QuickAuthTokenService.cs" />
+    <Compile Include="Service\RoomService.cs" />
     <Compile Include="Service\SpeakerService.cs" />
+    <Compile Include="Service\TimetableService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
