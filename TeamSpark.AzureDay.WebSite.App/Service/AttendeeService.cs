@@ -1,9 +1,12 @@
-﻿using System.Security.Cryptography;
+﻿using System;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using TeamSpark.AzureDay.WebSite.App.Entity;
 using TeamSpark.AzureDay.WebSite.App.Enum;
 using TeamSpark.AzureDay.WebSite.Config;
 using TeamSpark.AzureDay.WebSite.Data;
+using TeamSpark.AzureDay.WebSite.Notification;
+using TeamSpark.AzureDay.WebSite.Notification.Email.Model;
 
 namespace TeamSpark.AzureDay.WebSite.App.Service
 {
@@ -61,7 +64,24 @@ namespace TeamSpark.AzureDay.WebSite.App.Service
 		{
 			var data = AppFactory.Mapper.Value.Map<Data.Entity.Table.Attendee>(attendee);
 
-			await DataFactory.AttendeeService.Value.InsertAsync(data);
+			var token = new QuickAuthToken
+			{
+				Email = attendee.EMail,
+				Token = Guid.NewGuid().ToString("N")
+			};
+
+			var email = new ConfirmRegistrationMessage
+			{
+				Email = attendee.EMail,
+				FullName = attendee.FullName,
+				Token = token.Token
+			};
+
+			await Task.WhenAll(
+				DataFactory.AttendeeService.Value.InsertAsync(data),
+				AppFactory.QuickAuthTokenService.Value.AddQuickAuthTokenAsync(token),
+				NotificationFactory.AttendeeNotificationService.Value.SendConfirmationEmailAsync(email)
+			);
 		}
 
 		public async Task UpdateProfileAsync(Attendee attendee)

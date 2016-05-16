@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using TeamSpark.AzureDay.WebSite.Host.Filter;
 
 namespace TeamSpark.AzureDay.WebSite.Host
 {
@@ -6,7 +7,7 @@ namespace TeamSpark.AzureDay.WebSite.Host
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            filters.Add(new HandleErrorAttribute());
+            filters.Add(new ApplicationInsightHandleErrorAttribute());
         }
     }
 }

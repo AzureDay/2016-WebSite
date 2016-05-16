@@ -16,6 +16,11 @@ namespace TeamSpark.AzureDay.WebSite.Host
 			);
 
 			routes.MapRoute(
+				name: "Token",
+				url: "{controller}/{action}/{token}"
+			);
+
+			routes.MapRoute(
 				name: "Default",
 				url: "{controller}/{action}"
 			);
