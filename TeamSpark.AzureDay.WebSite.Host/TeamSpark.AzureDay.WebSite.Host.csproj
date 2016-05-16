@@ -473,6 +473,7 @@
     <Content Include="Service References\Application Insights\ConnectedService.json" />
     <Content Include="Views\Profile\ConfirmRegistration.cshtml" />
     <Content Include="Views\Profile\ConfirmEmail.cshtml" />
+    <Content Include="Views\Home\_Partners.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
