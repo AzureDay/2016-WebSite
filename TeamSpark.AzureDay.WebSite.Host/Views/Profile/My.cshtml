@@ -7,13 +7,13 @@
 
 	<form method="POST" data-bind="submit: showModal">
 
-		<input name="email" readonly="readonly" disabled="disabled" value="@Model.Email" />
+		<input name="email" readonly="readonly" disabled="disabled" value="@Model.Email"/>
 
-		<input name="firstName" data-bind="textInput: fName" placeholder="Имя" value="@Model.FirstName" />
+		<input name="firstName" data-bind="textInput: fName" placeholder="Имя" value="@Model.FirstName"/>
 
-		<input name="lastName" data-bind="textInput: lName" placeholder="Фамилия" value="@Model.LastName" />
+		<input name="lastName" data-bind="textInput: lName" placeholder="Фамилия" value="@Model.LastName"/>
 
-		<input name="company" data-bind="textInput: company" placeholder="Компания" value="@Model.Company" />
+		<input name="company" data-bind="textInput: company" placeholder="Компания" value="@Model.Company"/>
 
 		<button type="submit" data-bind="enable: isModelValid">Сохранить</button>
 
