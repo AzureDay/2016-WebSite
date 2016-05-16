@@ -47,6 +47,13 @@ namespace TeamSpark.AzureDay.WebSite.Data.Service.Table
 			return (await Table.ExecuteQuerySegmentedAsync(query, null)).Results;
 		}
 
+		public async Task<List<T>> GetAllAsync()
+		{
+			var query = new TableQuery<T>();
+
+			return (await Table.ExecuteQuerySegmentedAsync(query, null)).Results;
+		}
+
 		public async Task InsertAsync(T entity)
 		{
 			var operation = TableOperation.Insert(entity);
