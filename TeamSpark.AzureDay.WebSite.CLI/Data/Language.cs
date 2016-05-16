@@ -3,21 +3,21 @@ using TeamSpark.AzureDay.WebSite.Data;
 
 namespace TeamSpark.AzureDay.WebSite.CLI.Data
 {
-	internal static class Country
+	internal static class Language
 	{
 		internal static void Add()
 		{
-			Console.WriteLine("Add country");
-			var country = new WebSite.Data.Entity.Table.Country
+			Console.WriteLine("Add Language");
+			var language = new WebSite.Data.Entity.Table.Language
 			{
 				Id = Guid.NewGuid()
 			};
 
 			Console.Write("Title: ");
-			country.Title = Console.ReadLine();
+			language.Title = Console.ReadLine();
 
 			Console.WriteLine("Working...");
-			DataFactory.CountryService.Value.InsertAsync(country).Wait();
+			DataFactory.LanguageService.Value.InsertAsync(language).Wait();
 			Console.WriteLine("Done.");
 		}
 	}
