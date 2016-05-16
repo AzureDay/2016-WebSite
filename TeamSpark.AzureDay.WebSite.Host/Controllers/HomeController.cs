@@ -83,5 +83,11 @@ namespace TeamSpark.AzureDay.WebSite.Host.Controllers
 
 			return View("_Speakers", model);
 		}
+
+		[ChildActionOnly]
+		public ActionResult Partners()
+		{
+			return View("_Partners");
+		}
 	}
 }
