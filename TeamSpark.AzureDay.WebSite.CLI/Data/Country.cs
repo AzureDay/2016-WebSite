@@ -7,7 +7,7 @@ namespace TeamSpark.AzureDay.WebSite.CLI.Data
 	{
 		internal static void Add()
 		{
-			Console.WriteLine("Add speaker");
+			Console.WriteLine("Add country");
 			var country = new WebSite.Data.Entity.Table.Country
 			{
 				Id = Guid.NewGuid()

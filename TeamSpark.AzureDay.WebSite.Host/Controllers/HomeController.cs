@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Nito.AsyncEx;
 using TeamSpark.AzureDay.WebSite.App;
 using TeamSpark.AzureDay.WebSite.App.Entity;
+using TeamSpark.AzureDay.WebSite.Data.Enum;
 using TeamSpark.AzureDay.WebSite.Host.Models.Home;
 
 namespace TeamSpark.AzureDay.WebSite.Host.Controllers
@@ -19,7 +20,25 @@ namespace TeamSpark.AzureDay.WebSite.Host.Controllers
 
 		public async Task<ActionResult> Schedule()
 		{
-			return View();
+			var roomsTask = AppFactory.RoomService.Value.GetAllRoomsAsync();
+			var timetableTask = AppFactory.TimetableService.Value.GetTimetableAsync();
+
+			await Task.WhenAll(
+				roomsTask,
+				timetableTask
+			);
+
+			var model = new ScheduleModel();
+
+			model.Rooms = roomsTask.Result
+				.Where(r => r.RoomType != RoomType.CoffeeRoom)
+				.ToList();
+
+			model.Timetables = timetableTask.Result
+				.GroupBy(t => t.TimeStartHours * 100 + t.TimeStartMinutes, (key, timetables) => timetables.ToList())
+				.ToList();
+
+			return View(model);
 		}
 
 		public async Task<ActionResult> Redirect([FromUri] string quickAuthToken, [FromUri] string redirectUrl)

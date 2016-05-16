@@ -1,0 +1,16 @@
+﻿<div class="boxedcontent">
+	@Html.Action("Header", "Layout")
+
+	<h1>Регистрация подтверждена</h1>
+
+	<p>Через несколько секунд вы будете автоматически перенапралены на главную страницу.</p>
+
+	<script>
+		setTimeout(function() {
+			window.location.href = '/';
+		}, 5000)
+	</script>
+
+	@Html.Action("Footer", "Layout")
+
+</div>

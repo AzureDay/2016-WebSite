@@ -61,12 +61,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Email\Ext\ConfirmRegistration.cs" />
+    <Compile Include="Email\Model\ConfirmRegistrationMessage.cs" />
+    <Compile Include="Email\Model\MessageBase.cs" />
     <Compile Include="Email\Service\AttendeeNotificationService.cs" />
     <Compile Include="Email\Template\ConfirmRegistration.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ConfirmRegistration.tt</DependentUpon>
     </Compile>
+    <Compile Include="NotificationFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -81,6 +84,12 @@
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>ConfirmRegistration.cs</LastGenOutput>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TeamSpark.AzureDay.WebSite.Config\TeamSpark.AzureDay.WebSite.Config.csproj">
+      <Project>{4d1ee387-7f67-4771-8d7a-43b73106696d}</Project>
+      <Name>TeamSpark.AzureDay.WebSite.Config</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
