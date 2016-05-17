@@ -16,6 +16,7 @@ namespace TeamSpark.AzureDay.WebSite.Data
 		public static readonly Lazy<TopicService> TopicService = new Lazy<TopicService>(() => new TopicService(Configuration.AzureStorageAccountName, Configuration.AzureStorageAccountKey));
 		public static readonly Lazy<TimetableService> TimetableService = new Lazy<TimetableService>(() => new TimetableService(Configuration.AzureStorageAccountName, Configuration.AzureStorageAccountKey));
 		public static readonly Lazy<SpeakerTopicService> SpeakerTopicService = new Lazy<SpeakerTopicService>(() => new SpeakerTopicService(Configuration.AzureStorageAccountName, Configuration.AzureStorageAccountKey));
+		public static readonly Lazy<PartnerService> PartnerService = new Lazy<PartnerService>(() => new PartnerService(Configuration.AzureStorageAccountName, Configuration.AzureStorageAccountKey));
 
 		public static async Task InitializeAsync()
 		{
