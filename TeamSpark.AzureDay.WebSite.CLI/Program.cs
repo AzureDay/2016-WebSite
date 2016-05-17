@@ -8,6 +8,8 @@ namespace TeamSpark.AzureDay.WebSite.CLI
 	{
 		static void Main(string[] args)
 		{
+			DataFactory.InitializeAsync().Wait();
+
 			//Speaker.Add();
 			//Country.Add();
 			//Room.Add();
