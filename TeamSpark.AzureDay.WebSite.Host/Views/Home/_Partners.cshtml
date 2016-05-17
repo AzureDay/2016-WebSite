@@ -11,6 +11,11 @@
 	@foreach (var partners in Model.PartnersCollection)
 	{
 		<div class="row">
+			<div class="col-md-12">
+				@partners.Key.ToDisplayString()
+			</div>
+		</div>
+		<div class="row">
 			@foreach (var partner in partners.Value)
 			{
 				<div class="col-md-4">
