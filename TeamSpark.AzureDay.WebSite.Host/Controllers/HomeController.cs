@@ -3,7 +3,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Mvc;
-using Nito.AsyncEx;
 using TeamSpark.AzureDay.WebSite.App;
 using TeamSpark.AzureDay.WebSite.App.Entity;
 using TeamSpark.AzureDay.WebSite.Data.Enum;
@@ -15,7 +14,59 @@ namespace TeamSpark.AzureDay.WebSite.Host.Controllers
 	{
 		public async Task<ActionResult> Index()
 		{
-			return View();
+			var speakersTask = AppFactory.SpeakerService.Value.GetSpeakersAsync();
+			var partnersTask = AppFactory.PartnerService.Value.GetPartnersAsync();
+
+			var model = new IndexModel
+			{
+				Speakers = new SpeakersModel
+				{
+					SpeakersCollections = new List<List<Speaker>>()
+				},
+				Partners = new PartnersModel
+				{
+					PartnersCollection = new Dictionary<PartnerType, List<Partner>>()
+				}
+			};
+
+			await Task.WhenAll(
+				speakersTask,
+				partnersTask
+			);
+
+			var speakers = speakersTask.Result;
+			var i = 0;
+			foreach (var speaker in speakers)
+			{
+				List<Speaker> list;
+				if (i == 0)
+				{
+					list = new List<Speaker>();
+					model.Speakers.SpeakersCollections.Add(list);
+				}
+				else
+				{
+					list = model.Speakers.SpeakersCollections.Last();
+				}
+
+				list.Add(speaker);
+
+				if (i == 3)
+				{
+					i = 0;
+				}
+				else
+				{
+					i++;
+				}
+			}
+
+			var partners = partnersTask.Result;
+			model.Partners.PartnersCollection = partners
+				.GroupBy(p => p.PartnerType)
+				.ToDictionary(p => p.Key, group => group.OrderBy(p => p.OrderN).ToList());
+
+			return View(model);
 		}
 
 		public async Task<ActionResult> Schedule()
@@ -44,44 +95,6 @@ namespace TeamSpark.AzureDay.WebSite.Host.Controllers
 		public async Task<ActionResult> Redirect([FromUri] string quickAuthToken, [FromUri] string redirectUrl)
 		{
 			return Redirect(redirectUrl);
-		}
-
-		[ChildActionOnly]
-		public ActionResult Speakers()
-		{
-			var model = new SpeakersModel
-			{
-				SpeakersCollections = new List<List<Speaker>>()
-			};
-
-			var speakers = AsyncContext.Run(() => AppFactory.SpeakerService.Value.GetSpeakersAsync());
-			var i = 0;
-			foreach (var speaker in speakers)
-			{
-				List<Speaker> list;
-				if (i == 0)
-				{
-					list = new List<Speaker>();
-					model.SpeakersCollections.Add(list);
-				}
-				else
-				{
-					list = model.SpeakersCollections.Last();
-				}
-
-				list.Add(speaker);
-
-				if (i == 3)
-				{
-					i = 0;
-				}
-				else
-				{
-					i++;
-				}
-			}
-
-			return View("_Speakers", model);
 		}
 	}
 }

@@ -1,0 +1,61 @@
+﻿@using TeamSpark.AzureDay.WebSite.Data.Enum
+@model TeamSpark.AzureDay.WebSite.Host.Models.Home.PartnersModel
+
+<div class="container">
+	<div class="row text-center">
+		<div class="col-md-12">
+			<h1 class="maintitle">Наши партнеры</h1>
+		</div>
+	</div>
+
+	@foreach (var partners in Model.PartnersCollection)
+	{
+		<div class="row">
+			<div class="col-md-12">
+				@partners.Key.ToDisplayString()
+			</div>
+		</div>
+		<div class="row">
+			@foreach (var partner in partners.Value)
+			{
+				<div class="col-md-4">
+					<div class="box1" style="text-align: justify;">
+						<div class="striped">
+						</div>
+						<h6>
+							@switch (partner.PartnerType)
+							{
+								case PartnerType.VIP:
+									@Html.Raw("<i class='fa fa-diamond'></i>");
+									break;
+								case PartnerType.Gold:
+									@Html.Raw("<i class='fa fa-star'></i>");
+									break;
+								case PartnerType.Silver:
+									@Html.Raw("<i class='fa fa-star'></i>");
+									break;
+								case PartnerType.Raffle:
+									@Html.Raw("<i class='fa fa-gift'></i>");
+									break;
+								case PartnerType.Info:
+									@Html.Raw("<i class='fa fa-bullhorn'></i>");
+									break;
+								case PartnerType.Speaker:
+									@Html.Raw("<i class='fa fa-commenting-o'></i>");
+									break;
+							}
+							&nbsp;@partner.Title
+						</h6>
+						<div>
+							<img src="@partner.LogoUrl" alt="@partner.Title"/>
+						</div>
+						<div>
+							@partner.Description
+							<span class="boxlink "><a target="_blank" href="@partner.WebUrl" class="defaultbutton mainthemebgcolor"><i class="fa fa-link"></i></a></span>
+						</div>
+					</div>
+				</div>
+			}
+		</div>
+	}
+</div>
