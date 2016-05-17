@@ -29,7 +29,8 @@ namespace TeamSpark.AzureDay.WebSite.Data
 				LanguageService.Value.InitializeAsync(),
 				TopicService.Value.InitializeAsync(),
 				TimetableService.Value.InitializeAsync(),
-				SpeakerTopicService.Value.InitializeAsync()
+				SpeakerTopicService.Value.InitializeAsync(),
+				PartnerService.Value.InitializeAsync()
 			);
 		}
 	}
