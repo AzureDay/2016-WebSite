@@ -45,8 +45,6 @@ namespace TeamSpark.AzureDay.WebSite.CLI.Data
 			Console.WriteLine("Working...");
 			DataFactory.SpeakerTopicService.Value.InsertAsync(speakerTopic).Wait();
 			Console.WriteLine("Done.");
-
-			Add();
 		}
 	}
 }

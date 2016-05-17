@@ -27,15 +27,18 @@
 								@foreach (var speaker in speakerCollection)
 								{
 								<div class="col-md-3">
+									<img class="mySpeakerFlagImg" src="@speaker.Country.GetImageUrl()" />
 									<div class="thumbnail">
+										
 										<img src="@speaker.PhotoUrl" alt="@speaker.FullName"/>
 										<div class="caption">
 											<h4>@speaker.FullName</h4>
 											<span class="fontitalic">@speaker.Country.Title</span>
-											<img src="@speaker.Country.GetImageUrl()" />
-											<p>
+											
+											
+											<div>
 												@speaker.Bio<br>
-											</p>
+											</div>
 											<div class="social-icons">
 												@if (!string.IsNullOrEmpty(speaker.FacebookUrl))
 												{
