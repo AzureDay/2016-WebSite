@@ -26,7 +26,7 @@ namespace TeamSpark.AzureDay.WebSite.App.Service
 				speakersTask);
 
 			var rooms = roomsTask.Result
-				.Where(r => r.RoomType != RoomType.CoffeeRoom)
+				//.Where(r => r.RoomType != RoomType.CoffeeRoom)
 				.Select(t => AppFactory.Mapper.Value.Map<Room>(t))
 				.ToList();
 
@@ -64,10 +64,10 @@ namespace TeamSpark.AzureDay.WebSite.App.Service
 			}
 
 			return timetables
-				.OrderBy(t => t.Room.RoomType.ToString())
-				.ThenBy(t => t.Room.Title)
-				.ThenBy(t => t.TimeStartHours)
+				.OrderBy(t => t.TimeStartHours)
 				.ThenBy(t => t.TimeStartMinutes)
+				.ThenBy(t => t.Room.RoomType.ToString())
+				.ThenBy(t => t.Room.Title)
 				.ToList();
 		}
 	}

@@ -14,9 +14,10 @@ namespace TeamSpark.AzureDay.WebSite.CLI
 			//Country.Add();
 			//Room.Add();
 			//Language.Add();
-			//Timetable.Add();
+			Timetable.Add();
+			//Timetable.Move();
 			//SpeakerTopic.Add();
-			Partner.Add();
+			//Partner.Add();
 
 			Console.WriteLine("Press 'enter' to close.");
 			Console.ReadLine();
