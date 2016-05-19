@@ -2412,10 +2412,10 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .maintitle {
 
 .mySpeakerFlagImg {
 	display: inline-block !important;
-	max-width: 50px;
-	max-height: 25px;
+	max-width: 80px;
+	max-height: 40px;
 	position: relative;
-	top:25px;
+	top:40px;
 	left: 0;
 	border: 1px solid #666;
 }

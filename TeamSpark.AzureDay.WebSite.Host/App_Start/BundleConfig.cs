@@ -23,7 +23,6 @@ namespace TeamSpark.AzureDay.WebSite.Host
 			bundles.Add(new StyleBundle("~/cdn/theme/css").Include(
 				"~/Theme/css/bootstrap.min.css",
 				"~/Theme/inc/shortcodes/css/shortcodes.css",
-				"~/Theme/css/font-awesome.css",
 				"~/Theme/css/animate.css",
 				"~/Theme/css/wowslider.css",
 				"~/Theme/style.css"));
