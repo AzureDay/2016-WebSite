@@ -1,64 +1,95 @@
 ﻿@model TeamSpark.AzureDay.WebSite.Host.Models.Profile.MyProfileModel
 
+@{
+	ViewBag.Title = "AzureDay 2016 - личный кабинет";
+}
+
 <div class="boxedcontent">
 	@Html.Action("Header", "Layout")
 
-	<h1>Личный кабинет</h1>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
 
-	<form method="POST" data-bind="submit: showModal">
+				<div>
+					&nbsp;
+				</div>
 
-		<input name="email" readonly="readonly" disabled="disabled" value="@Model.Email"/>
+				<h1>Личный кабинет участника <span class='colortext'>AZUREday</span></h1>
 
-		<input name="firstName" data-bind="textInput: fName" placeholder="Имя" value="@Model.FirstName"/>
+				<form method="POST" data-bind="submit: showModal">
 
-		<input name="lastName" data-bind="textInput: lName" placeholder="Фамилия" value="@Model.LastName"/>
+					<div class="input-group myInputGroupdivider">
+						<span class="input-group-addon" style="width: 150px;">Email</span>
+						<input class="form-control" name="email" readonly="readonly" disabled="disabled" value="@Model.Email" style="width: 250px;" />
+					</div>
+					<div class="input-group myInputGroupdivider">
+						<span class="input-group-addon" style="width: 150px;">Имя</span>
+						<input class="form-control" name="firstName" data-bind="textInput: fName" placeholder="Имя" value="@Model.FirstName" style="width: 250px;" />
+					</div>
+					<div class="input-group myInputGroupdivider">
+						<span class="input-group-addon" style="width: 150px;">Фамилия</span>
+						<input class="form-control" name="lastName" data-bind="textInput: lName" placeholder="Фамилия" value="@Model.LastName" style="width: 250px;" />
+					</div>
+					<div class="input-group myInputGroupdivider">
+						<span class="input-group-addon" style="width: 150px;">Компания</span>
+						<input class="form-control" name="company" data-bind="textInput: company" placeholder="Компания" value="@Model.Company" style="width: 250px;" />
+					</div>
 
-		<input name="company" data-bind="textInput: company" placeholder="Компания" value="@Model.Company"/>
+						<button class="btn btn-primary" type="submit" data-bind="enable: isModelValid">Сохранить</button>
 
-		<button type="submit" data-bind="enable: isModelValid">Сохранить</button>
+					<div style="width: 400px; margin-top: 15px;" class="alert alert-warning" data-bind="style: { display: isModelValid() ? 'none' : 'block' }">Все поля обязательны для заполнения</div>
 
-		<div style="display: none;" data-bind="style: { display: isModelValid() ? 'none' : 'block' }">Все поля обязательны для заполнения</div>
+</form>
 
-	</form>
+				<div style="padding-top: 25px;">
+					<p>
+						Продажа билетов будет открыта в ближайшие дни.
+					</p>
+					<p>
+						Если вы успели зарегистрироваться и видите это сообщение, то мы подарим вам <span class='colortext'>промокод на 10% скидки</span> на один билет на конференцию, как только будет открыта продажа билетов.
+</p>
 
-	<div>
-		Продажа билетов будет открыта в ближайшие дни. Если вы успели зарегистрироваться и видите это сообщение, то мы вам подарим промокод на 10% скидки для одного билета на конференцию, как только будет открыта продажа билетов.
+				</div>
+			</div>
+		</div>
 	</div>
 
 	@Html.Action("Footer", "Layout")
 
-</div><!-- end boxedcontent -->
 
-@Html.Partial("_ModalWait")
+	@Html.Partial("_ModalWait")
 
-@section Scripts
+	@section Scripts
 {
-	@Scripts.Render("~/cdn/knockout/js")
+		@Scripts.Render("~/cdn/knockout/js")
 
-	<script>
-		$(document).ready(function() {
-			var profileModel = {
-				fName: ko.observable('@Model.FirstName'),
-				lName: ko.observable('@Model.LastName'),
-				company: ko.observable('@Model.Company')
-			};
+		<script>
+			$(document).ready(function () {
+				var profileModel = {
+					fName: ko.observable('@Model.FirstName'),
+					lName: ko.observable('@Model.LastName'),
+					company: ko.observable('@Model.Company')
+				};
 
-			profileModel.isModelValid = ko.computed(function() {
-				var fName = profileModel.fName();
-				var lName = profileModel.lName();
-				var company = profileModel.company();
+				profileModel.isModelValid = ko.computed(function () {
+					var fName = profileModel.fName();
+					var lName = profileModel.lName();
+					var company = profileModel.company();
 
-				return !!fName && !!lName && !!company;
-			});
-
-			profileModel.showModal = function() {
-				setTimeout(function () {
-					modal.showModal();
+					return !!fName && !!lName && !!company;
 				});
-				return true;
-			}
 
-			ko.applyBindings(profileModel);
-		});
-	</script>
-}
+				profileModel.showModal = function () {
+					setTimeout(function () {
+						modal.showModal();
+					});
+					return true;
+				}
+
+				ko.applyBindings(profileModel);
+			});
+		</script>
+	}
+
+</div><!-- end boxedcontent -->

@@ -34,6 +34,9 @@ namespace TeamSpark.AzureDay.WebSite.App
 
 				cfg.CreateMap<Language, Data.Entity.Table.Language>();
 				cfg.CreateMap<Data.Entity.Table.Language, Language>();
+
+				cfg.CreateMap<Partner, Data.Entity.Table.Partner>();
+				cfg.CreateMap<Data.Entity.Table.Partner, Partner>();
 			});
 
 			var mapper = config.CreateMapper();
@@ -46,5 +49,6 @@ namespace TeamSpark.AzureDay.WebSite.App
 		public static readonly Lazy<QuickAuthTokenService> QuickAuthTokenService = new Lazy<QuickAuthTokenService>(() => new QuickAuthTokenService());
 		public static readonly Lazy<RoomService> RoomService = new Lazy<RoomService>(() => new RoomService());
 		public static readonly Lazy<TimetableService> TimetableService = new Lazy<TimetableService>(() => new TimetableService());
+		public static readonly Lazy<PartnerService> PartnerService = new Lazy<PartnerService>(() => new PartnerService());
 	}
 }

@@ -221,6 +221,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Home\IndexModel.cs" />
+    <Compile Include="Models\Home\PartnersModel.cs" />
     <Compile Include="Models\Home\ScheduleModel.cs" />
     <Compile Include="Models\Home\SpeakersModel.cs" />
     <Compile Include="Models\Profile\LoginModel.cs" />
@@ -229,15 +231,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\azureday.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\flags\bulgaria.GIF" />
-    <Content Include="Content\flags\france.GIF" />
-    <Content Include="Content\flags\poland.GIF" />
-    <Content Include="Content\flags\ukraine.GIF" />
     <Content Include="Content\spinner\spinner01.css" />
+    <Content Include="css\font-awesome.css" />
+    <Content Include="css\font-awesome.min.css" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -250,6 +252,11 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\FontAwesome.otf" />
     <None Include="Scripts\jquery-1.11.0.intellisense.js" />
     <Content Include="Content\jqueryui-fix.css" />
     <Content Include="Content\themes\base\accordion.css" />
@@ -302,8 +309,6 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Theme\css\animate.css" />
     <Content Include="Theme\css\bootstrap.min.css" />
-    <Content Include="Theme\css\font-awesome.css" />
-    <Content Include="Theme\css\fonts\fontawesome-webfont.svg" />
     <Content Include="Theme\css\fullwidth.css" />
     <Content Include="Theme\css\skins\blue.css" />
     <Content Include="Theme\css\skins\blueaqua.css" />
@@ -366,10 +371,12 @@
     <Content Include="Theme\img\_bgnd\bgnd01b.jpg" />
     <Content Include="Theme\img\_bgnd\bgnd02b.JPG" />
     <Content Include="Theme\img\_bgnd\bgnd03b.JPG" />
+    <Content Include="Theme\img\_images\ms-logo500.jpg" />
     <Content Include="Theme\img\_slides\01.jpg" />
     <Content Include="Theme\img\_slides\02.jpg" />
     <Content Include="Theme\img\_slides\03.jpg" />
     <Content Include="Theme\img\_slides\04.jpg" />
+    <Content Include="Theme\img\_slides\date.png" />
     <Content Include="Theme\img\_slides\kyiv01.jpg" />
     <Content Include="Theme\img\_slides\kyiv01b.jpg" />
     <Content Include="Theme\img\_slides\kyiv02.jpg" />
@@ -378,6 +385,7 @@
     <Content Include="Theme\img\_slides\kyiv03b.jpg" />
     <Content Include="Theme\img\_slides\kyiv04.jpg" />
     <Content Include="Theme\img\_slides\kyiv04b.jpg" />
+    <Content Include="Theme\img\_slides\place.png" />
     <Content Include="Theme\inc\shortcodes\css\shortcodes.css" />
     <Content Include="Theme\inc\shortcodes\img\arrows.png" />
     <Content Include="Theme\inc\shortcodes\img\bg_direction_nav.png" />
@@ -447,10 +455,6 @@
     <Content Include="Theme\js\prettyPhoto.js" />
     <Content Include="Theme\js\respond.min.js" />
     <Content Include="Theme\js\testimonial.js" />
-    <Content Include="Theme\css\fonts\fontawesome-webfont.eot" />
-    <Content Include="Theme\css\fonts\fontawesome-webfont.ttf" />
-    <Content Include="Theme\css\fonts\fontawesome-webfont.woff" />
-    <Content Include="Theme\css\fonts\FontAwesome.otf" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Theme\style.css" />
@@ -477,7 +481,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Theme\img\_images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

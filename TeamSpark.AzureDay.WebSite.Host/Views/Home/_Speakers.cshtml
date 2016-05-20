@@ -27,14 +27,18 @@
 								@foreach (var speaker in speakerCollection)
 								{
 								<div class="col-md-3">
+									<img class="mySpeakerFlagImg" src="@speaker.Country.GetImageUrl()" />
 									<div class="thumbnail">
+										
 										<img src="@speaker.PhotoUrl" alt="@speaker.FullName"/>
 										<div class="caption">
 											<h4>@speaker.FullName</h4>
 											<span class="fontitalic">@speaker.Country.Title</span>
-											<p>
+											
+											
+											<div>
 												@speaker.Bio<br>
-											</p>
+											</div>
 											<div class="social-icons">
 												@if (!string.IsNullOrEmpty(speaker.FacebookUrl))
 												{
@@ -47,6 +51,29 @@
 												@if (!string.IsNullOrEmpty(speaker.GoogleUrl))
 												{
 													<a href="@speaker.GoogleUrl" target="_blank"><i class="fa fa-google-plus"></i></a>
+												}
+
+												@if (!string.IsNullOrEmpty(speaker.YouTubeUrl))
+												{
+													<a href="@speaker.YouTubeUrl" target="_blank"><i class="fa fa-youtube"></i></a>
+												}
+												@if (!string.IsNullOrEmpty(speaker.TwitterUrl))
+												{
+													<a href="@speaker.TwitterUrl" target="_blank"><i class="fa fa-twitter"></i></a>
+												}
+												@*
+												@if (!string.IsNullOrEmpty(speaker.MvpUrl))
+												{
+													<a href="@speaker.MvpUrl" target="_blank"><i class="fa fa-google-plus"></i></a>
+												}
+												@if (!string.IsNullOrEmpty(speaker.MsdnUrl))
+												{
+													<a href="@speaker.MsdnUrl" target="_blank"><i class="fa fa-google-plus"></i></a>
+												}
+												*@
+												@if (!string.IsNullOrEmpty(speaker.GitHubUrl))
+												{
+													<a href="@speaker.GitHubUrl" target="_blank"><i class="fa fa-github"></i></a>
 												}
 											</div>
 										</div>
@@ -62,4 +89,3 @@
 		</div>
 	</div>
 </section>
-<!-- end testimonial -->

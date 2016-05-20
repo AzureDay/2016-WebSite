@@ -1,12 +1,28 @@
-﻿<div class="boxedcontent">
+﻿@{
+	ViewBag.Title = "AzureDay 2016 - подтверждение регистрации";
+}
+
+<div class="boxedcontent">
 	@Html.Action("Header", "Layout")
 
-	<h1>Регистрация подтверждена</h1>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
 
-	<p>Через несколько секунд вы будете автоматически перенапралены на главную страницу.</p>
+				<div>
+					&nbsp;
+				</div>
+
+				<h1>Регистрация подтверждена</h1>
+
+				<p>Через несколько секунд вы будете автоматически перенапралены на главную страницу.</p>
+
+			</div>
+		</div>
+	</div>
 
 	<script>
-		setTimeout(function() {
+		setTimeout(function () {
 			window.location.href = '/';
 		}, 5000)
 	</script>
