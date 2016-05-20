@@ -55,12 +55,13 @@
 
 												@if (!string.IsNullOrEmpty(speaker.YouTubeUrl))
 												{
-													<a href="@speaker.YouTubeUrl" target="_blank"><i class="fa fa-google-plus"></i></a>
+													<a href="@speaker.YouTubeUrl" target="_blank"><i class="fa fa-youtube"></i></a>
 												}
 												@if (!string.IsNullOrEmpty(speaker.TwitterUrl))
 												{
-													<a href="@speaker.TwitterUrl" target="_blank"><i class="fa fa-google-plus"></i></a>
+													<a href="@speaker.TwitterUrl" target="_blank"><i class="fa fa-twitter"></i></a>
 												}
+												@*
 												@if (!string.IsNullOrEmpty(speaker.MvpUrl))
 												{
 													<a href="@speaker.MvpUrl" target="_blank"><i class="fa fa-google-plus"></i></a>
@@ -69,9 +70,10 @@
 												{
 													<a href="@speaker.MsdnUrl" target="_blank"><i class="fa fa-google-plus"></i></a>
 												}
+												*@
 												@if (!string.IsNullOrEmpty(speaker.GitHubUrl))
 												{
-													<a href="@speaker.GitHubUrl" target="_blank"><i class="fa fa-google-plus"></i></a>
+													<a href="@speaker.GitHubUrl" target="_blank"><i class="fa fa-github"></i></a>
 												}
 											</div>
 										</div>
