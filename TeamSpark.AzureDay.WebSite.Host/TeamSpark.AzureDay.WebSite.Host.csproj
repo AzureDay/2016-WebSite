@@ -231,6 +231,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\azureday.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -370,10 +371,12 @@
     <Content Include="Theme\img\_bgnd\bgnd01b.jpg" />
     <Content Include="Theme\img\_bgnd\bgnd02b.JPG" />
     <Content Include="Theme\img\_bgnd\bgnd03b.JPG" />
+    <Content Include="Theme\img\_images\ms-logo500.jpg" />
     <Content Include="Theme\img\_slides\01.jpg" />
     <Content Include="Theme\img\_slides\02.jpg" />
     <Content Include="Theme\img\_slides\03.jpg" />
     <Content Include="Theme\img\_slides\04.jpg" />
+    <Content Include="Theme\img\_slides\date.png" />
     <Content Include="Theme\img\_slides\kyiv01.jpg" />
     <Content Include="Theme\img\_slides\kyiv01b.jpg" />
     <Content Include="Theme\img\_slides\kyiv02.jpg" />
@@ -382,6 +385,7 @@
     <Content Include="Theme\img\_slides\kyiv03b.jpg" />
     <Content Include="Theme\img\_slides\kyiv04.jpg" />
     <Content Include="Theme\img\_slides\kyiv04b.jpg" />
+    <Content Include="Theme\img\_slides\place.png" />
     <Content Include="Theme\inc\shortcodes\css\shortcodes.css" />
     <Content Include="Theme\inc\shortcodes\img\arrows.png" />
     <Content Include="Theme\inc\shortcodes\img\bg_direction_nav.png" />
@@ -477,7 +481,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Theme\img\_images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

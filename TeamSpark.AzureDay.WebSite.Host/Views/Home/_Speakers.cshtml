@@ -52,6 +52,27 @@
 												{
 													<a href="@speaker.GoogleUrl" target="_blank"><i class="fa fa-google-plus"></i></a>
 												}
+
+												@if (!string.IsNullOrEmpty(speaker.YouTubeUrl))
+												{
+													<a href="@speaker.YouTubeUrl" target="_blank"><i class="fa fa-google-plus"></i></a>
+												}
+												@if (!string.IsNullOrEmpty(speaker.TwitterUrl))
+												{
+													<a href="@speaker.TwitterUrl" target="_blank"><i class="fa fa-google-plus"></i></a>
+												}
+												@if (!string.IsNullOrEmpty(speaker.MvpUrl))
+												{
+													<a href="@speaker.MvpUrl" target="_blank"><i class="fa fa-google-plus"></i></a>
+												}
+												@if (!string.IsNullOrEmpty(speaker.MsdnUrl))
+												{
+													<a href="@speaker.MsdnUrl" target="_blank"><i class="fa fa-google-plus"></i></a>
+												}
+												@if (!string.IsNullOrEmpty(speaker.GitHubUrl))
+												{
+													<a href="@speaker.GitHubUrl" target="_blank"><i class="fa fa-google-plus"></i></a>
+												}
 											</div>
 										</div>
 									</div>
