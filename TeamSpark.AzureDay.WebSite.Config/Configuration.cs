@@ -13,6 +13,20 @@ namespace TeamSpark.AzureDay.WebSite.Config
 
 		#endregion
 
+		#region cdn
+
+		public static string CdnEndpointWeb
+		{
+			get { return ConfigurationManager.AppSettings.Get("CdnEndpointWeb"); }
+		}
+
+		public static string CdnEndpointStorage
+		{
+			get { return ConfigurationManager.AppSettings.Get("CdnEndpointStorage"); }
+		}
+
+		#endregion
+
 		#region azure storage
 
 		public static string AzureStorageAccountName
