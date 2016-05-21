@@ -1,8 +1,10 @@
-﻿<div class="fixedmenu">
+﻿@using TeamSpark.AzureDay.WebSite.Host.Helpers
+
+<div class="fixedmenu">
 	<div class="container">
 		<div class="row">
 			<a class="navbar-brand" href="~/">
-				<img src="~/Theme/img/logo.png" alt="">
+				<img src="@CdnHelper.GetCdnWebUrl("/Theme/img/logo.png")" alt="">
 			</a>
 			<nav class="navbar pull-right" role="navigation">
 				<div class="collapse navbar-collapse">
