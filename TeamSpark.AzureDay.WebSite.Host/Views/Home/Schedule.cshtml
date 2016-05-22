@@ -65,8 +65,11 @@
 								}
 								<div style="text-align: center;">
 									<b>@timetables[0].Topic.Title</b><br /><br />
-									@*@timetables[0].Topic.Language.Title<br />*@
-									@timetables[0].Topic.Description
+									@if (timetables[0].Topic.Language != null && !string.IsNullOrEmpty(timetables[0].Topic.Language.Title))
+									{
+										@Html.Raw(string.Format("Язык: {0}", timetables[0].Topic.Language.Title))
+									}
+									@*@timetables[0].Topic.Description*@
 								</div>
 							</div>
 						</div>
@@ -90,7 +93,10 @@
 								}
 								<div>
 									<b>@timetables[i].Topic.Title</b><br /><br />
-									@*@timetables[i].Topic.Language.Title<br />*@
+									@if (timetables[i].Topic.Language != null && !string.IsNullOrEmpty(timetables[i].Topic.Language.Title))
+									{
+										@Html.Raw(string.Format("Язык: {0}<br /><br />", timetables[i].Topic.Language.Title))
+									}
 									@timetables[i].Topic.Description
 								</div>
 							</div>
