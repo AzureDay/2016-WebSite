@@ -31,7 +31,7 @@ namespace TeamSpark.AzureDay.WebSite.Host
 
 			#region initialize
 
-	        DataFactory.InitializeAsync().Wait();
+	        //DataFactory.InitializeAsync().Wait();
 
 	        #endregion
         }
