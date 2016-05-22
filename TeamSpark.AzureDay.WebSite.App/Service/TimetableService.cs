@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using TeamSpark.AzureDay.WebSite.App.Entity;
 using TeamSpark.AzureDay.WebSite.Config;
 using TeamSpark.AzureDay.WebSite.Data;
-using TeamSpark.AzureDay.WebSite.Data.Enum;
 
 namespace TeamSpark.AzureDay.WebSite.App.Service
 {
@@ -51,7 +50,7 @@ namespace TeamSpark.AzureDay.WebSite.App.Service
 				{
 					var timetable = AppFactory.Mapper.Value.Map<Timetable>(timetableRoom);
 					var topic = topics.Single(t => t.Id == timetableRoom.TopicId);
-					var language = languages.Single(l => l.Id == topic.LanguageId);
+					var language = languages.SingleOrDefault(l => l.Id == topic.LanguageId);
 					var topicSpeakers = speakerTopics.Where(ts => ts.TopicId == topic.Id).Select(ts => ts.SpeakerId).ToList();
 
 					timetable.Room = rooms.Single(r => r.Id == timetableRoom.RoomId);
