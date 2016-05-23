@@ -51,8 +51,8 @@
       <HintPath>..\packages\WindowsAzure.Storage.7.0.0\lib\net40\Microsoft.WindowsAzure.Storage.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -69,16 +69,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataFactory.cs" />
+    <Compile Include="Entity\Table\Attendee.cs" />
+    <Compile Include="Entity\Table\QuickAuthToken.cs" />
+    <Compile Include="Entity\Table\Partner.cs" />
     <Compile Include="Entity\Table\SpeakerTopic.cs" />
     <Compile Include="Entity\Table\Country.cs" />
+    <Compile Include="Entity\Table\Ticket.cs" />
     <Compile Include="Entity\Table\Timetable.cs" />
     <Compile Include="Entity\Table\Topic.cs" />
     <Compile Include="Entity\Table\Speaker.cs" />
     <Compile Include="Entity\Table\Room.cs" />
     <Compile Include="Entity\Table\Language.cs" />
+    <Compile Include="Enum\PartnerType.cs" />
     <Compile Include="Enum\RoomType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\StorageServiceBase.cs" />
+    <Compile Include="Service\Table\AttendeeService.cs" />
+    <Compile Include="Service\Table\LanguageService.cs" />
+    <Compile Include="Service\Table\CountryService.cs" />
+    <Compile Include="Service\Table\QuickAuthTokenService.cs" />
+    <Compile Include="Service\Table\PartnerService.cs" />
+    <Compile Include="Service\Table\RoomService.cs" />
+    <Compile Include="Service\Table\SpeakerTopicService.cs" />
+    <Compile Include="Service\Table\TopicService.cs" />
+    <Compile Include="Service\Table\TimetableService.cs" />
+    <Compile Include="Service\Table\SpeakerService.cs" />
     <Compile Include="Service\Table\TableServiceBase.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -91,6 +107,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

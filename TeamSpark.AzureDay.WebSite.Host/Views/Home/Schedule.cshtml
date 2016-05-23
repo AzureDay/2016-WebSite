@@ -1,4 +1,11 @@
-﻿<div class="boxedcontent">
+﻿@using TeamSpark.AzureDay.WebSite.Data.Enum
+@model TeamSpark.AzureDay.WebSite.Host.Models.Home.ScheduleModel
+
+@{
+	ViewBag.Title = "AzureDay 2016 - расписание";
+}
+
+<div class="boxedcontent">
 	@Html.Action("Header", "Layout")
 
 	<div class="container">
@@ -6,184 +13,101 @@
 			<div class="col-md-12">
 				<div class="titleborder center">
 					<div>
-						<h1 class="animated fadeInDownBig">Расписание AZUREDAY</h1>
+						<h1 class="animated fadeInDownBig">Расписание AZUREday</h1>
 					</div>
 				</div>
 			</div>
 		</div>
 
 		<div class="row">
-			<div class="col-md-3 col-sm-3">
-				<!-- begin box shadow -->
-				<div class="box effect2 myAreaAContainer">
-					ПОТОК А
+			@for (var i = 0; i < Model.Rooms.Count; i++)
+			{
+				<div class="col-md-3 col-sm-3">
+					<div class="box effect2 @string.Format("myAreaContainer{0}", i + 1)">
+						@Model.Rooms[i].Title
+					</div>
 				</div>
-				<!-- end box shadow -->
-			</div>
-			<div class="col-md-3 col-sm-3">
-				<div class="box effect2 myAreaBContainer">
-					ПОТОК B
-				</div>
-			</div>
-			<div class="col-md-3 col-sm-3">
-				<!-- begin box shadow -->
-				<div class="box effect2 myAreaCContainer">
-					ПОТОК C
-				</div>
-				<!-- end box shadow -->
-			</div>
-			<div class="col-md-3 col-sm-3">
-				<div class="box effect2 myAreaDContainer">
-					ПОТОК D
-				</div>
-			</div>
+			}
 		</div>
 
-		<div class="row">
-			<div class="col-md-12">
-				<!-- begin box shadow -->
-				<div class="box effect6 myAreaABoxBorder">
-					<div class="mySlotTime">
-						8-00
-					</div>
-					<div class="mySlotAuthor">
-						Регистрация
-					</div>
-				</div>
-				<!-- end box shadow -->
+		@foreach (var timetables in Model.Timetables)
+		{
+			<div class="row">
+				@if (timetables.Count == 1)
+				{
+					if (timetables[0].Room.RoomType == RoomType.CoffeeRoom)
+					{
+						<div class="col-md-12 col-sm-12">
+							<div class="box">
+								<div class="mySlotTime">
+									@string.Format("{0}:{1}", timetables[0].TimeStartHours, timetables[0].TimeStartMinutes.ToString("D2")) -
+									@string.Format("{0}:{1}", timetables[0].TimeEndHours, timetables[0].TimeEndMinutes.ToString("D2"))
+								</div>
+								<div style="text-align: center;">
+									<i>@timetables[0].Topic.Title</i>
+								</div>
+							</div>
+						</div>
+					}
+					else
+					{
+						<div class="col-md-12 col-sm-12">
+							<div class="box effect6 myAreaBoxBorder1">
+								<div class="mySlotTime">
+									@string.Format("{0}:{1}", timetables[0].TimeStartHours, timetables[0].TimeStartMinutes.ToString("D2")) -
+									@string.Format("{0}:{1}", timetables[0].TimeEndHours, timetables[0].TimeEndMinutes.ToString("D2"))
+								</div>
+								@if (timetables[0].Topic.Speakers.Any())
+								{
+								<div class="mySlotAuthor">
+									@string.Join(", ", timetables[0].Topic.Speakers.Select(s => s.FullName))
+								</div>
+								}
+								<div style="text-align: center;">
+									<b>@timetables[0].Topic.Title</b><br /><br />
+									@if (timetables[0].Topic.Language != null && !string.IsNullOrEmpty(timetables[0].Topic.Language.Title))
+									{
+										@Html.Raw(string.Format("Язык: {0}", timetables[0].Topic.Language.Title))
+									}
+									@*@timetables[0].Topic.Description*@
+								</div>
+							</div>
+						</div>
+					}
+				}
+				else
+				{
+					for (var i = 0; i < timetables.Count; i++)
+					{
+						<div class="col-md-3 col-sm-3">
+							<div class="box effect2 @string.Format("myAreaBoxBorder{0}", i + 1)">
+								<div class="mySlotTime">
+									@string.Format("{0}:{1}", timetables[i].TimeStartHours, timetables[i].TimeStartMinutes.ToString("D2")) -
+									@string.Format("{0}:{1}", timetables[i].TimeEndHours, timetables[i].TimeEndMinutes.ToString("D2"))
+								</div>
+								@if (timetables[i].Topic.Speakers.Any())
+								{
+									<div class="mySlotAuthor">
+										@Html.Raw(string.Join(",<br/>", timetables[i].Topic.Speakers.Select(s => s.FullName)))
+									</div>
+								}
+								<div>
+									<b>@timetables[i].Topic.Title</b><br /><br />
+									@if (timetables[i].Topic.Language != null && !string.IsNullOrEmpty(timetables[i].Topic.Language.Title))
+									{
+										@Html.Raw(string.Format("Язык: {0}<br /><br />", timetables[i].Topic.Language.Title))
+									}
+									@timetables[i].Topic.Description
+								</div>
+							</div>
+						</div>
+					}
+				}
 			</div>
-		</div>
-
-		<div class="row">
-			<div class="col-md-3 col-sm-3">
-				<!-- begin box shadow -->
-				<div class="box effect2 myAreaABoxBorder">
-					<div class="mySlotTime">
-						9-00
-					</div>
-					<div>
-						<img class="myAuthorAvatar image-responsive center" src="http://www.wowthemes.net/demo/biscaya/img/demo/test2.gif" alt />
-					</div>
-					<div class="mySlotAuthor">
-						ДОКЛАДЧИК И.О.
-					</div>
-					<div>
-						Название доклада и его краткое описание, что нам стоит дом построить: нарисуем - будем жить.
-					</div>
-				</div>
-				<!-- end box shadow -->
-			</div>
-			<div class="col-md-3 col-sm-3">
-				<div class="box effect2 myAreaBBoxBorder">
-					<div class="mySlotTime">
-						9-00
-					</div>
-					<div class="mySlotAuthor">
-						ДОКЛАДЧИК И.О.
-					</div>
-					<div>
-						Название доклада и его краткое описание
-					</div>
-				</div>
-			</div>
-			<div class="col-md-3 col-sm-3">
-				<!-- begin box shadow -->
-				<div class="box effect2 myAreaCBoxBorder">
-					<div class="mySlotTime">
-						9-00
-					</div>
-					<div class="mySlotAuthor">
-						ДОКЛАДЧИК И.О.
-					</div>
-					<div>
-						Название доклада и его краткое описание
-					</div>
-				</div>
-				<!-- end box shadow -->
-			</div>
-			<div class="col-md-3 col-sm-3">
-				<div class="box effect2 myAreaDBoxBorder">
-					<div class="mySlotTime">
-						9-00
-					</div>
-					<div class="mySlotAuthor">
-						ДОКЛАДЧИК И.О.
-					</div>
-					<div>
-						Название доклада и его краткое описание
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="col-md-3 col-sm-3">
-				<!-- begin box shadow -->
-				<div class="box effect2 myAreaABoxBorder">
-					<div class="mySlotTime">
-						9-00
-					</div>
-					<div class="mySlotAuthor">
-						ДОКЛАДЧИК И.О.
-					</div>
-					<div>
-						Название доклада и его краткое описание
-					</div>
-				</div>
-				<!-- end box shadow -->
-			</div>
-			<div class="col-md-3 col-sm-3">
-				<div class="box effect2 myAreaBBoxBorder">
-					<div class="mySlotTime">
-						9-00
-					</div>
-					<div class="mySlotAuthor">
-						ДОКЛАДЧИК И.О.
-					</div>
-					<div>
-						Название доклада и его краткое описание
-					</div>
-				</div>
-			</div>
-			<div class="col-md-3 col-sm-3">
-				<!-- begin box shadow -->
-				<div class="box effect2 myAreaCBoxBorder">
-					<div class="mySlotTime">
-						9-00
-					</div>
-					<div class="mySlotAuthor">
-						ДОКЛАДЧИК И.О.
-					</div>
-					<div>
-						Название доклада и его краткое описание
-					</div>
-				</div>
-				<!-- end box shadow -->
-			</div>
-			<div class="col-md-3 col-sm-3">
-				<div class="box effect2 myAreaDBoxBorder">
-					<div class="mySlotTime">
-						9-00
-					</div>
-					<div class="mySlotAuthor">
-						ДОКЛАДЧИК И.О.
-					</div>
-					<div>
-						Название доклада и его краткое описание
-					</div>
-				</div>
-			</div>
-		</div>
-
+		}
 
 	</div>
 
+	@Html.Action("Footer", "Layout")
 
-
-
-
-
-
-				@Html.Action("Footer", "Layout")
-
-			</div><!-- end boxedcontent -->
+</div><!-- end boxedcontent -->

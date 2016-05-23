@@ -3,7 +3,7 @@ using Microsoft.WindowsAzure.Storage.Table;
 
 namespace TeamSpark.AzureDay.WebSite.Data.Entity.Table
 {
-	sealed class SpeakerTopic : TableEntity
+	public sealed class SpeakerTopic : TableEntity
 	{
 		[IgnoreProperty]
 		public Guid SpeakerId
