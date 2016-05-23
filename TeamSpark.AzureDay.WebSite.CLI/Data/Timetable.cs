@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using TeamSpark.AzureDay.WebSite.Config;
 using TeamSpark.AzureDay.WebSite.Data;
+using TeamSpark.AzureDay.WebSite.Data.Enum;
 
 namespace TeamSpark.AzureDay.WebSite.CLI.Data
 {
@@ -145,6 +147,92 @@ namespace TeamSpark.AzureDay.WebSite.CLI.Data
 				Console.WriteLine("Done.");
 			}
 			Console.WriteLine("Done-done.");
+		}
+
+		public static void Switch()
+		{
+			Console.WriteLine("Switch timetable");
+			
+			var roomsTask = DataFactory.RoomService.Value.GetByPartitionKeyAsync(Configuration.Year);
+			roomsTask.Wait();
+			var rooms = roomsTask.Result.Where(x => x.RoomType != RoomType.CoffeeRoom).ToList();
+
+			Console.WriteLine("Chose room:");
+			var i = 0;
+			foreach (var room in rooms)
+			{
+				Console.WriteLine("{0} {1}", i++, room.Title);
+			}
+			i = int.Parse(Console.ReadLine());
+
+			var selectedRoom = rooms[i];
+
+			var timetableTask = DataFactory.TimetableService.Value.GetByPartitionKeyAsync(selectedRoom.Id.ToString("N"));
+			timetableTask.Wait();
+			var timetables = timetableTask.Result.Select(x => x.TopicId).ToList();
+
+			var topicTask = DataFactory.TopicService.Value.GetByPartitionKeyAsync(Configuration.Year);
+			topicTask.Wait();
+			var topics = topicTask.Result.Where(x => timetables.Contains(x.Id)).ToList();
+			
+			Console.WriteLine("Chose topics to shitch:");
+			i = 0;
+			foreach (var topic in topics)
+			{
+				Console.WriteLine("{0} {1}", i++, topic.Title);
+			}
+			i = int.Parse(Console.ReadLine());
+			var k = int.Parse(Console.ReadLine());
+
+			var topic1 = topics[i];
+			var topic2 = topics[k];
+
+			var topicTmp = new WebSite.Data.Entity.Table.Topic
+			{
+				LanguageId = topic2.LanguageId,
+				Description = topic2.Description,
+				Title = topic2.Title
+			};
+
+			var speakersTopicTask = DataFactory.SpeakerTopicService.Value.GetAllAsync();
+			speakersTopicTask.Wait();
+			var speakersTopics = speakersTopicTask.Result.Where(x => x.TopicId == topic1.Id || x.TopicId == topic2.Id).ToList();
+
+			var speakers1 = speakersTopics.Where(x => x.TopicId == topic1.Id).ToList();
+			var speakers2 = speakersTopics.Where(x => x.TopicId == topic2.Id).ToList();
+
+			topic2.LanguageId = topic1.LanguageId;
+			topic2.Title = topic1.Title;
+			topic2.Description = topic1.Description;
+
+			topic1.LanguageId = topicTmp.LanguageId;
+			topic1.Title = topicTmp.Title;
+			topic1.Description = topicTmp.Description;
+
+			Console.WriteLine("Processing...");
+			DataFactory.TopicService.Value.ReplaceAsync(topic1).Wait();
+			DataFactory.TopicService.Value.ReplaceAsync(topic2).Wait();
+			foreach (var speakerTopic in speakers1)
+			{
+				DataFactory.SpeakerTopicService.Value.DeleteAsync(speakerTopic).Wait();
+				DataFactory.SpeakerTopicService.Value.InsertAsync(new WebSite.Data.Entity.Table.SpeakerTopic
+				{
+					OrderN = speakerTopic.OrderN,
+					SpeakerId = speakerTopic.SpeakerId,
+					TopicId = topic2.Id
+				}).Wait();
+			}
+			foreach (var speakerTopic in speakers2)
+			{
+				DataFactory.SpeakerTopicService.Value.DeleteAsync(speakerTopic).Wait();
+				DataFactory.SpeakerTopicService.Value.InsertAsync(new WebSite.Data.Entity.Table.SpeakerTopic
+				{
+					OrderN = speakerTopic.OrderN,
+					SpeakerId = speakerTopic.SpeakerId,
+					TopicId = topic1.Id
+				}).Wait();
+			}
+			Console.WriteLine("Done.");
 		}
 	}
 }
