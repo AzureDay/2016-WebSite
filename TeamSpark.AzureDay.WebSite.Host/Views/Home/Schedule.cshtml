@@ -79,7 +79,7 @@
 				{
 					for (var i = 0; i < timetables.Count; i++)
 					{
-						<div class="col-md-3 col-sm-3">
+						<div class="col-md-3 col-sm-3" style="@Html.Raw(timetables[i].HasLanguage ? string.Empty : "opacity: 0.5;")">
 							<div class="box effect2 @string.Format("myAreaBoxBorder{0}", i + 1)">
 								<div class="mySlotTime">
 									@string.Format("{0}:{1}", timetables[i].TimeStartHours, timetables[i].TimeStartMinutes.ToString("D2")) -
@@ -93,7 +93,7 @@
 								}
 								<div>
 									<b>@timetables[i].Topic.Title</b><br /><br />
-									@if (timetables[i].Topic.Language != null && !string.IsNullOrEmpty(timetables[i].Topic.Language.Title))
+									@if (timetables[i].HasLanguage)
 									{
 										@Html.Raw(string.Format("Язык: {0}<br /><br />", timetables[i].Topic.Language.Title))
 									}
