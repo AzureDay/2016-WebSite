@@ -85,6 +85,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\Country.cs" />
+    <Compile Include="Data\Coupon.cs" />
     <Compile Include="Data\Language.cs" />
     <Compile Include="Data\Partner.cs" />
     <Compile Include="Data\Room.cs" />

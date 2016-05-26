@@ -19,7 +19,8 @@ namespace TeamSpark.AzureDay.WebSite.CLI
 			//SpeakerTopic.Add();
 			//SpeakerTopic.Add();
 			//Partner.Add();
-			Timetable.Switch();
+			//Timetable.Switch();
+			Coupon.Add();
 			
 			Console.WriteLine("Press 'enter' to close.");
 			Console.ReadLine();
