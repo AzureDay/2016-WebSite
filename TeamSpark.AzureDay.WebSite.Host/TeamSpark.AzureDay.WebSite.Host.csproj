@@ -481,6 +481,7 @@
     <Content Include="Views\Profile\ConfirmRegistration.cshtml" />
     <Content Include="Views\Profile\ConfirmEmail.cshtml" />
     <Content Include="Views\Home\_Partners.cshtml" />
+    <Content Include="Views\Home\Partners.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

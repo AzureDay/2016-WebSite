@@ -92,6 +92,11 @@ namespace TeamSpark.AzureDay.WebSite.Host.Controllers
 			return View(model);
 		}
 
+		public async Task<ActionResult> Partners()
+		{
+			return View();
+		}
+
 		public async Task<ActionResult> Redirect([FromUri] string quickAuthToken, [FromUri] string redirectUrl)
 		{
 			return Redirect(redirectUrl);
