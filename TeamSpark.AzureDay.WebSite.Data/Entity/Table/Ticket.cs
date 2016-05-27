@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.WindowsAzure.Storage.Table;
 using TeamSpark.AzureDay.WebSite.Config;
+using TeamSpark.AzureDay.WebSite.Data.Enum;
 
 namespace TeamSpark.AzureDay.WebSite.Data.Entity.Table
 {
@@ -14,6 +15,17 @@ namespace TeamSpark.AzureDay.WebSite.Data.Entity.Table
 		}
 
 		public bool IsPayed { get; set; }
+
+		public Guid CouponId { get; set; }
+
+		[IgnoreProperty]
+		public TicketType TicketType
+		{
+			get { return (TicketType)TicketTypeId; }
+			set { TicketTypeId = (int)value; }
+		}
+
+		public int TicketTypeId { get; set; }
 
 		public Ticket()
 		{

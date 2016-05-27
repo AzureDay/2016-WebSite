@@ -11,36 +11,43 @@
 	<section class="infoarea whites">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-4">
-					<i class="fa fa-diamond infoareaicon"></i>
-					<div class="infoareawrap">
-						<h1 class="text-center subtitle">Генеральный партнер</h1>
-						<a href="https://www.microsoft.com/uk-ua/" target="_blank">
-							<img class="img-responsive" src="Theme/img/_images/ms-logo500.jpg" alt="" />
-						</a>
-						
-					</div>
-				</div>
-				<div class="col-md-4">
-					<i class="fa fa-bullhorn infoareaicon"></i>
-					<div class="infoareawrap">
-						<h1 class="text-center subtitle">Информационный партнер</h1>
-						<a href="http://itstep.org/ua/" target="_blank">
-							<img class="img-responsive" src="https://azurecommunityua.blob.core.windows.net/azureday/2016/partners/itstep02.png" alt="" />
-						</a>
-
-					</div>
-				</div>
-				<div class="col-md-4">
-					<i class="fa fa-bullhorn infoareaicon"></i>
-					<div class="infoareawrap">
-						<h1 class="text-center subtitle">Информационный партнер</h1>
-						<a href="http://www.it-community.in.ua/" target="_blank">
-							<img class="img-responsive" src="https://azurecommunityua.blob.core.windows.net/azureday/2016/partners/it-community.png" alt="" />
-						</a>
-
-					</div>
-				</div>
+				@foreach (var partnersKey in Model.PartnersCollection.Keys)
+				{
+					var css = string.Empty;
+					switch (partnersKey)
+					{
+						case PartnerType.VIP:
+							css = "fa-diamond";
+							break;
+						case PartnerType.Gold:
+							css = "fa-star";
+							break;
+						case PartnerType.Silver:
+							css = "fa-star";
+							break;
+						case PartnerType.Raffle:
+							css = "fa-gift";
+							break;
+						case PartnerType.Info:
+							css = "fa-bullhorn";
+							break;
+						case PartnerType.Speaker:
+							css = "fa-commenting-o";
+							break;
+					}
+					foreach (var partner in Model.PartnersCollection[partnersKey])
+					{
+						<div class="col-md-4" style="padding-bottom: 30px;">
+							<i class="fa @css infoareaicon"></i>
+							<div class="infoareawrap">
+								<h1 class="text-center subtitle">@partnersKey.ToDisplayStringPartner()</h1>
+								<a href="@partner.WebUrl" target="_blank">
+									<img class="img-responsive" src="@partner.LogoUrl" alt="" />
+								</a>
+							</div>
+						</div>
+					}
+				}
 			</div>
 		</div>
 	</section>
