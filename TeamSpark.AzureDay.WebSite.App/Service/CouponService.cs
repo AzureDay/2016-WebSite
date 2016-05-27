@@ -10,7 +10,14 @@ namespace TeamSpark.AzureDay.WebSite.App.Service
 	{
 		public async Task<Coupon> GetValidCouponByCodeAsync(string code)
 		{
-			var coupon = await DataFactory.CouponService.Value.GetByKeysAsync(Configuration.Year, code);
+			if (string.IsNullOrEmpty(code))
+			{
+				return null;
+			}
+
+			var normalizedCode = code.ToLower().Trim();
+
+			var coupon = await DataFactory.CouponService.Value.GetByKeysAsync(Configuration.Year, normalizedCode);
 
 			if (coupon == null)
 			{
@@ -32,7 +39,14 @@ namespace TeamSpark.AzureDay.WebSite.App.Service
 
 		public async Task UseCouponByCodeAsync(string code)
 		{
-			var coupon = await DataFactory.CouponService.Value.GetByKeysAsync(Configuration.Year, code);
+			if (string.IsNullOrEmpty(code))
+			{
+				return;
+			}
+
+			var normalizedCode = code.ToLower().Trim();
+
+			var coupon = await DataFactory.CouponService.Value.GetByKeysAsync(Configuration.Year, normalizedCode);
 
 			if (!coupon.IsInfinite)
 			{

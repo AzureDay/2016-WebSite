@@ -8,15 +8,15 @@ namespace TeamSpark.AzureDay.WebSite.Data.Entity.Table
 	public sealed class Ticket : TableEntity
 	{
 		[IgnoreProperty]
-		public Guid AttendeeId
+		public string AttendeeEMail
 		{
-			get { return Guid.Parse(RowKey); }
-			set { RowKey = value.ToString("N"); }
+			get { return RowKey; }
+			set { RowKey = value; }
 		}
 
 		public bool IsPayed { get; set; }
 
-		public Guid CouponId { get; set; }
+		public string CouponCode { get; set; }
 
 		[IgnoreProperty]
 		public TicketType TicketType
@@ -26,6 +26,8 @@ namespace TeamSpark.AzureDay.WebSite.Data.Entity.Table
 		}
 
 		public int TicketTypeId { get; set; }
+
+		public double Price { get; set; }
 
 		public Ticket()
 		{

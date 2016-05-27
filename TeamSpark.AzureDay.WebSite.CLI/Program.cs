@@ -17,10 +17,11 @@ namespace TeamSpark.AzureDay.WebSite.CLI
 			//Timetable.Add();
 			//Timetable.Move();
 			//SpeakerTopic.Add();
-			//SpeakerTopic.Add();
 			//Partner.Add();
 			//Timetable.Switch();
-			Coupon.Add();
+			//Coupon.Add();
+
+			//KaznacheyTest.Pay();
 			
 			Console.WriteLine("Press 'enter' to close.");
 			Console.ReadLine();

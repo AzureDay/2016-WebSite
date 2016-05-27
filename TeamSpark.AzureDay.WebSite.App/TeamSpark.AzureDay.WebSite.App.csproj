@@ -110,6 +110,7 @@
     <Compile Include="Service\QuickAuthTokenService.cs" />
     <Compile Include="Service\RoomService.cs" />
     <Compile Include="Service\SpeakerService.cs" />
+    <Compile Include="Service\TicketService.cs" />
     <Compile Include="Service\TimetableService.cs" />
   </ItemGroup>
   <ItemGroup>

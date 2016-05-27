@@ -70,6 +70,10 @@
       <HintPath>..\packages\Nito.AsyncEx.3.0.1\lib\net45\Nito.AsyncEx.Enlightenment.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="RestSharp, Version=104.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.104.4.0\lib\net4\RestSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Spatial, Version=5.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -86,6 +90,7 @@
   <ItemGroup>
     <Compile Include="Data\Country.cs" />
     <Compile Include="Data\Coupon.cs" />
+    <Compile Include="Data\KaznacheyTest.cs" />
     <Compile Include="Data\Language.cs" />
     <Compile Include="Data\Partner.cs" />
     <Compile Include="Data\Room.cs" />
@@ -100,6 +105,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\KaznacheyPayment\Kaznachey.KaznacheyPayment.csproj">
+      <Project>{4046e6c4-b151-47c9-9076-16e13f0cec14}</Project>
+      <Name>Kaznachey.KaznacheyPayment</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TeamSpark.AzureDay.WebSite.Config\TeamSpark.AzureDay.WebSite.Config.csproj">
       <Project>{4d1ee387-7f67-4771-8d7a-43b73106696d}</Project>
       <Name>TeamSpark.AzureDay.WebSite.Config</Name>

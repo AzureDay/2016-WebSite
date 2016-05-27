@@ -122,6 +122,10 @@
       <HintPath>..\packages\Nito.AsyncEx.3.0.1\lib\net45\Nito.AsyncEx.Enlightenment.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="RestSharp, Version=104.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.104.4.0\lib\net4\RestSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="SendGrid, Version=6.3.4.0, Culture=neutral, PublicKeyToken=4f047e93159395ca, processorArchitecture=MSIL">
       <HintPath>..\packages\Sendgrid.6.3.4\lib\SendGrid.dll</HintPath>
       <Private>True</Private>
@@ -213,6 +217,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\Api\PriceController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LayoutController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
@@ -228,7 +233,10 @@
     <Compile Include="Models\Home\SpeakersModel.cs" />
     <Compile Include="Models\Profile\LoginModel.cs" />
     <Compile Include="Models\Profile\MyProfileModel.cs" />
+    <Compile Include="Models\Profile\PayFormModel.cs" />
+    <Compile Include="Models\Profile\PayModel.cs" />
     <Compile Include="Models\Profile\RegistrationModel.cs" />
+    <Compile Include="Models\Profile\TicketModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -304,6 +312,7 @@
     <Content Include="Scripts\jquery-ui-1.11.0.min.js" />
     <Content Include="Scripts\knockout-3.4.0.debug.js" />
     <Content Include="Scripts\knockout-3.4.0.js" />
+    <Content Include="Scripts\md5.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
@@ -481,6 +490,7 @@
     <Content Include="Views\Profile\ConfirmRegistration.cshtml" />
     <Content Include="Views\Profile\ConfirmEmail.cshtml" />
     <Content Include="Views\Home\_Partners.cshtml" />
+    <Content Include="Views\Profile\PayForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -489,6 +499,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\KaznacheyPayment\Kaznachey.KaznacheyPayment.csproj">
+      <Project>{4046e6c4-b151-47c9-9076-16e13f0cec14}</Project>
+      <Name>Kaznachey.KaznacheyPayment</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TeamSpark.AzureDay.WebSite.App\TeamSpark.AzureDay.WebSite.App.csproj">
       <Project>{1ad440d3-d731-46cd-aa53-8aa5fcbfcfb4}</Project>
       <Name>TeamSpark.AzureDay.WebSite.App</Name>
