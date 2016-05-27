@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace TeamSpark.AzureDay.WebSite.App.Entity
+﻿namespace TeamSpark.AzureDay.WebSite.App.Entity
 {
 	public class Timetable
 	{
