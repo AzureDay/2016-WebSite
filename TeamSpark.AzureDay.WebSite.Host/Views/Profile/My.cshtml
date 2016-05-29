@@ -63,7 +63,7 @@
 				<div id="divTicket" class="col-md-6">
 					<h2>Мой билет</h2>
 
-					<div style="display: none;">
+					<div>
 						<p>
 							Продажа билетов будет открыта в ближайшие дни.
 						</p>
@@ -72,7 +72,7 @@
 						</p>
 					</div>
 
-					@if (Model.PayedTicket == null)
+					@*@if (Model.PayedTicket == null)
 					{
 						<div>
 							<form method="POST" action="/profile/pay">
@@ -120,7 +120,7 @@
 								</div>
 							</div>
 						</div>
-					}
+					}*@
 
 				</div>
 			</div>
