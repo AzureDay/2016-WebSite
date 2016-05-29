@@ -14,11 +14,15 @@ namespace TeamSpark.AzureDay.WebSite.CLI
 			//Country.Add();
 			//Room.Add();
 			//Language.Add();
-			Timetable.Add();
+			//Timetable.Add();
 			//Timetable.Move();
 			//SpeakerTopic.Add();
 			//Partner.Add();
+			//Timetable.Switch();
+			//Coupon.Add();
 
+			//KaznacheyTest.Pay();
+			
 			Console.WriteLine("Press 'enter' to close.");
 			Console.ReadLine();
 		}
