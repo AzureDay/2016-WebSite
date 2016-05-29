@@ -1,4 +1,6 @@
-﻿@{
+﻿@using TeamSpark.AzureDay.WebSite.Data.Enum
+@model TeamSpark.AzureDay.WebSite.Host.Models.Home.PartnersModel
+@{
 	ViewBag.Title = "AzureDay 2016 - партнеры";
 }
 
@@ -16,44 +18,52 @@
 			</div>
 		</div>
 
-		<div class="row padding15">
-			<div class="col-md-2 text-center">
-				<div class="icon-box-top active">
-					<i class="fontawesome-icon medium circle-white center fa fa-diamond"></i>
-					<p>Генеральный партнер</p>
+		@foreach (var partnersKey in Model.PartnersCollection.Keys)
+		{
+			var css = string.Empty;
+			switch (partnersKey)
+			{
+				case PartnerType.VIP:
+					css = "fa-diamond";
+					break;
+				case PartnerType.Gold:
+					css = "fa-star";
+					break;
+				case PartnerType.Silver:
+					css = "fa-star";
+					break;
+				case PartnerType.Raffle:
+					css = "fa-gift";
+					break;
+				case PartnerType.Info:
+					css = "fa-bullhorn";
+					break;
+				case PartnerType.Speaker:
+					css = "fa-commenting-o";
+					break;
+			}
+			foreach (var partner in Model.PartnersCollection[partnersKey])
+			{
+				<div class="row padding15">
+					<div class="col-md-2 text-center">
+						<div class="icon-box-top active">
+							<i class="fontawesome-icon medium circle-white center fa @css"></i>
+							<p>@partner.PartnerType.ToDisplayStringPartner()</p>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<img src="@partner.LogoUrl" alt="@partner.Title" class="img-responsive" />
+					</div>
+					<div class="col-md-5 text-justify">
+						@partner.Description
+					</div>
+					<div class="col-md-2">
+						<a href="@partner.WebUrl" target="_blank" style="white-space: nowrap;">@partner.WebUrl</a>
+					</div>
 				</div>
-			</div>
-			<div class="col-md-3">
-				<img src="/Theme/img/_images/ms-logo500.jpg" alt="partner logo" class="img-responsive" />
-			</div>
-			<div class="col-md-5 text-justify">
-				Заснована в 1975 році корпорація Microsoft є визнаним світовим лідером у галузі розробки програмного забезпечення, а також у наданні послуг та рішень, які допомагають людям та компаніям повністю реалізувати свій потенціал. З 2003 року в Україні працює компанія «Майкрософт Україна», до завдань якої входить розвиток ринку програмного забезпечення, а також впровадження і локалізація новітніх технологій на території Україні.
-			</div>
-			<div class="col-md-2">
-				<a href="http://www.microsoft.ua">www.microsoft.ua</a>
-			</div>
-		</div>
-
-		<div class="row padding15">
-			<div class="col-md-2 text-center">
-				<div class="icon-box-top active">
-					<i class="fontawesome-icon medium circle-white center fa fa-bullhorn"></i>
-					<p>Информационный партнер</p>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<img src="https://azurecommunityua.blob.core.windows.net/azureday/2016/partners/itstep02.png" alt="partner logo" class="img-responsive" />
-			</div>
-			<div class="col-md-5 text-justify">
-				Компьютерная Академия ШАГ – крупнейшее международное учебное заведение, специализирующееся на компьютерном образовании. Наши преподаватели – это практикующие специалисты с опытом работы в IT-индустрии. Они учат тому, о чем не пишут в учебниках. Программа обучения соответствует требованиям, которые предъявляются к молодым специалистам при трудоустройстве в IT-компанию. Ничего лишнего. Только то, что пригодится в работе.
-			</div>
-			<div class="col-md-2">
-				<a href="http://itstep.org/">itstep.org</a>
-			</div>
-		</div>
-
+			}
+		}
 	</div>
 
-				@Html.Action("Footer", "Layout")
-
-			</div><!-- end boxedcontent -->
+	@Html.Action("Footer", "Layout")
+</div>
