@@ -1,4 +1,9 @@
-﻿@model TeamSpark.AzureDay.WebSite.Host.Models.Home.ScheduleModel
+﻿@using TeamSpark.AzureDay.WebSite.Data.Enum
+@model TeamSpark.AzureDay.WebSite.Host.Models.Home.ScheduleModel
+
+@{
+	ViewBag.Title = "AzureDay 2016 - расписание";
+}
 
 <div class="boxedcontent">
 	@Html.Action("Header", "Layout")
@@ -30,31 +35,51 @@
 			<div class="row">
 				@if (timetables.Count == 1)
 				{
-					<div class="col-md-12 col-sm-12">
-						<div class="box effect6 myAreaBoxBorder1">
-							<div class="mySlotTime">
-								@string.Format("{0}:{1}", timetables[0].TimeStartHours, timetables[0].TimeStartMinutes.ToString("D2")) -
-								@string.Format("{0}:{1}", timetables[0].TimeEndHours, timetables[0].TimeEndMinutes.ToString("D2"))
+					if (timetables[0].Room.RoomType == RoomType.CoffeeRoom)
+					{
+						<div class="col-md-12 col-sm-12">
+							<div class="box">
+								<div class="mySlotTime">
+									@string.Format("{0}:{1}", timetables[0].TimeStartHours, timetables[0].TimeStartMinutes.ToString("D2")) -
+									@string.Format("{0}:{1}", timetables[0].TimeEndHours, timetables[0].TimeEndMinutes.ToString("D2"))
+								</div>
+								<div style="text-align: center;">
+									<i>@timetables[0].Topic.Title</i>
+								</div>
 							</div>
-							@if (timetables[0].Topic.Speakers.Any())
-							{
+						</div>
+					}
+					else
+					{
+						<div class="col-md-12 col-sm-12">
+							<div class="box effect6 myAreaBoxBorder1">
+								<div class="mySlotTime">
+									@string.Format("{0}:{1}", timetables[0].TimeStartHours, timetables[0].TimeStartMinutes.ToString("D2")) -
+									@string.Format("{0}:{1}", timetables[0].TimeEndHours, timetables[0].TimeEndMinutes.ToString("D2"))
+								</div>
+								@if (timetables[0].Topic.Speakers.Any())
+								{
 								<div class="mySlotAuthor">
 									@string.Join(", ", timetables[0].Topic.Speakers.Select(s => s.FullName))
 								</div>
-							}
-							<div style="text-align: center;">
-								<b>@timetables[0].Topic.Title</b><br /><br />
-								@*@timetables[0].Topic.Language.Title<br />*@
-								@timetables[0].Topic.Description
+								}
+								<div style="text-align: center;">
+									<b>@timetables[0].Topic.Title</b><br /><br />
+									@if (timetables[0].Topic.Language != null && !string.IsNullOrEmpty(timetables[0].Topic.Language.Title))
+									{
+										@Html.Raw(string.Format("Язык: {0}", timetables[0].Topic.Language.Title))
+									}
+									@*@timetables[0].Topic.Description*@
+								</div>
 							</div>
 						</div>
-					</div>
+					}
 				}
 				else
 				{
 					for (var i = 0; i < timetables.Count; i++)
 					{
-						<div class="col-md-3 col-sm-3">
+						<div class="col-md-3 col-sm-3" style="@Html.Raw(timetables[i].HasLanguage ? string.Empty : "opacity: 0.5;")">
 							<div class="box effect2 @string.Format("myAreaBoxBorder{0}", i + 1)">
 								<div class="mySlotTime">
 									@string.Format("{0}:{1}", timetables[i].TimeStartHours, timetables[i].TimeStartMinutes.ToString("D2")) -
@@ -68,7 +93,10 @@
 								}
 								<div>
 									<b>@timetables[i].Topic.Title</b><br /><br />
-									@*@timetables[i].Topic.Language.Title<br />*@
+									@if (timetables[i].HasLanguage)
+									{
+										@Html.Raw(string.Format("Язык: {0}<br /><br />", timetables[i].Topic.Language.Title))
+									}
 									@timetables[i].Topic.Description
 								</div>
 							</div>

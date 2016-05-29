@@ -1,5 +1,9 @@
 ﻿@model TeamSpark.AzureDay.WebSite.Host.Models.Profile.LoginModel
 
+@{
+	ViewBag.Title = "AzureDay 2016 - вход";
+}
+
 <div class="boxedcontent">
 	@Html.Action("Header", "Layout")
 
@@ -18,21 +22,31 @@
 					<div>@Model.ErrorMessage</div>
 				}
 
-				<form method="POST" data-bind="submit: showModal">
+				<div class="col-md-6">
+					<form method="POST" data-bind="submit: showModal">
+						<div class="input-group myInputGroupdivider">
+							<span class="input-group-addon" style="width: 150px;">Email</span>
+							<input class="form-control" type="email" name="Email" placeholder="Email" data-bind="textInput: email" value="@Model.Email" style="width: 250px;" />
+						</div>
 
-					<div class="input-group myInputGroupdivider">
-						<span class="input-group-addon" style="width: 150px;">Email</span>
-						<input class="form-control" type="email" name="Email" placeholder="Email" data-bind="textInput: email" value="@Model.Email" style="width: 250px;" />
-					</div>
+						<div class="input-group myInputGroupdivider">
+							<span class="input-group-addon" style="width: 150px;">Пароль</span>
+							<input class="form-control" type="password" name="Password" placeholder="Пароль" data-bind="textInput: password" value="@Model.Password" style="width: 250px;" />
+						</div>
 
-					<div class="input-group myInputGroupdivider">
-						<span class="input-group-addon" style="width: 150px;">Пароль</span>
-						<input class="form-control" type="password" name="Password" placeholder="Пароль" data-bind="textInput: password" value="@Model.Password" style="width: 250px;" />
-					</div>
+						<button class="btn btn-primary" type="submit" data-bind="enable: isModelValid">Войти</button>
+					</form>
+				</div>
 
-					<button class="btn btn-primary" type="submit" data-bind="enable: isModelValid">Войти</button>
-
-				</form>
+				<div class="col-md-6">
+					<form method="POST" data-bind="submit: showModal" action="/profile/restorepassword">
+						<div class="input-group myInputGroupdivider">
+							<span class="input-group-addon" style="width: 150px;">Email</span>
+							<input class="form-control" type="email" name="Email" placeholder="Email" value="@Model.Email" style="width: 250px;" />
+						</div>
+						<button class="btn btn-primary" type="submit">Восстановить пароль</button>
+					</form>
+				</div>
 
 			</div>
 		</div>

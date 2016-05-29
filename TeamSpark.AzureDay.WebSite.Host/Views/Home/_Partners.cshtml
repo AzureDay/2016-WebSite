@@ -8,54 +8,47 @@
 		</div>
 	</div>
 
-	@foreach (var partners in Model.PartnersCollection)
-	{
-		<div class="row">
-			<div class="col-md-12">
-				@partners.Key.ToDisplayString()
+	<section class="infoarea whites">
+		<div class="container">
+			<div class="row">
+				@foreach (var partnersKey in Model.PartnersCollection.Keys)
+				{
+					var css = string.Empty;
+					switch (partnersKey)
+					{
+						case PartnerType.VIP:
+							css = "fa-diamond";
+							break;
+						case PartnerType.Gold:
+							css = "fa-star";
+							break;
+						case PartnerType.Silver:
+							css = "fa-star";
+							break;
+						case PartnerType.Raffle:
+							css = "fa-gift";
+							break;
+						case PartnerType.Info:
+							css = "fa-bullhorn";
+							break;
+						case PartnerType.Speaker:
+							css = "fa-commenting-o";
+							break;
+					}
+					foreach (var partner in Model.PartnersCollection[partnersKey])
+					{
+						<div class="col-md-4" style="padding-bottom: 30px;">
+							<i class="fa @css infoareaicon"></i>
+							<div class="infoareawrap">
+								<h1 class="text-center subtitle">@partnersKey.ToDisplayStringPartner()</h1>
+								<a href="@partner.WebUrl" target="_blank">
+									<img class="img-responsive" src="@partner.LogoUrl" alt="@partner.Title" />
+								</a>
+							</div>
+						</div>
+					}
+				}
 			</div>
 		</div>
-		<div class="row">
-			@foreach (var partner in partners.Value)
-			{
-				<div class="col-md-4">
-					<div class="box1" style="text-align: justify;">
-						<div class="striped">
-						</div>
-						<h6>
-							@switch (partner.PartnerType)
-							{
-								case PartnerType.VIP:
-									@Html.Raw("<i class='fa fa-diamond'></i>");
-									break;
-								case PartnerType.Gold:
-									@Html.Raw("<i class='fa fa-star'></i>");
-									break;
-								case PartnerType.Silver:
-									@Html.Raw("<i class='fa fa-star'></i>");
-									break;
-								case PartnerType.Raffle:
-									@Html.Raw("<i class='fa fa-gift'></i>");
-									break;
-								case PartnerType.Info:
-									@Html.Raw("<i class='fa fa-bullhorn'></i>");
-									break;
-								case PartnerType.Speaker:
-									@Html.Raw("<i class='fa fa-commenting-o'></i>");
-									break;
-							}
-							&nbsp;@partner.Title
-						</h6>
-						<div>
-							<img src="@partner.LogoUrl" alt="@partner.Title"/>
-						</div>
-						<div>
-							@partner.Description
-							<span class="boxlink "><a target="_blank" href="@partner.WebUrl" class="defaultbutton mainthemebgcolor"><i class="fa fa-link"></i></a></span>
-						</div>
-					</div>
-				</div>
-			}
-		</div>
-	}
+	</section>
 </div>

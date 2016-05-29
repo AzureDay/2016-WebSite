@@ -1,5 +1,9 @@
 ﻿@model TeamSpark.AzureDay.WebSite.Host.Models.Home.IndexModel
 
+@{
+	ViewBag.Title = "AzureDay 2016";
+}
+
 <div class="boxedcontent">
 	@Html.Action("Header", "Layout")
 
@@ -107,7 +111,7 @@
 					</div>
 					<div class="col-md-6">
 						<div class="box effect6">
-							Участие в AZUREDAY платное, <span class='colortext'>в стоимость билета входят кофе брейки и обед</span>. Есть скидки для студентов, партнёров и скидки по программе early bird.
+							Участие в AZUREDAY платное, <span class='colortext'>в стоимость билета входят кофе брейки</span>. Есть скидки для студентов, партнёров и скидки по программе early bird.
 						</div>
 					</div>
 				</div>
@@ -179,6 +183,8 @@
 		</div>
 	</div>
 
+	@Html.Partial("_Partners", Model.Partners)
+
 	<section class="infoarea whites">
 		<div class="container">
 			<div class="row text-center">
@@ -228,7 +234,7 @@
 	</section>
 	<!-- end infoarea -->
 
-	@Html.Partial("_Partners", Model.Partners)
+	
 
 	@*<section class="homerecentportfolio grays">
 		<div class="container">

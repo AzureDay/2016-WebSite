@@ -1,4 +1,4 @@
-// SmoothScroll for websites v1.2.1
+﻿// SmoothScroll for websites v1.2.1
 // Licensed under the terms of the MIT license.
 
 // People involved
@@ -665,8 +665,13 @@ b.header||e.find(":eq("+a(f+" li").index(a(f+" li."+b.active))+")").attr("select
 //////----Tiny Nav Responsive Menu---////////
 jQuery(document).ready(function ($) {
     $("#main-menu").tinyNav({
-  active: 'selected', // String: Set the "active" class
-  header: 'NAVIGATION', // String: Specify text for "header" and show header instead of the active item
-  label: '' // String: Sets the <label> text for the <select> (if not set, no label will be added)
-});
+		active: 'selected', // String: Set the "active" class
+		header: 'Меню', // String: Specify text for "header" and show header instead of the active item
+		label: '' // String: Sets the <label> text for the <select> (if not set, no label will be added)
+    });
+    $(".tinynav").each(function (index, element) {
+    	if (index != 0) {
+    		$(element).remove();
+    	}
+    });
 });

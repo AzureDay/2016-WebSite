@@ -16,7 +16,7 @@ namespace TeamSpark.AzureDay.WebSite.Notification.Email.Service
 			await transportWeb.DeliverAsync(message);
 		}
 
-		public async Task SendConfirmationEmailAsync(ConfirmRegistrationMessage model)
+		public async Task SendRegistrationConfirmationEmailAsync(ConfirmRegistrationMessage model)
 		{
 			var template = new ConfirmRegistration();
 			template.ConfirmationCode = model.Token;
@@ -26,6 +26,23 @@ namespace TeamSpark.AzureDay.WebSite.Notification.Email.Service
 			var message = new SendGridMessage();
 			message.To = new[] { new MailAddress(model.Email, model.FullName) };
 			message.Subject = string.Format("Подтверждение регистрации на AZUREday {0}", Configuration.Year);
+			message.Html = text;
+			message.From = new MailAddress(Configuration.SendGridFromEmail, Configuration.SendGridFromName);
+			message.ReplyTo = new[] { new MailAddress(Configuration.SendGridFromEmail, Configuration.SendGridFromName) };
+
+			await SendEmail(message);
+		}
+
+		public async Task SendRestorePasswordEmailAsync(RestorePasswordMessage model)
+		{
+			var template = new RestorePassword();
+			template.ConfirmationCode = model.Token;
+
+			var text = template.TransformText();
+
+			var message = new SendGridMessage();
+			message.To = new[] { new MailAddress(model.Email, model.FullName) };
+			message.Subject = string.Format("Восстановление пароля на AZUREday {0}", Configuration.Year);
 			message.Html = text;
 			message.From = new MailAddress(Configuration.SendGridFromEmail, Configuration.SendGridFromName);
 			message.ReplyTo = new[] { new MailAddress(Configuration.SendGridFromEmail, Configuration.SendGridFromName) };
