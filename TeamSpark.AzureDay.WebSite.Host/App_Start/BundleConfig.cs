@@ -41,7 +41,8 @@ namespace TeamSpark.AzureDay.WebSite.Host
 				"~/Theme/js/carouselrecentportfolio.js",
 				"~/Theme/js/carousel.js",
 				"~/Theme/js/prettyPhoto.js",
-				"~/Theme/js/isotope.js",
+				"~/Scripts/isotope.pkgd.js",
+				"~/Scripts/packery-mode.pkgd.js",
 				"~/Theme/js/flexslidertestimonials.js",
 				"~/Theme/js/testimonial.js"));
 

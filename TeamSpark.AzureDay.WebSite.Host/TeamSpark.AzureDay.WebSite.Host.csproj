@@ -306,6 +306,7 @@
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\isotope.pkgd.js" />
     <Content Include="Scripts\jquery-1.11.0.js" />
     <Content Include="Scripts\jquery-1.11.0.min.js" />
     <Content Include="Scripts\jquery-ui-1.11.0.js" />
@@ -313,6 +314,7 @@
     <Content Include="Scripts\knockout-3.4.0.debug.js" />
     <Content Include="Scripts\knockout-3.4.0.js" />
     <Content Include="Scripts\md5.min.js" />
+    <Content Include="Scripts\packery-mode.pkgd.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
@@ -458,7 +460,6 @@
     <Content Include="Theme\js\flexsliderhome.js" />
     <Content Include="Theme\js\flexslidertestimonials.js" />
     <Content Include="Theme\js\html5shiv.js" />
-    <Content Include="Theme\js\isotope.js" />
     <Content Include="Theme\js\jquery.easing.1.3.js" />
     <Content Include="Theme\js\jquery.fitvids.js" />
     <Content Include="Theme\js\masonry2.js" />
