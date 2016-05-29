@@ -48,6 +48,9 @@ namespace TeamSpark.AzureDay.WebSite.Host
 			bundles.Add(new ScriptBundle("~/cdn/knockout/js").Include(
 				"~/Scripts/knockout-3.4.0.js"));
 
+			bundles.Add(new ScriptBundle("~/cdn/md5/js").Include(
+				"~/Scripts/md5.min.js"));
+
 			bundles.Add(new ScriptBundle("~/cdn/bootstrap/js").Include(
 				"~/Scripts/bootstrap.min.js"));
 

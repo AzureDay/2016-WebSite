@@ -1,10 +1,17 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Web.Security;
+using Kaznachey.KaznacheyPayment;
 using TeamSpark.AzureDay.WebSite.App;
 using TeamSpark.AzureDay.WebSite.App.Entity;
+using TeamSpark.AzureDay.WebSite.Config;
+using TeamSpark.AzureDay.WebSite.Data.Enum;
 using TeamSpark.AzureDay.WebSite.Host.Filter;
 using TeamSpark.AzureDay.WebSite.Host.Models.Profile;
+using TeamSpark.AzureDay.WebSite.Notification;
+using TeamSpark.AzureDay.WebSite.Notification.Email.Model;
 
 namespace TeamSpark.AzureDay.WebSite.Host.Controllers
 {
@@ -14,7 +21,14 @@ namespace TeamSpark.AzureDay.WebSite.Host.Controllers
 		public async Task<ActionResult> My()
 		{
 			var email = User.Identity.Name;
-			var attendee = await AppFactory.AttendeeService.Value.GetAttendeeByEmailAsync(email);
+
+			var attendeeTask = AppFactory.AttendeeService.Value.GetAttendeeByEmailAsync(email);
+			var ticketTask = AppFactory.TicketService.Value.GetTicketByEmailAsync(email);
+
+			await Task.WhenAll(attendeeTask, ticketTask);
+
+			var attendee = attendeeTask.Result;
+			var ticket = ticketTask.Result;
 
 			var model = new MyProfileModel
 			{
@@ -23,6 +37,40 @@ namespace TeamSpark.AzureDay.WebSite.Host.Controllers
 				FirstName = attendee.FirstName,
 				Company = attendee.Company
 			};
+
+			model.Tickets = new List<TicketModel>();
+
+			if (ticket == null)
+			{
+				if (DateTime.UtcNow.Month <= 5 && DateTime.UtcNow.Day <= 31 && DateTime.UtcNow.Year == 2016)
+				{
+					model.Tickets.Add(new TicketModel
+					{
+						TicketType = TicketType.EarlyBird,
+						TicketName = "Ранняя регистрация",
+						TicketNotes = ""
+					});
+				}
+				else
+				{
+					model.Tickets.Add(new TicketModel
+					{
+						TicketType = TicketType.Regular,
+						TicketName = "Стандартный",
+						TicketNotes = ""
+					});
+				}
+				model.Tickets.Add(new TicketModel
+				{
+					TicketType = TicketType.Educational,
+					TicketName = "Студенческий",
+					TicketNotes = "Для получения бейджа необходимо предъявить действующий студенческий билет в момент регистрации на конференцию."
+				});
+			}
+			else
+			{
+				model.PayedTicket = ticket;
+			}
 
 			return View(model);
 		}
@@ -38,6 +86,15 @@ namespace TeamSpark.AzureDay.WebSite.Host.Controllers
 			attendee.LastName = model.LastName;
 			attendee.FirstName = model.FirstName;
 			attendee.Company = model.Company;
+
+			if (!string.IsNullOrEmpty(model.Password))
+			{
+				var salt = AppFactory.AttendeeService.Value.GenerateSalt();
+				var passwordHash = AppFactory.AttendeeService.Value.Hash(model.Password, salt);
+
+				attendee.Salt = salt;
+				attendee.PasswordHash = passwordHash;
+			}
 
 			await AppFactory.AttendeeService.Value.UpdateProfileAsync(attendee);
 
@@ -131,6 +188,137 @@ namespace TeamSpark.AzureDay.WebSite.Host.Controllers
 		{
 			FormsAuthentication.SignOut();
 			return Redirect("~/");
+		}
+
+		[Authorize]
+		public async Task<ActionResult> Pay(Ticket ticket)
+		{
+			if (ticket == null)
+			{
+				return RedirectToAction("My");
+			}
+			
+			if (ticket.Attendee == null)
+			{
+				var email = User.Identity.Name;
+				ticket.Attendee = await AppFactory.AttendeeService.Value.GetAttendeeByEmailAsync(email);
+			}
+
+			var kaznachey = new KaznacheyPaymentSystem(Configuration.KaznackeyMerchantId, Configuration.KaznackeyMerchantSecreet);
+			
+			var paySystemId = kaznachey.GetMerchantInformation().PaySystems[0].Id;
+
+			var paymentRequest = new PaymentRequest(paySystemId);
+			paymentRequest.Language = "RU";
+			paymentRequest.Currency = "UAH";
+			paymentRequest.PaymentDetail = new PaymentDetails
+			{
+				EMail = ticket.Attendee.EMail,
+				MerchantInternalUserId = ticket.Attendee.EMail,
+				MerchantInternalPaymentId = string.Format("{0}-{1}", ticket.Attendee.EMail, ticket.TicketType),
+				BuyerFirstname = ticket.Attendee.FirstName,
+				BuyerLastname = ticket.Attendee.LastName,
+				ReturnUrl = "http://azureday.net/profile/my",
+				StatusUrl = "http://azureday.net/profile/paymentconfirm"
+			};
+			paymentRequest.Products = new List<Product>
+			{
+				new Product
+				{
+					ProductId = ticket.TicketType.ToString(),
+					ProductItemsNum = 1,
+					ProductName = string.Format("{0} {1} билет на AzureDay {2} ({3})",
+						ticket.Attendee.FirstName,
+						ticket.Attendee.LastName,
+						Configuration.Year,
+						ticket.TicketType.ToDisplayString()),
+					ProductPrice = (decimal)ticket.Price
+				}
+			};
+
+			var form = kaznachey.CreatePayment(paymentRequest).ExternalFormHtml;
+
+			var model = new PayFormModel
+			{
+				Form = form
+			};
+
+			return View("PayForm", model);
+		}
+
+		[Authorize]
+		[HttpPost]
+		public async Task<ActionResult> Pay(PayModel model)
+		{
+			decimal ticketPrice = AppFactory.TicketService.Value.GetTicketPrice(model.TicketType);
+
+			var ticket = new Ticket
+			{
+				Price = (double)ticketPrice,
+				TicketType = model.TicketType
+			};
+
+			if (!string.IsNullOrEmpty(model.PromoCode))
+			{
+				var coupon = await AppFactory.CouponService.Value.GetValidCouponByCodeAsync(model.PromoCode);
+				if (coupon != null)
+				{
+					ticketPrice = AppFactory.CouponService.Value.GetPriceWithCoupon(ticketPrice, coupon);
+					await AppFactory.CouponService.Value.UseCouponByCodeAsync(model.PromoCode);
+
+					ticket.Price = (double)ticketPrice;
+					ticket.Coupon = coupon;
+				}
+			}
+
+			ticket.IsPayed = ticket.Price <= 0;
+
+			if (ticket.Attendee == null)
+			{
+				var email = User.Identity.Name;
+				ticket.Attendee = await AppFactory.AttendeeService.Value.GetAttendeeByEmailAsync(email);
+			}
+
+			await AppFactory.TicketService.Value.AddTicketAsync(ticket);
+
+			if (ticket.IsPayed)
+			{
+				return RedirectToAction("My");
+			}
+			else
+			{
+				return RedirectToAction("Pay", ticket);
+			}
+		}
+
+		[NonAuthorize]
+		[HttpPost]
+		public async Task<ActionResult> RestorePassword(LoginModel model)
+		{
+			var user = await AppFactory.AttendeeService.Value.GetAttendeeByEmailAsync(model.Email);
+
+			if (user != null)
+			{
+				var token = new QuickAuthToken
+				{
+					Email = user.EMail,
+					Token = Guid.NewGuid().ToString("N")
+				};
+
+				var notification = new RestorePasswordMessage
+				{
+					Email = user.EMail,
+					FullName = user.FullName,
+					Token = token.Token
+				};
+
+				await Task.WhenAll(
+					AppFactory.QuickAuthTokenService.Value.AddQuickAuthTokenAsync(token),
+					NotificationFactory.AttendeeNotificationService.Value.SendRestorePasswordEmailAsync(notification)
+				);
+			}
+
+			return View();
 		}
 
 		//[Authorize]
