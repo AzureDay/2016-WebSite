@@ -1,0 +1,225 @@
+﻿@model TeamSpark.AzureDay.WebSite.Host.Models.Profile.RegistrationModel
+
+@{
+	ViewBag.Title = "AzureDay 2016 - регистрация";
+}
+
+<div class="boxedcontent">
+
+	@Html.Action("Header", "Layout")
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-9">
+
+				<div>
+					&nbsp;
+				</div>
+
+				<h1>Регистрация на <span class='colortext'>AZUREday</span></h1>
+
+				<div style="padding-bottom: 25px;">
+					Для того, чтобы зарегистрироваться на AZUREday и получить возможность <span class='colortext'>купить билет на конференцию</span>, заполните форму, приведенную ниже.
+</div>
+				<div>
+					Регистрация <span class='colortext'>не является билетом</span> на конференцию и является бесплатной. После регистрации (создания учетной записи участника AZUREday) вам будет предложено приобрести билет.
+				</div>
+				<div style="padding-bottom: 25px;">
+					Пользователи, которые создали учетную запись AZUREday, будут получать уведомления и новости конференции.
+				</div>
+
+				<form method="POST" data-bind="submit: showModal">
+
+					<div class="input-group myInputGroupdivider">
+						<span class="input-group-addon" style="width: 150px;">Email</span>
+						<input class="form-control" name="email" data-bind="textInput: email" placeholder="Email" style="width: 250px;" />
+					</div>
+
+					<div class="input-group myInputGroupdivider">
+						<span class="input-group-addon" style="width: 150px;">Пароль</span>
+						<input class="form-control" name="password" type="password" data-bind="textInput: password" placeholder="Пароль" style="width: 250px;" />
+					</div>
+
+					<div class="input-group myInputGroupdivider">
+						<span class="input-group-addon" style="width: 150px;">Повторите пароль</span>
+						<input class="form-control" type="password" data-bind="textInput: password2" placeholder="Пароль еще раз" style="width: 250px;" />
+					</div>
+
+					<div style="width: 400px;" class="alert alert-danger" role="alert" data-bind="style: { display: isPasswordValid() ? 'none' : 'block' }">Пароли должны совпадать</div>
+					<div style="width: 400px;" class="alert alert-danger" role="alert" data-bind="style: { display: isPasswordLengthValid() && isPasswordLength2Valid() ? 'none' : 'block' }">Минимальная длина пароля 6 символов</div>
+
+					<div class="input-group myInputGroupdivider">
+						<span class="input-group-addon" style="width: 150px;">Имя</span>
+						<input class="form-control" name="firstName" data-bind="textInput: fName" placeholder="Имя" style="width: 250px;" />
+					</div>
+					<div class="input-group myInputGroupdivider">
+						<span class="input-group-addon" style="width: 150px;">Фамилия</span>
+						<input class="form-control" name="lastName" data-bind="textInput: lName" placeholder="Фамилия" style="width: 250px;" />
+					</div>
+					<div class="input-group myInputGroupdivider">
+						<span class="input-group-addon" style="width: 150px;">Компания</span>
+						<input class="form-control" name="company" data-bind="textInput: company" placeholder="Компания" style="width: 250px;" />
+					</div>
+
+					<button class="btn btn-primary" type="submit" data-bind="enable: isModelValid">Зарегистрироваться</button>
+
+					<div style="width: 400px; margin-top: 15px;" class="alert alert-warning" data-bind="style: { display: isModelValid() ? 'none' : 'block' }">Все поля обязательны для заполнения</div>
+
+				</form>
+
+				<div>
+					Личные данные, которые вы предоставите в учетной записи участника AZUREday, не будут переданы третьим лицам и будут использованы только для идентификации вас как участника конференции AZUREday.
+				</div>
+				<div>
+					Вы соглашаетесь с этим, создавая учетную запись AZUREday.
+				</div>
+
+			</div>
+
+			<div class="col-md-3">
+				<section class="colorarea">
+					<div class="bgsizecover headeropacity">
+					</div>
+				</section>
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12 negmtop">
+							<h1 class="pgheadertitle animated fadeInLeft pull-left">Билеты</h1>
+							<span class="pagedescrarea text-right animated fadeInRight pull-right">
+								<i>Воспользуйтесь своей скидкой!</i>
+							</span>
+						</div>
+					</div>
+				</div>
+
+				<!-- begin 4 column pricing -->
+				<div class="shortcode row">
+					@if (DateTime.UtcNow.Month <= 5 && DateTime.UtcNow.Day <= 31 && DateTime.UtcNow.Year == 2016)
+					{
+						<div class="wow-pricing-table col-md-12">
+							<div class="wow-pricing featured wow-column-">
+								<div class="wow-pricing-header">
+									<h5>Early Bird</h5>
+									<div class="wow-pricing-cost">
+										500 грн.
+									</div>
+									<div class="wow-pricing-per">
+										за 1 билет
+									</div>
+								</div>
+								<div class="wow-pricing-content">
+									<ul>
+										<li>цена до 31го мая</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					}
+
+					<div class="wow-pricing-table col-md-12">
+						<div class="wow-pricing wow-column-">
+							<div class="wow-pricing-header">
+								<h5>Regular</h5>
+								<div class="wow-pricing-cost">
+									600 грн.
+								</div>
+								<div class="wow-pricing-per">
+									за 1 билет
+								</div>
+							</div>
+							<div class="wow-pricing-content">
+								<ul>
+									<li>цена до 17го июня</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+
+					<div class="wow-pricing-table col-md-12">
+						<div class="wow-pricing featured wow-column-">
+							<div class="wow-pricing-header">
+								<h5>Educational</h5>
+								<div class="wow-pricing-cost">
+									300 грн.
+								</div>
+								<div class="wow-pricing-per">
+									за 1 билет
+								</div>
+							</div>
+							<div class="wow-pricing-content">
+								<ul>
+									<li>цена до 17го июня</li>
+									<li>при наличии действующего студенческого удостоверения</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				
+				
+
+			</div>
+
+		</div>
+
+	</div>
+
+	@Html.Action("Footer", "Layout")
+
+		@Html.Partial("_ModalWait")
+
+		@section Scripts
+{
+			@Scripts.Render("~/cdn/knockout/js")
+
+			<script>
+				$(document).ready(function () {
+					var registrationModel = {
+						email: ko.observable(''),
+						password: ko.observable(''),
+						password2: ko.observable(''),
+						fName: ko.observable(''),
+						lName: ko.observable(''),
+						company: ko.observable('')
+					};
+
+					registrationModel.isPasswordLengthValid = ko.computed(function () {
+						var pwd = registrationModel.password();
+						return !!pwd && pwd.length >= 6;
+					});
+
+					registrationModel.isPasswordLength2Valid = ko.computed(function () {
+						var pwd = registrationModel.password2();
+						return !!pwd && pwd.length >= 6;
+					});
+
+					registrationModel.isPasswordValid = ko.computed(function () {
+						var pwd = registrationModel.password();
+						var pwd2 = registrationModel.password2();
+
+						return pwd === pwd2 && registrationModel.isPasswordLengthValid() && registrationModel.isPasswordLength2Valid();
+					});
+
+					registrationModel.isModelValid = ko.computed(function () {
+						var email = registrationModel.email();
+						var fName = registrationModel.fName();
+						var lName = registrationModel.lName();
+						var company = registrationModel.company();
+
+						return registrationModel.isPasswordValid() && !!email && !!fName && !!lName && !!company;
+					});
+
+					registrationModel.showModal = function () {
+						setTimeout(function () {
+							modal.showModal();
+						});
+						return true;
+					}
+
+					ko.applyBindings(registrationModel);
+				});
+			</script>
+		}
+
+</div>

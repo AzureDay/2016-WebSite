@@ -2336,50 +2336,50 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .maintitle {
 
 /* MINE */
 
-.myAreaAContainer {
+.myAreaContainer1 {
 	background-color: #f90;
 	color: #fff;
 	font-size: 1.2em;
 	font-weight: bold;
 }
 
-.myAreaABoxBorder {
+.myAreaBoxBorder1 {
 	border-left: 5px #f90 solid;
 	line-height: 1.2;
 }
 
-.myAreaBContainer {
+.myAreaContainer2 {
 	background-color: #06f;
 	color: #fff;
 	font-size: 1.2em;
 	font-weight: bold;
 }
 
-.myAreaBBoxBorder {
+.myAreaBoxBorder2 {
 	border-left: 5px #06f solid;
 	line-height: 1.2;
 }
 
-.myAreaCContainer {
+.myAreaContainer3 {
 	background-color: #f30;
 	color: #fff;
 	font-size: 1.2em;
 	font-weight: bold;
 }
 
-.myAreaCBoxBorder {
+.myAreaBoxBorder3 {
 	border-left: 5px #f30 solid;
 	line-height: 1.2;
 }
 
-.myAreaDContainer {
+.myAreaContainer4 {
 	background-color: #6c0;
 	color: #fff;
 	font-size: 1.2em;
 	font-weight: bold;
 }
 
-.myAreaDBoxBorder {
+.myAreaBoxBorder4 {
 	border-left: 5px #6c0 solid;
 	line-height: 1.2;
 }
@@ -2400,4 +2400,22 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .maintitle {
 .myAuthorAvatar {
 	border-radius: 50%;
 	margin: auto;
+}
+
+.myInputGroupdivider {
+	padding-bottom: 15px;
+}
+
+.myAddSimpleTextShadow {
+	text-shadow: 0px 2px #888;
+}
+
+.mySpeakerFlagImg {
+	display: inline-block !important;
+	max-width: 80px;
+	max-height: 40px;
+	position: relative;
+	top:40px;
+	left: 0;
+	border: 1px solid #666;
 }

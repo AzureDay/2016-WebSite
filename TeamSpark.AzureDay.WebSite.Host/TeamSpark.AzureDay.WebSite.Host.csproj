@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <ApplicationInsightsResourceId>/subscriptions/3afe1c94-40bd-4608-bbf7-07462d88e095/resourcegroups/AzureCommunityUA/providers/microsoft.insights/components/azureday-2016-06</ApplicationInsightsResourceId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -50,6 +51,34 @@
     </Reference>
     <Reference Include="AutoMapper, Version=4.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.4.2.1\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.0.1011, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector, Version=1.2.3.246, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.1.2.3\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=1.2.3.246, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.1.2.3\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=1.2.3.246, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.1.2.3\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web, Version=1.2.3.246, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.1.2.3\lib\net45\Microsoft.AI.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer, Version=1.2.3.246, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.1.2.3\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights, Version=1.2.3.490, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.1.2.3\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Azure.KeyVault.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -79,6 +108,34 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Nito.AsyncEx, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nito.AsyncEx.3.0.1\lib\net45\Nito.AsyncEx.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Nito.AsyncEx.Concurrent, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nito.AsyncEx.3.0.1\lib\net45\Nito.AsyncEx.Concurrent.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Nito.AsyncEx.Enlightenment, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nito.AsyncEx.3.0.1\lib\net45\Nito.AsyncEx.Enlightenment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RestSharp, Version=104.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.104.4.0\lib\net4\RestSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SendGrid, Version=6.3.4.0, Culture=neutral, PublicKeyToken=4f047e93159395ca, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sendgrid.6.3.4\lib\SendGrid.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SendGrid.SmtpApi, Version=1.3.1.0, Culture=neutral, PublicKeyToken=2ae73662c35d80e4, processorArchitecture=MSIL">
+      <HintPath>..\packages\SendGrid.SmtpApi.1.3.1\lib\net40\SendGrid.SmtpApi.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SendGridMail, Version=6.3.4.0, Culture=neutral, PublicKeyToken=4f047e93159395ca, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sendgrid.6.3.4\lib\SendGridMail.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -155,26 +212,113 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationInsightInitializer.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\Api\PriceController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LayoutController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
+    <Compile Include="Filter\ApplicationInsightHandleErrorAttribute.cs" />
+    <Compile Include="Filter\NonAuthorizeAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\CdnHelper.cs" />
+    <Compile Include="Models\Home\IndexModel.cs" />
+    <Compile Include="Models\Home\PartnersModel.cs" />
+    <Compile Include="Models\Home\ScheduleModel.cs" />
+    <Compile Include="Models\Home\SpeakersModel.cs" />
+    <Compile Include="Models\Profile\LoginModel.cs" />
+    <Compile Include="Models\Profile\MyProfileModel.cs" />
+    <Compile Include="Models\Profile\PayFormModel.cs" />
+    <Compile Include="Models\Profile\PayModel.cs" />
+    <Compile Include="Models\Profile\RegistrationModel.cs" />
+    <Compile Include="Models\Profile\TicketModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\azureday.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\spinner\spinner01.css" />
+    <Content Include="css\font-awesome.css" />
+    <Content Include="css\font-awesome.min.css" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <None Include="Scripts\jquery-1.11.0.intellisense.js" />
+    <Content Include="Content\jqueryui-fix.css" />
+    <Content Include="Content\themes\base\accordion.css" />
+    <Content Include="Content\themes\base\all.css" />
+    <Content Include="Content\themes\base\autocomplete.css" />
+    <Content Include="Content\themes\base\base.css" />
+    <Content Include="Content\themes\base\button.css" />
+    <Content Include="Content\themes\base\core.css" />
+    <Content Include="Content\themes\base\datepicker.css" />
+    <Content Include="Content\themes\base\dialog.css" />
+    <Content Include="Content\themes\base\draggable.css" />
+    <Content Include="Content\themes\base\images\animated-overlay.gif" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\menu.css" />
+    <Content Include="Content\themes\base\progressbar.css" />
+    <Content Include="Content\themes\base\resizable.css" />
+    <Content Include="Content\themes\base\selectable.css" />
+    <Content Include="Content\themes\base\selectmenu.css" />
+    <Content Include="Content\themes\base\slider.css" />
+    <Content Include="Content\themes\base\sortable.css" />
+    <Content Include="Content\themes\base\spinner.css" />
+    <Content Include="Content\themes\base\tabs.css" />
+    <Content Include="Content\themes\base\theme.css" />
+    <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="Scripts\ai.0.15.0-build58334.js" />
+    <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery-1.11.0.js" />
+    <Content Include="Scripts\jquery-1.11.0.min.js" />
+    <Content Include="Scripts\jquery-ui-1.11.0.js" />
+    <Content Include="Scripts\jquery-ui-1.11.0.min.js" />
+    <Content Include="Scripts\knockout-3.4.0.debug.js" />
+    <Content Include="Scripts\knockout-3.4.0.js" />
+    <Content Include="Scripts\md5.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Theme\css\animate.css" />
     <Content Include="Theme\css\bootstrap.min.css" />
-    <Content Include="Theme\css\font-awesome.css" />
-    <Content Include="Theme\css\fonts\fontawesome-webfont.svg" />
     <Content Include="Theme\css\fullwidth.css" />
     <Content Include="Theme\css\skins\blue.css" />
     <Content Include="Theme\css\skins\blueaqua.css" />
@@ -237,6 +381,13 @@
     <Content Include="Theme\img\_bgnd\bgnd01b.jpg" />
     <Content Include="Theme\img\_bgnd\bgnd02b.JPG" />
     <Content Include="Theme\img\_bgnd\bgnd03b.JPG" />
+    <Content Include="Theme\img\_images\ms-logo500.jpg" />
+    <Content Include="Theme\img\_slides\01.jpg" />
+    <Content Include="Theme\img\_slides\02.jpg" />
+    <Content Include="Theme\img\_slides\03.jpg" />
+    <Content Include="Theme\img\_slides\04.jpg" />
+    <Content Include="Theme\img\_slides\date.jpg" />
+    <Content Include="Theme\img\_slides\date.png" />
     <Content Include="Theme\img\_slides\kyiv01.jpg" />
     <Content Include="Theme\img\_slides\kyiv01b.jpg" />
     <Content Include="Theme\img\_slides\kyiv02.jpg" />
@@ -245,6 +396,8 @@
     <Content Include="Theme\img\_slides\kyiv03b.jpg" />
     <Content Include="Theme\img\_slides\kyiv04.jpg" />
     <Content Include="Theme\img\_slides\kyiv04b.jpg" />
+    <Content Include="Theme\img\_slides\place.jpg" />
+    <Content Include="Theme\img\_slides\place.png" />
     <Content Include="Theme\inc\shortcodes\css\shortcodes.css" />
     <Content Include="Theme\inc\shortcodes\img\arrows.png" />
     <Content Include="Theme\inc\shortcodes\img\bg_direction_nav.png" />
@@ -296,7 +449,6 @@
     <Content Include="Theme\inc\shortcodes\js\shortcode.js" />
     <Content Include="Theme\inc\shortcodes\js\wow_accordion.js" />
     <Content Include="Theme\inc\shortcodes\js\wow_toggle.js" />
-    <Content Include="Theme\js\bootstrap.js" />
     <Content Include="Theme\js\carousel.js" />
     <Content Include="Theme\js\carouselrecentportfolio.js" />
     <Content Include="Theme\js\common.js" />
@@ -309,17 +461,12 @@
     <Content Include="Theme\js\isotope.js" />
     <Content Include="Theme\js\jquery.easing.1.3.js" />
     <Content Include="Theme\js\jquery.fitvids.js" />
-    <Content Include="Theme\js\jquery.js" />
     <Content Include="Theme\js\masonry2.js" />
     <Content Include="Theme\js\masonry3.js" />
     <Content Include="Theme\js\masonry4.js" />
     <Content Include="Theme\js\prettyPhoto.js" />
     <Content Include="Theme\js\respond.min.js" />
     <Content Include="Theme\js\testimonial.js" />
-    <Content Include="Theme\css\fonts\fontawesome-webfont.eot" />
-    <Content Include="Theme\css\fonts\fontawesome-webfont.ttf" />
-    <Content Include="Theme\css\fonts\fontawesome-webfont.woff" />
-    <Content Include="Theme\css\fonts\FontAwesome.otf" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Theme\style.css" />
@@ -337,14 +484,43 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\_Speakers.cshtml" />
+    <Content Include="Views\Shared\_MenuItems.cshtml" />
+    <Content Include="Service References\Application Insights\ConnectedService.json" />
+    <Content Include="Views\Profile\ConfirmRegistration.cshtml" />
+    <Content Include="Views\Profile\ConfirmEmail.cshtml" />
+    <Content Include="Views\Home\_Partners.cshtml" />
+    <Content Include="Views\Profile\PayForm.cshtml" />
+    <Content Include="Views\Home\Partners.cshtml" />
+    <Content Include="Views\Profile\RestorePassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
-    <Folder Include="Theme\img\_images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KaznacheyPayment\Kaznachey.KaznacheyPayment.csproj">
+      <Project>{4046e6c4-b151-47c9-9076-16e13f0cec14}</Project>
+      <Name>Kaznachey.KaznacheyPayment</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TeamSpark.AzureDay.WebSite.App\TeamSpark.AzureDay.WebSite.App.csproj">
+      <Project>{1ad440d3-d731-46cd-aa53-8aa5fcbfcfb4}</Project>
+      <Name>TeamSpark.AzureDay.WebSite.App</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TeamSpark.AzureDay.WebSite.Config\TeamSpark.AzureDay.WebSite.Config.csproj">
+      <Project>{4d1ee387-7f67-4771-8d7a-43b73106696d}</Project>
+      <Name>TeamSpark.AzureDay.WebSite.Config</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TeamSpark.AzureDay.WebSite.Data\TeamSpark.AzureDay.WebSite.Data.csproj">
+      <Project>{161e6bb3-0647-4de0-b474-b75e5f3c9913}</Project>
+      <Name>TeamSpark.AzureDay.WebSite.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TeamSpark.AzureDay.WebSite.Notification\TeamSpark.AzureDay.WebSite.Notification.csproj">
+      <Project>{cb86a71d-89f5-4851-8cca-5e6592c1dca8}</Project>
+      <Name>TeamSpark.AzureDay.WebSite.Notification</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_Footer.cshtml" />
@@ -360,6 +536,27 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\Schedule.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Profile\My.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Profile\Registration.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Profile\Feedback.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Profile\Quiz.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Profile\Login.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_ModalWait.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\jquery-1.11.0.min.map" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

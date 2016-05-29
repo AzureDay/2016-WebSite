@@ -3,7 +3,7 @@ using Microsoft.WindowsAzure.Storage.Table;
 
 namespace TeamSpark.AzureDay.WebSite.Data.Entity.Table
 {
-	sealed class Timetable : TableEntity
+	public sealed class Timetable : TableEntity
 	{
 		[IgnoreProperty]
 		public Guid TopicId
@@ -19,7 +19,10 @@ namespace TeamSpark.AzureDay.WebSite.Data.Entity.Table
 			set { PartitionKey = value.ToString("N"); }
 		}
 
-		public DateTime TimeStart { get; set; }
-		public DateTime TimeEnd { get; set; }
+		public int TimeStartHours { get; set; }
+		public int TimeStartMinutes { get; set; }
+
+		public int TimeEndHours { get; set; }
+		public int TimeEndMinutes { get; set; }
 	}
 }

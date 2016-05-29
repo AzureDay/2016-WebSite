@@ -1,4 +1,5 @@
 ﻿using System;
+using TeamSpark.AzureDay.WebSite.Config;
 
 namespace TeamSpark.AzureDay.WebSite.App.Entity
 {
@@ -9,7 +10,7 @@ namespace TeamSpark.AzureDay.WebSite.App.Entity
 
 		public string GetImageUrl()
 		{
-			throw new NotImplementedException();
+			return string.Format("https://{0}.blob.core.windows.net/azureday/{1}/countries/{2}.GIF", Configuration.AzureStorageAccountName, Configuration.Year, Id.ToString("N"));
 		}
 	}
 }
