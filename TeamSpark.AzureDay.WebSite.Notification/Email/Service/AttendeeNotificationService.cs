@@ -16,7 +16,7 @@ namespace TeamSpark.AzureDay.WebSite.Notification.Email.Service
 			await transportWeb.DeliverAsync(message);
 		}
 
-		public async Task SendConfirmationEmailAsync(ConfirmRegistrationMessage model)
+		public async Task SendRegistrationConfirmationEmailAsync(ConfirmRegistrationMessage model)
 		{
 			var template = new ConfirmRegistration();
 			template.ConfirmationCode = model.Token;

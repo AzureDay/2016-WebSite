@@ -80,7 +80,7 @@ namespace TeamSpark.AzureDay.WebSite.App.Service
 			await Task.WhenAll(
 				DataFactory.AttendeeService.Value.InsertAsync(data),
 				AppFactory.QuickAuthTokenService.Value.AddQuickAuthTokenAsync(token),
-				NotificationFactory.AttendeeNotificationService.Value.SendConfirmationEmailAsync(email)
+				NotificationFactory.AttendeeNotificationService.Value.SendRegistrationConfirmationEmailAsync(email)
 			);
 		}
 
