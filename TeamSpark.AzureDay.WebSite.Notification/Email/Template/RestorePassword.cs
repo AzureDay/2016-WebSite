@@ -9,8 +9,7 @@
 // ------------------------------------------------------------------------------
 namespace TeamSpark.AzureDay.WebSite.Notification.Email.Template
 {
-    using System.Linq;
-    using System.Text;
+	using System.Text;
     using System.Collections.Generic;
     using System;
     
