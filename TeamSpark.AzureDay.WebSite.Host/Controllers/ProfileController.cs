@@ -10,6 +10,8 @@ using TeamSpark.AzureDay.WebSite.Config;
 using TeamSpark.AzureDay.WebSite.Data.Enum;
 using TeamSpark.AzureDay.WebSite.Host.Filter;
 using TeamSpark.AzureDay.WebSite.Host.Models.Profile;
+using TeamSpark.AzureDay.WebSite.Notification;
+using TeamSpark.AzureDay.WebSite.Notification.Email.Model;
 
 namespace TeamSpark.AzureDay.WebSite.Host.Controllers
 {
@@ -84,6 +86,15 @@ namespace TeamSpark.AzureDay.WebSite.Host.Controllers
 			attendee.LastName = model.LastName;
 			attendee.FirstName = model.FirstName;
 			attendee.Company = model.Company;
+
+			if (!string.IsNullOrEmpty(model.Password))
+			{
+				var salt = AppFactory.AttendeeService.Value.GenerateSalt();
+				var passwordHash = AppFactory.AttendeeService.Value.Hash(model.Password, salt);
+
+				attendee.Salt = salt;
+				attendee.PasswordHash = passwordHash;
+			}
 
 			await AppFactory.AttendeeService.Value.UpdateProfileAsync(attendee);
 
@@ -278,6 +289,36 @@ namespace TeamSpark.AzureDay.WebSite.Host.Controllers
 			{
 				return RedirectToAction("Pay", ticket);
 			}
+		}
+
+		[NonAuthorize]
+		[HttpPost]
+		public async Task<ActionResult> RestorePassword(LoginModel model)
+		{
+			var user = await AppFactory.AttendeeService.Value.GetAttendeeByEmailAsync(model.Email);
+
+			if (user != null)
+			{
+				var token = new QuickAuthToken
+				{
+					Email = user.EMail,
+					Token = Guid.NewGuid().ToString("N")
+				};
+
+				var notification = new RestorePasswordMessage
+				{
+					Email = user.EMail,
+					FullName = user.FullName,
+					Token = token.Token
+				};
+
+				await Task.WhenAll(
+					AppFactory.QuickAuthTokenService.Value.AddQuickAuthTokenAsync(token),
+					NotificationFactory.AttendeeNotificationService.Value.SendRestorePasswordEmailAsync(notification)
+				);
+			}
+
+			return View();
 		}
 
 		//[Authorize]

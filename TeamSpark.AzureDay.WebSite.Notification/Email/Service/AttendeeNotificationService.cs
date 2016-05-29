@@ -32,5 +32,22 @@ namespace TeamSpark.AzureDay.WebSite.Notification.Email.Service
 
 			await SendEmail(message);
 		}
+
+		public async Task SendRestorePasswordEmailAsync(RestorePasswordMessage model)
+		{
+			var template = new RestorePassword();
+			template.ConfirmationCode = model.Token;
+
+			var text = template.TransformText();
+
+			var message = new SendGridMessage();
+			message.To = new[] { new MailAddress(model.Email, model.FullName) };
+			message.Subject = string.Format("Восстановление пароля на AZUREday {0}", Configuration.Year);
+			message.Html = text;
+			message.From = new MailAddress(Configuration.SendGridFromEmail, Configuration.SendGridFromName);
+			message.ReplyTo = new[] { new MailAddress(Configuration.SendGridFromEmail, Configuration.SendGridFromName) };
+
+			await SendEmail(message);
+		}
 	}
 }

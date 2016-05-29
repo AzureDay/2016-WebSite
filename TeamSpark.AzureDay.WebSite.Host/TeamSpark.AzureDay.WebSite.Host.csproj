@@ -492,6 +492,7 @@
     <Content Include="Views\Home\_Partners.cshtml" />
     <Content Include="Views\Profile\PayForm.cshtml" />
     <Content Include="Views\Home\Partners.cshtml" />
+    <Content Include="Views\Profile\RestorePassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
