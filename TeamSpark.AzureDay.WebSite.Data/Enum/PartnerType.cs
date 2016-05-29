@@ -21,7 +21,7 @@
 				case PartnerType.Gold:
 					return "Золотые партнеры";
 				case PartnerType.Silver:
-					return "Серебрянные партнеры";
+					return "Серебряные партнеры";
 				case PartnerType.Raffle:
 					return "Партнеры по призам";
 				case PartnerType.Info:
@@ -42,7 +42,7 @@
 				case PartnerType.Gold:
 					return "Золотой партнер";
 				case PartnerType.Silver:
-					return "Серебрянный партнер";
+					return "Серебряный партнер";
 				case PartnerType.Raffle:
 					return "Партнер по призам";
 				case PartnerType.Info:

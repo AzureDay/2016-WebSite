@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 
 namespace TeamSpark.AzureDay.WebSite.Config
 {
@@ -70,6 +71,20 @@ namespace TeamSpark.AzureDay.WebSite.Config
 		public static string SendGridFromName
 		{
 			get { return ConfigurationManager.AppSettings.Get("SendGridFromName"); }
+		}
+
+		#endregion
+
+		#region kaznackey
+
+		public static Guid KaznackeyMerchantId
+		{
+			get { return Guid.Parse(ConfigurationManager.AppSettings.Get("KaznackeyMerchantId")); }
+		}
+
+		public static string KaznackeyMerchantSecreet
+		{
+			get { return ConfigurationManager.AppSettings.Get("KaznackeyMerchantSecreet"); }
 		}
 
 		#endregion
