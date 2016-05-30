@@ -63,16 +63,16 @@
 				<div id="divTicket" class="col-md-6">
 					<h2>Мой билет</h2>
 
-					<div>
+					@*<div>
 						<p>
 							Продажа билетов будет открыта в ближайшие дни.
 						</p>
 						<p>
 							Если вы успели зарегистрироваться и видите это сообщение, то мы подарим вам <span class='colortext'>промокод на 10% скидки</span> на один билет на конференцию, как только будет открыта продажа билетов.
 						</p>
-					</div>
+					</div>*@
 
-					@*@if (Model.PayedTicket == null)
+					@if (Model.PayedTicket == null)
 					{
 						<div>
 							<form method="POST" action="/profile/pay">
@@ -98,29 +98,40 @@
 					}
 					else
 					{
-						<div>
-							<div class="wow-pricing-table col-md-12">
-								<div class="wow-pricing featured wow-column-">
-									<div class="wow-pricing-header" style="padding-bottom: 0px;">
-										<h5>AzureDay 2016</h5>
-										<div class="wow-pricing-cost">
-											<img id="imgGravatar" style="display: none; padding-bottom: 10px;" />
-											<p style="font-weight: bold;">@string.Format("{0} {1}", Model.FirstName, Model.LastName)</p>
-											<p>@Model.Company</p>
-											<p>&nbsp;</p>
+						if (Model.PayedTicket.IsPayed)
+						{
+							<div>
+								<div class="wow-pricing-table col-md-12">
+									<div class="wow-pricing featured wow-column-">
+										<div class="wow-pricing-header" style="padding-bottom: 0px;">
+											<h5>AzureDay 2016</h5>
+											<div class="wow-pricing-cost">
+												<img id="imgGravatar" style="display: none; padding-bottom: 10px;" />
+												<p style="font-weight: bold;">@string.Format("{0} {1}", Model.FirstName, Model.LastName)</p>
+												<p>@Model.Company</p>
+												<p>&nbsp;</p>
+											</div>
 										</div>
-									</div>
-									<div class="wow-pricing-content">
-										<ul>
-											<li>
-												Участник (@Model.PayedTicket.TicketType.ToDisplayString())
-											</li>
-										</ul>
+										<div class="wow-pricing-content">
+											<ul>
+												<li>
+													Участник (@Model.PayedTicket.TicketType.ToDisplayString())
+												</li>
+											</ul>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-					}*@
+						}
+						else
+						{
+							<div>
+								<p>
+									Большое спасибо, ваш платеж обрабатывается. Вы получите подтверждение на адрес электронной почты как только мы подтвердим оплату.
+								</p>
+							</div>
+						}
+					}
 
 				</div>
 			</div>

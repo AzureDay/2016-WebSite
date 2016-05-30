@@ -62,14 +62,26 @@
   <ItemGroup>
     <Compile Include="Email\Ext\ConfirmRegistration.cs" />
     <Compile Include="Email\Ext\RestorePassword.cs" />
+    <Compile Include="Email\Model\ErrorPaymentModel.cs" />
+    <Compile Include="Email\Model\ConfirmPaymentModel.cs" />
     <Compile Include="Email\Model\ConfirmRegistrationMessage.cs" />
     <Compile Include="Email\Model\MessageBase.cs" />
     <Compile Include="Email\Model\RestorePasswordMessage.cs" />
     <Compile Include="Email\Service\AttendeeNotificationService.cs" />
+    <Compile Include="Email\Template\ConfirmPayment.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ConfirmPayment.tt</DependentUpon>
+    </Compile>
     <Compile Include="Email\Template\ConfirmRegistration.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ConfirmRegistration.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Email\Template\ErrorPayment.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ErrorPayment.tt</DependentUpon>
     </Compile>
     <Compile Include="Email\Template\RestorePassword.cs">
       <AutoGen>True</AutoGen>
@@ -87,9 +99,17 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Email\Template\ConfirmPayment.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>ConfirmPayment.cs</LastGenOutput>
+    </Content>
     <Content Include="Email\Template\ConfirmRegistration.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>ConfirmRegistration.cs</LastGenOutput>
+    </Content>
+    <Content Include="Email\Template\ErrorPayment.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>ErrorPayment.cs</LastGenOutput>
     </Content>
     <Content Include="Email\Template\RestorePassword.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>

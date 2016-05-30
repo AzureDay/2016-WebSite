@@ -29,8 +29,8 @@ namespace TeamSpark.AzureDay.WebSite.CLI.Data
 				MerchantInternalPaymentId = "ticker id",
 				BuyerFirstname = "Anton",
 				BuyerLastname = "Boyko",
-				ReturnUrl = "http://azureday.net/profile/my",
-				StatusUrl = "http://azureday.net/profile/paymentconfirm"
+				ReturnUrl = "http://azureday-2016-06-stage.azurewebsites.net/profile/my",
+				StatusUrl = "http://azureday-2016-06-stage.azurewebsites.net/profile/paymentconfirm"
 			};
 			paymentRequest.Products = new List<Product>
 			{

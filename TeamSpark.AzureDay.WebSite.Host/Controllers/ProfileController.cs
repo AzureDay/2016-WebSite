@@ -17,6 +17,8 @@ namespace TeamSpark.AzureDay.WebSite.Host.Controllers
 {
 	public class ProfileController : Controller
 	{
+		private readonly string _host = "http://azureday.net";
+
 		[Authorize]
 		public async Task<ActionResult> My()
 		{
@@ -218,8 +220,8 @@ namespace TeamSpark.AzureDay.WebSite.Host.Controllers
 				MerchantInternalPaymentId = string.Format("{0}-{1}", ticket.Attendee.EMail, ticket.TicketType),
 				BuyerFirstname = ticket.Attendee.FirstName,
 				BuyerLastname = ticket.Attendee.LastName,
-				ReturnUrl = "http://azureday.net/profile/my",
-				StatusUrl = "http://azureday.net/profile/paymentconfirm"
+				ReturnUrl = string.Format("{0}/profile/my", _host),
+				StatusUrl = string.Format("{0}/api/tickets/paymentconfirm", _host)
 			};
 			paymentRequest.Products = new List<Product>
 			{
