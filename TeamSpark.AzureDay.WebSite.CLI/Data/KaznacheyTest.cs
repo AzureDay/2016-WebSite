@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Kaznachey.KaznacheyPayment;
+using TeamSpark.AzureDay.WebSite.Config;
 
 namespace TeamSpark.AzureDay.WebSite.CLI.Data
 {
@@ -10,7 +11,7 @@ namespace TeamSpark.AzureDay.WebSite.CLI.Data
 		{
 			Console.WriteLine("Kaznachey pay");
 
-			var kaznachey = new KaznacheyPaymentSystem(Guid.Parse("13FB1448-4DB5-4796-B0F8-79B92096E456"), "687B0BBA-CBEF-49D8-A0F6-BBA68446D848");
+			var kaznachey = new KaznacheyPaymentSystem(Configuration.KaznackeyMerchantId, Configuration.KaznackeyMerchantSecreet);
 			foreach (var paySystem in kaznachey.GetMerchantInformation().PaySystems)
 			{
 				Console.WriteLine(paySystem.PaySystemName);
@@ -28,8 +29,8 @@ namespace TeamSpark.AzureDay.WebSite.CLI.Data
 				MerchantInternalPaymentId = "ticker id",
 				BuyerFirstname = "Anton",
 				BuyerLastname = "Boyko",
-				ReturnUrl = "http://azureday.net/profile/my",
-				StatusUrl = "http://azureday.net/profile/paymentconfirm"
+				ReturnUrl = "http://azureday-2016-06-stage.azurewebsites.net/profile/my",
+				StatusUrl = "http://azureday-2016-06-stage.azurewebsites.net/profile/paymentconfirm"
 			};
 			paymentRequest.Products = new List<Product>
 			{

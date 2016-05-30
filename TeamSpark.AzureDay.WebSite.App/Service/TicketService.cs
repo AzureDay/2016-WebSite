@@ -31,6 +31,26 @@ namespace TeamSpark.AzureDay.WebSite.App.Service
 			await DataFactory.TicketService.Value.InsertAsync(data);
 		}
 
+		public async Task SetTicketPayedAsync(string email)
+		{
+			var data = await DataFactory.TicketService.Value.GetByKeysAsync(Configuration.Year, email);
+
+			if (data == null)
+			{
+				return;
+			}
+
+			data.IsPayed = true;
+			await DataFactory.TicketService.Value.ReplaceAsync(data);
+		}
+
+		public async Task DeleteTicketAsync(string email)
+		{
+			var data = await DataFactory.TicketService.Value.GetByKeysAsync(Configuration.Year, email);
+
+			await DataFactory.TicketService.Value.DeleteAsync(data);
+		}
+
 		public async Task<Ticket> GetTicketByEmailAsync(string email)
 		{
 			var data = await DataFactory.TicketService.Value.GetByKeysAsync(Configuration.Year, email);
