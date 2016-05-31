@@ -15,7 +15,7 @@ namespace TeamSpark.AzureDay.WebSite.CLI.Data
 			};
 
 			Console.Write("Code: ");
-			coupon.Code = Console.ReadLine();
+			coupon.Code = Console.ReadLine().ToLowerInvariant();
 
 			Console.WriteLine("Discount type:");
 			foreach (DiscountType discountType in Enum.GetValues(typeof(DiscountType)))
