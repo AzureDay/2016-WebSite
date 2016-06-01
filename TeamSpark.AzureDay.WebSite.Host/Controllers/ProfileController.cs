@@ -206,8 +206,15 @@ namespace TeamSpark.AzureDay.WebSite.Host.Controllers
 				ticket.Attendee = await AppFactory.AttendeeService.Value.GetAttendeeByEmailAsync(email);
 			}
 
+			var model = GetPaymentForm(ticket);
+
+			return View("PayForm", model);
+		}
+
+		private PayFormModel GetPaymentForm(Ticket ticket)
+		{
 			var kaznachey = new KaznacheyPaymentSystem(Configuration.KaznackeyMerchantId, Configuration.KaznackeyMerchantSecreet);
-			
+
 			var paySystemId = kaznachey.GetMerchantInformation().PaySystems[0].Id;
 
 			var paymentRequest = new PaymentRequest(paySystemId);
@@ -234,7 +241,7 @@ namespace TeamSpark.AzureDay.WebSite.Host.Controllers
 						ticket.Attendee.LastName,
 						Configuration.Year,
 						ticket.TicketType.ToDisplayString()),
-					ProductPrice = (decimal)ticket.Price
+					ProductPrice = (decimal) ticket.Price
 				}
 			};
 
@@ -244,8 +251,7 @@ namespace TeamSpark.AzureDay.WebSite.Host.Controllers
 			{
 				Form = form
 			};
-
-			return View("PayForm", model);
+			return model;
 		}
 
 		[Authorize]
@@ -291,6 +297,24 @@ namespace TeamSpark.AzureDay.WebSite.Host.Controllers
 			{
 				return RedirectToAction("Pay", ticket);
 			}
+		}
+
+		[Authorize]
+		public async Task<ActionResult> PayAgain()
+		{
+			var email = User.Identity.Name;
+
+			var ticketTask = AppFactory.TicketService.Value.GetTicketByEmailAsync(email);
+			var attendeeTask = AppFactory.AttendeeService.Value.GetAttendeeByEmailAsync(email);
+
+			await Task.WhenAll(ticketTask, attendeeTask);
+
+			var ticket = ticketTask.Result;
+			ticket.Attendee = attendeeTask.Result;
+
+			var model = GetPaymentForm(ticket);
+
+			return View("PayForm", model);
 		}
 
 		[NonAuthorize]
