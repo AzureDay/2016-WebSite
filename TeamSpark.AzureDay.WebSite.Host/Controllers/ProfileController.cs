@@ -317,6 +317,21 @@ namespace TeamSpark.AzureDay.WebSite.Host.Controllers
 			return View("PayForm", model);
 		}
 
+		[Authorize]
+		public async Task<ActionResult> DeleteTicket()
+		{
+			var email = User.Identity.Name;
+
+			var ticket = await AppFactory.TicketService.Value.GetTicketByEmailAsync(email);
+
+			await Task.WhenAll(
+				AppFactory.TicketService.Value.DeleteTicketAsync(email),
+				AppFactory.CouponService.Value.RestoreCouponByCodeAsync(ticket.Coupon == null ? string.Empty : ticket.Coupon.Code)
+			);
+			
+			return RedirectToAction("My");
+		}
+
 		[NonAuthorize]
 		[HttpPost]
 		public async Task<ActionResult> RestorePassword(LoginModel model)
