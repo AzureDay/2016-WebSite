@@ -7,7 +7,8 @@
 		Silver = 301,
 		Raffle = 401,
 		Info = 501,
-		Speaker = 601
+		Speaker = 601,
+		Tech = 701
 	}
 
 	public static class PartnerTypeExtension
@@ -28,6 +29,8 @@
 					return "Информационные партнеры";
 				case PartnerType.Speaker:
 					return "Партнеры по докладчикам";
+				case PartnerType.Tech:
+					return "Технические партнеры";
 				default:
 					return string.Empty;
 			}
@@ -49,6 +52,8 @@
 					return "Информационный партнер";
 				case PartnerType.Speaker:
 					return "Партнер по докладчикам";
+				case PartnerType.Tech:
+					return "Технический партнер";
 				default:
 					return string.Empty;
 			}
