@@ -55,6 +55,24 @@ namespace TeamSpark.AzureDay.WebSite.App.Service
 			}
 		}
 
+		public async Task RestoreCouponByCodeAsync(string code)
+		{
+			if (string.IsNullOrEmpty(code))
+			{
+				return;
+			}
+
+			var normalizedCode = code.ToLower().Trim();
+
+			var coupon = await DataFactory.CouponService.Value.GetByKeysAsync(Configuration.Year, normalizedCode);
+
+			if (!coupon.IsInfinite)
+			{
+				coupon.CouponsCount++;
+				await DataFactory.CouponService.Value.ReplaceAsync(coupon);
+			}
+		}
+
 		public decimal GetPriceWithCoupon(decimal price, Coupon coupon)
 		{
 			var newPrice = price;
