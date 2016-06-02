@@ -13,6 +13,8 @@ namespace TeamSpark.AzureDay.WebSite.CLI.Data
 				Id = Guid.NewGuid()
 			};
 
+			speaker.CountryId = Guid.Parse("fbac873c-4bfd-4f45-bc2e-a02f8435240d");
+
 			Console.Write("First Name: ");
 			speaker.FirstName = Console.ReadLine();
 

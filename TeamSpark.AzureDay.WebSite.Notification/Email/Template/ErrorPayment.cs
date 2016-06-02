@@ -38,7 +38,7 @@ namespace TeamSpark.AzureDay.WebSite.Notification.Email.Template
 <p style=""font-family: Tahoma, Geneva, sans-serif;"">
 	Простите, но в момент оплаты произошла ошибка. Возможно, на карте было недостаточно денег для проведения оплаты. Попробуйте повторить оплату.
 </p>
-<p>
+<p style=""font-family: Tahoma, Geneva, sans-serif; padding-top: 20px;"">
 	Если у вас есть вопросы по оплате, то, пожалуйста, свяжитесь с организаторами конференции.
 </p>
 </body>
