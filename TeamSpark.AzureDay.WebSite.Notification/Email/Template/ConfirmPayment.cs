@@ -38,10 +38,10 @@ namespace TeamSpark.AzureDay.WebSite.Notification.Email.Template
 <p style=""font-family: Tahoma, Geneva, sans-serif;"">
 	Большое спасибо, ваш платеж прошел успешно. Мы с нетерпением ждем вас на AZUREday 2016.
 </p>
-<p style=""padding-top: 20px;"">
+<p style=""font-family: Tahoma, Geneva, sans-serif; padding-top: 20px;"">
 	Для того, чтобы прийти на AZUREday, вам не нужно печатать билет.
 </p>
-<p style=""padding-top: 20px;"">
+<p style=""font-family: Tahoma, Geneva, sans-serif; padding-top: 20px;"">
 	Вместо этого вам необходимо запомнить, какие ФИО и какой адрес электронной почты вы вводили при регистрации на конференцию. Эту информацию вам необходимо будет предоставить при входе на конференцию.
 </p>
 </body>
