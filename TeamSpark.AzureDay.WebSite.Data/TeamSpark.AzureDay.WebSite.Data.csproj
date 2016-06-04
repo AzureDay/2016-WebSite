@@ -73,6 +73,7 @@
     <Compile Include="Entity\Table\Attendee.cs" />
     <Compile Include="Entity\Table\QuickAuthToken.cs" />
     <Compile Include="Entity\Table\Partner.cs" />
+    <Compile Include="Entity\Table\QuizScore.cs" />
     <Compile Include="Entity\Table\SpeakerTopic.cs" />
     <Compile Include="Entity\Table\Country.cs" />
     <Compile Include="Entity\Table\Ticket.cs" />
@@ -90,6 +91,7 @@
     <Compile Include="Service\Table\CountryService.cs" />
     <Compile Include="Service\Table\QuickAuthTokenService.cs" />
     <Compile Include="Service\Table\PartnerService.cs" />
+    <Compile Include="Service\Table\QuizService.cs" />
     <Compile Include="Service\Table\RoomService.cs" />
     <Compile Include="Service\Table\SpeakerTopicService.cs" />
     <Compile Include="Service\Table\TopicService.cs" />

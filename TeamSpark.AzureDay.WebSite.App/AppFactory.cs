@@ -26,7 +26,10 @@ namespace TeamSpark.AzureDay.WebSite.App
 				cfg.CreateMap<Room, Data.Entity.Table.Room>();
 				cfg.CreateMap<Data.Entity.Table.Room, Room>();
 
-				cfg.CreateMap<Timetable, Data.Entity.Table.Timetable>();
+                cfg.CreateMap<QuizScore, Data.Entity.Table.QuizScore>();
+                cfg.CreateMap<Data.Entity.Table.QuizScore, QuizScore>();
+
+                cfg.CreateMap<Timetable, Data.Entity.Table.Timetable>();
 				cfg.CreateMap<Data.Entity.Table.Timetable, Timetable>();
 
 				cfg.CreateMap<Topic, Data.Entity.Table.Topic>();
@@ -48,7 +51,8 @@ namespace TeamSpark.AzureDay.WebSite.App
 		public static readonly Lazy<SpeakerService> SpeakerService = new Lazy<SpeakerService>(() => new SpeakerService());
 		public static readonly Lazy<QuickAuthTokenService> QuickAuthTokenService = new Lazy<QuickAuthTokenService>(() => new QuickAuthTokenService());
 		public static readonly Lazy<RoomService> RoomService = new Lazy<RoomService>(() => new RoomService());
-		public static readonly Lazy<TimetableService> TimetableService = new Lazy<TimetableService>(() => new TimetableService());
+		public static readonly Lazy<QuizService> QuizScoreService = new Lazy<QuizService>(() => new QuizService());
+        public static readonly Lazy<TimetableService> TimetableService = new Lazy<TimetableService>(() => new TimetableService());
 		public static readonly Lazy<PartnerService> PartnerService = new Lazy<PartnerService>(() => new PartnerService());
 	}
 }

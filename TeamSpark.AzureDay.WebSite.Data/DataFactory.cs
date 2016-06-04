@@ -12,7 +12,8 @@ namespace TeamSpark.AzureDay.WebSite.Data
 		public static readonly Lazy<CountryService> CountryService = new Lazy<CountryService>(() => new CountryService(Configuration.AzureStorageAccountName, Configuration.AzureStorageAccountKey));
 		public static readonly Lazy<SpeakerService> SpeakerService = new Lazy<SpeakerService>(() => new SpeakerService(Configuration.AzureStorageAccountName, Configuration.AzureStorageAccountKey));
 		public static readonly Lazy<RoomService> RoomService = new Lazy<RoomService>(() => new RoomService(Configuration.AzureStorageAccountName, Configuration.AzureStorageAccountKey));
-		public static readonly Lazy<LanguageService> LanguageService = new Lazy<LanguageService>(() => new LanguageService(Configuration.AzureStorageAccountName, Configuration.AzureStorageAccountKey));
+		public static readonly Lazy<QuizService> QuizService = new Lazy<QuizService>(() => new QuizService(Configuration.AzureStorageAccountName, Configuration.AzureStorageAccountKey));
+        public static readonly Lazy<LanguageService> LanguageService = new Lazy<LanguageService>(() => new LanguageService(Configuration.AzureStorageAccountName, Configuration.AzureStorageAccountKey));
 		public static readonly Lazy<TopicService> TopicService = new Lazy<TopicService>(() => new TopicService(Configuration.AzureStorageAccountName, Configuration.AzureStorageAccountKey));
 		public static readonly Lazy<TimetableService> TimetableService = new Lazy<TimetableService>(() => new TimetableService(Configuration.AzureStorageAccountName, Configuration.AzureStorageAccountKey));
 		public static readonly Lazy<SpeakerTopicService> SpeakerTopicService = new Lazy<SpeakerTopicService>(() => new SpeakerTopicService(Configuration.AzureStorageAccountName, Configuration.AzureStorageAccountKey));
@@ -26,7 +27,8 @@ namespace TeamSpark.AzureDay.WebSite.Data
 				CountryService.Value.InitializeAsync(),
 				SpeakerService.Value.InitializeAsync(),
 				RoomService.Value.InitializeAsync(),
-				LanguageService.Value.InitializeAsync(),
+                QuizService.Value.InitializeAsync(),
+                LanguageService.Value.InitializeAsync(),
 				TopicService.Value.InitializeAsync(),
 				TimetableService.Value.InitializeAsync(),
 				SpeakerTopicService.Value.InitializeAsync(),

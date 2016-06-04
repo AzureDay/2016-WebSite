@@ -95,6 +95,7 @@
     <Compile Include="Entity\Country.cs" />
     <Compile Include="Entity\QuickAuthToken.cs" />
     <Compile Include="Entity\Partner.cs" />
+    <Compile Include="Entity\QuizScore.cs" />
     <Compile Include="Entity\Room.cs" />
     <Compile Include="Entity\Speaker.cs" />
     <Compile Include="Entity\Ticket.cs" />
@@ -106,6 +107,7 @@
     <Compile Include="Service\CountryService.cs" />
     <Compile Include="Service\PartnerService.cs" />
     <Compile Include="Service\QuickAuthTokenService.cs" />
+    <Compile Include="Service\QuizService.cs" />
     <Compile Include="Service\RoomService.cs" />
     <Compile Include="Service\SpeakerService.cs" />
     <Compile Include="Service\TimetableService.cs" />
