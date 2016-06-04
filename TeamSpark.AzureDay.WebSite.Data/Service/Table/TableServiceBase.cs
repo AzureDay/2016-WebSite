@@ -68,6 +68,13 @@ namespace TeamSpark.AzureDay.WebSite.Data.Service.Table
 			await Table.ExecuteAsync(operation);
 		}
 
+		public async Task DeleteAsync(T entity)
+		{
+			var operation = TableOperation.Delete(entity);
+
+			await Table.ExecuteAsync(operation);
+		}
+
 		public TableBatchOperation CreateBatch()
 		{
 			var batch = new TableBatchOperation();

@@ -1,0 +1,69 @@
+﻿@using TeamSpark.AzureDay.WebSite.Data.Enum
+@model TeamSpark.AzureDay.WebSite.Host.Models.Home.PartnersModel
+@{
+	ViewBag.Title = "AzureDay 2016 - партнеры";
+}
+
+<div class="boxedcontent">
+	@Html.Action("Header", "Layout")
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="titleborder center">
+					<div>
+						<h1 class="maintitle animated fadeInDownBig">Партнеры AZUREDAY</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		@foreach (var partnersKey in Model.PartnersCollection.Keys)
+		{
+			var css = string.Empty;
+			switch (partnersKey)
+			{
+				case PartnerType.VIP:
+					css = "fa-diamond";
+					break;
+				case PartnerType.Gold:
+					css = "fa-star";
+					break;
+				case PartnerType.Silver:
+					css = "fa-star";
+					break;
+				case PartnerType.Raffle:
+					css = "fa-gift";
+					break;
+				case PartnerType.Info:
+					css = "fa-bullhorn";
+					break;
+				case PartnerType.Speaker:
+					css = "fa-commenting-o";
+					break;
+			}
+			foreach (var partner in Model.PartnersCollection[partnersKey])
+			{
+				<div class="row padding15">
+					<div class="col-md-2 text-center">
+						<div class="icon-box-top active">
+							<i class="fontawesome-icon medium circle-white center fa @css"></i>
+							<p>@partner.PartnerType.ToDisplayStringPartner()</p>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<img src="@partner.LogoUrl" alt="@partner.Title" class="img-responsive" />
+					</div>
+					<div class="col-md-5 text-justify">
+						@partner.Description
+					</div>
+					<div class="col-md-2">
+						<a href="@partner.WebUrl" target="_blank" style="white-space: nowrap;">@partner.WebUrl</a>
+					</div>
+				</div>
+			}
+		}
+	</div>
+
+	@Html.Action("Footer", "Layout")
+</div>

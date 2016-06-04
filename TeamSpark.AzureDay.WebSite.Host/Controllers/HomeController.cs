@@ -3,9 +3,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Mvc;
+using System.Web.Security;
 using TeamSpark.AzureDay.WebSite.App;
 using TeamSpark.AzureDay.WebSite.App.Entity;
 using TeamSpark.AzureDay.WebSite.Data.Enum;
+using TeamSpark.AzureDay.WebSite.Host.Filter;
 using TeamSpark.AzureDay.WebSite.Host.Models.Home;
 
 namespace TeamSpark.AzureDay.WebSite.Host.Controllers
@@ -92,8 +94,32 @@ namespace TeamSpark.AzureDay.WebSite.Host.Controllers
 			return View(model);
 		}
 
+		public async Task<ActionResult> Partners()
+		{
+			var model = new PartnersModel();
+
+			model.PartnersCollection = (await AppFactory.PartnerService.Value.GetPartnersAsync())
+				.GroupBy(p => p.PartnerType)
+				.ToDictionary(p => p.Key, group => group.OrderBy(p => p.OrderN).ToList());
+
+			return View(model);
+		}
+
+		[NonAuthorize]
 		public async Task<ActionResult> Redirect([FromUri] string quickAuthToken, [FromUri] string redirectUrl)
 		{
+			var authToken = await AppFactory.QuickAuthTokenService.Value.GetQuickAuthTokenByValueAsync(quickAuthToken, false);
+
+			if (authToken != null)
+			{
+				var attendee = await AppFactory.AttendeeService.Value.GetAttendeeByEmailAsync(authToken.Email);
+				if (attendee != null && attendee.IsConfirmed)
+				{
+					FormsAuthentication.SetAuthCookie(attendee.EMail, true);
+					await AppFactory.QuickAuthTokenService.Value.ExpireTokenByValueAsync(quickAuthToken);
+				}
+			}
+
 			return Redirect(redirectUrl);
 		}
 	}

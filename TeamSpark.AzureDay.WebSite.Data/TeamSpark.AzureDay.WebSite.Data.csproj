@@ -71,6 +71,7 @@
   <ItemGroup>
     <Compile Include="DataFactory.cs" />
     <Compile Include="Entity\Table\Attendee.cs" />
+    <Compile Include="Entity\Table\Coupon.cs" />
     <Compile Include="Entity\Table\QuickAuthToken.cs" />
     <Compile Include="Entity\Table\Partner.cs" />
     <Compile Include="Entity\Table\QuizScore.cs" />
@@ -82,10 +83,14 @@
     <Compile Include="Entity\Table\Speaker.cs" />
     <Compile Include="Entity\Table\Room.cs" />
     <Compile Include="Entity\Table\Language.cs" />
+    <Compile Include="Enum\DiscountType.cs" />
     <Compile Include="Enum\PartnerType.cs" />
     <Compile Include="Enum\RoomType.cs" />
+    <Compile Include="Enum\TicketType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\StorageServiceBase.cs" />
+    <Compile Include="Service\Table\TicketService.cs" />
+    <Compile Include="Service\Table\CouponService.cs" />
     <Compile Include="Service\Table\AttendeeService.cs" />
     <Compile Include="Service\Table\LanguageService.cs" />
     <Compile Include="Service\Table\CountryService.cs" />
