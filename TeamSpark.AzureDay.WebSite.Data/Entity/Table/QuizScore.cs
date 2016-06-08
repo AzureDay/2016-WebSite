@@ -6,8 +6,13 @@ namespace TeamSpark.AzureDay.WebSite.Data.Entity.Table
 {
     public sealed class QuizScore : TableEntity
     {
+
         [IgnoreProperty]
-        public string Email { get; set; }
+        public string Email
+        {
+            get { return RowKey; }
+            set { RowKey = value; }
+        }
 
         public int Score { get; set; }
 

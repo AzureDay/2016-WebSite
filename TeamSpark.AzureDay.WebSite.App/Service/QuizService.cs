@@ -10,7 +10,7 @@ namespace TeamSpark.AzureDay.WebSite.App.Service
 {
 	public sealed class QuizService
     {
-		public async Task<List<QuizScore>> GetAllQuizAsync()
+		public async Task<List<QuizScore>> GetAllScoresAsync()
 		{
 			var scores = await DataFactory.QuizService.Value.GetByPartitionKeyAsync(Configuration.Year);
 
@@ -19,9 +19,17 @@ namespace TeamSpark.AzureDay.WebSite.App.Service
 				.ThenBy(s => s.Date)				
 				.ToList();
 		}
-        public async Task InsertAsync(QuizScore attendee)
+        public async Task<QuizScore> GetUserScore(string identifier)
         {
-            var data = AppFactory.Mapper.Value.Map<Data.Entity.Table.QuizScore>(attendee);
+            var scores = await DataFactory.QuizService.Value.GetByPartitionKeyAsync(Configuration.Year);
+
+            return AppFactory.Mapper.Value.Map<IEnumerable<QuizScore>>(scores)
+                  .Where(s => s.Email == identifier)
+                  .Single();
+        }
+        public async Task InsertAsync(QuizScore scoreData)
+        {
+            var data = AppFactory.Mapper.Value.Map<Data.Entity.Table.QuizScore>(scoreData);
 
             await  DataFactory.QuizService.Value.InsertAsync(data);
         }
