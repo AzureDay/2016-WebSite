@@ -218,6 +218,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\Api\PriceController.cs" />
+    <Compile Include="Controllers\Api\ScheduleController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LayoutController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
