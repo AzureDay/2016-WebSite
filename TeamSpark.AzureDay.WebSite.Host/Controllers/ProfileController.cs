@@ -17,7 +17,7 @@ namespace TeamSpark.AzureDay.WebSite.Host.Controllers
 {
 	public class ProfileController : Controller
 	{
-		private readonly string _host = "http://azureday.net";
+		private readonly string _host = "https://azureday.net";
 
 		[Authorize]
 		public async Task<ActionResult> My()
