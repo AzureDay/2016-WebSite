@@ -3,7 +3,7 @@
     /// <summary>
     /// PaymentResponse represent information about payment processing
     /// </summary>
-    public class PaymentResponse:BaseResponse
+    public class PaymentResponse: BaseResponse
     {
         public PaymentResponse()
         {

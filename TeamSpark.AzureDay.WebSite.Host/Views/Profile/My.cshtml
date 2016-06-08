@@ -63,16 +63,16 @@
 				<div id="divTicket" class="col-md-6">
 					<h2>Мой билет</h2>
 
-					<div>
+					@*<div>
 						<p>
 							Продажа билетов будет открыта в ближайшие дни.
 						</p>
 						<p>
 							Если вы успели зарегистрироваться и видите это сообщение, то мы подарим вам <span class='colortext'>промокод на 10% скидки</span> на один билет на конференцию, как только будет открыта продажа билетов.
 						</p>
-					</div>
+					</div>*@
 
-					@*@if (Model.PayedTicket == null)
+					@if (Model.PayedTicket == null)
 					{
 						<div>
 							<form method="POST" action="/profile/pay">
@@ -98,29 +98,52 @@
 					}
 					else
 					{
-						<div>
-							<div class="wow-pricing-table col-md-12">
-								<div class="wow-pricing featured wow-column-">
-									<div class="wow-pricing-header" style="padding-bottom: 0px;">
-										<h5>AzureDay 2016</h5>
-										<div class="wow-pricing-cost">
-											<img id="imgGravatar" style="display: none; padding-bottom: 10px;" />
-											<p style="font-weight: bold;">@string.Format("{0} {1}", Model.FirstName, Model.LastName)</p>
-											<p>@Model.Company</p>
-											<p>&nbsp;</p>
+						if (Model.PayedTicket.IsPayed)
+						{
+							<div>
+								<div class="wow-pricing-table col-md-12">
+									<div class="wow-pricing featured wow-column-">
+										<div class="wow-pricing-header" style="padding-bottom: 0px;">
+											<h5>AzureDay 2016</h5>
+											<div class="wow-pricing-cost">
+												<img id="imgGravatar" style="display: none; padding-bottom: 10px;"/>
+												<p style="font-weight: bold;">@string.Format("{0} {1}", Model.FirstName, Model.LastName)</p>
+												<p>@Model.Company</p>
+												<p>&nbsp;</p>
+											</div>
 										</div>
-									</div>
-									<div class="wow-pricing-content">
-										<ul>
-											<li>
-												Участник (@Model.PayedTicket.TicketType.ToDisplayString())
-											</li>
-										</ul>
+										<div class="wow-pricing-content">
+											<ul>
+												<li>
+													Участник (@Model.PayedTicket.TicketType.ToDisplayString())
+												</li>
+											</ul>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-					}*@
+							<div>
+								<p>Для того, чтобы прийти на AZUREday, вам не нужно печатать билет. Вместо этого вам необходимо запомнить, какие ФИО и какой адрес электронной почты вы вводили при регистрации на конференцию. Эту информацию вам необходимо будет предоставить при входе на конференцию.</p>
+							</div>
+						}
+						else
+						{
+							<div>
+								<p>
+									Большое спасибо, ваш платеж обрабатывается. Вы получите подтверждение на адрес электронной почты как только мы подтвердим оплату. Вы можете получить подтверждение о списании средств с вашей карты раньше нас, но не переживайте, мы все равно увидим вашу оплату если она была успешной.
+								</p>
+								<p>
+									Если вы не совершили оплату, то вы можете повторно перейти на форму оплаты используя <a href="/Profile/PayAgain">ссылку</a>.
+								</p>
+								<p>
+									Если вы хотите сбросить данные в форме заказа билета, нажмите на <a href="/Profile/DeleteTicket">сслыку</a>. Обратите внимание, что вы не можете сбросить успешно оплаченный билет. Вы также не можете отменить оплату, если она уже прошла.
+								</p>
+								<p>
+									Если у вас возникли вопросы по оплате, вы можете написать письмо на адрес <a href="mailto:pay@azureday.net">pay@azureday.net</a> и мы поможем вам решить все ваши вопросы.
+								</p>
+							</div>
+						}
+					}
 
 				</div>
 			</div>
