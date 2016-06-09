@@ -28,6 +28,13 @@
 					Пользователи, которые создали учетную запись AZUREday, будут получать уведомления и новости конференции.
 				</div>
 
+				@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+				{
+					<div class="alert alert-danger" style="width: 400px;">
+						@Model.ErrorMessage
+					</div>
+				}
+
 				<form method="POST" data-bind="submit: showModal">
 
 					<div class="input-group myInputGroupdivider">
