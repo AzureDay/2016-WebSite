@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.WindowsAzure.Storage.Table;
 
@@ -41,6 +42,27 @@ namespace TeamSpark.AzureDay.WebSite.Data.Service.Table
 		public async Task<List<T>> GetByPartitionKeyAsync(string partitionKey)
 		{
 			var filter = TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, partitionKey);
+
+			var query = new TableQuery<T>().Where(filter);
+
+			return (await Table.ExecuteQuerySegmentedAsync(query, null)).Results;
+		}
+
+		public async Task<List<T>> GetByFilterAsync(Dictionary<string, string> filters)
+		{
+			if (filters == null || filters.Count == 0)
+			{
+				return await GetAllAsync();
+			}
+
+			var filter = TableQuery.GenerateFilterCondition(filters.First().Key, QueryComparisons.Equal, filters.First().Value);
+			foreach (var f in filters.Skip(1))
+			{
+				filter = TableQuery.CombineFilters(
+					filter,
+					TableOperators.And,
+					TableQuery.GenerateFilterCondition(f.Key, QueryComparisons.Equal, f.Value));
+			}
 
 			var query = new TableQuery<T>().Where(filter);
 
