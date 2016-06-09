@@ -6,5 +6,6 @@ namespace TeamSpark.AzureDay.WebSite.Host.Models.Profile
 	{
 		public TicketType TicketType { get; set; }
 		public string PromoCode { get; set; }
+		public string PaymentType { get; set; }
 	}
 }
