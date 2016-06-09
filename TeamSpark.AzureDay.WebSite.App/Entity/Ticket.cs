@@ -13,5 +13,7 @@ namespace TeamSpark.AzureDay.WebSite.App.Entity
 		public TicketType TicketType { get; set; }
 
 		public double Price { get; set; }
+
+		public string PaymentType { get; set; }
 	}
 }

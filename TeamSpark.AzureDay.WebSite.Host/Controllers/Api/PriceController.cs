@@ -69,8 +69,6 @@ namespace TeamSpark.AzureDay.WebSite.Host.Controllers.Api
 				}
 				else
 				{
-					ticket.IsPayed = true;
-
 					var attendee = await AppFactory.AttendeeService.Value.GetAttendeeByEmailAsync(email);
 
 					var message = new ConfirmPaymentModel
