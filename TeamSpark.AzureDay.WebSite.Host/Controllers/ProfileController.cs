@@ -106,13 +106,22 @@ namespace TeamSpark.AzureDay.WebSite.Host.Controllers
 		[NonAuthorize]
 		public ActionResult Registration()
 		{
-			return View();
+			return View(new RegistrationModel());
 		}
 
 		[NonAuthorize]
 		[HttpPost]
 		public async Task<ActionResult> Registration(RegistrationModel model)
 		{
+			var attendeeExisted = await AppFactory.AttendeeService.Value.GetAttendeeByEmailAsync(model.Email);
+			if (attendeeExisted != null)
+			{
+				model.ErrorMessage = "Пользователь с таким адресом электронной почты уже есть в системе. Если вы забыли пароль, то воспользуйтесь функцией восстановления пароля на странице входа в личный кабинет.";
+
+				model.Password = string.Empty;
+				return View(model);
+			}
+
 			var salt = AppFactory.AttendeeService.Value.GenerateSalt();
 			var passwordHash = AppFactory.AttendeeService.Value.Hash(model.Password, salt);
 
