@@ -87,6 +87,16 @@ namespace TeamSpark.AzureDay.WebSite.Config
 			get { return ConfigurationManager.AppSettings.Get("KaznackeyMerchantSecreet"); }
 		}
 
+		public static Guid LiqPayMerchantId
+		{
+			get { return Guid.Parse(ConfigurationManager.AppSettings.Get("LiqPayMerchantId")); }
+		}
+
+		public static string LiqPayMerchantSecreet
+		{
+			get { return ConfigurationManager.AppSettings.Get("LiqPayMerchantSecreet"); }
+		}
+
 		#endregion
 	}
 }

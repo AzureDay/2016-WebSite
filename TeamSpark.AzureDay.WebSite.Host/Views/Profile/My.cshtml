@@ -75,7 +75,7 @@
 					@if (Model.PayedTicket == null)
 					{
 						<div>
-							<form method="POST" action="/profile/pay">
+							<form id="formPay" method="POST" action="/profile/pay">
 								<div class="input-group myInputGroupdivider">
 									<span class="input-group-addon" style="width: 150px;">Тип билета</span>
 									<select class="form-control" name="ticketType" data-bind="options: tickets, optionsValue: 'id', optionsText: 'title', value: selectedTicket" style="width: 250px;"></select>
@@ -86,9 +86,11 @@
 								</div>
 								<div class="input-group myInputGroupdivider">
 									<span class="input-group-addon" style="width: 150px;">Стоимость</span>
-									<input class="form-control" readonly="readonly" disabled="disabled" data-bind="value: currentPrice" style="width: 250px;" />
+									<input class="form-control" readonly="readonly" disabled="disabled" data-bind="value: currentPrice" style="width: 250px;"/>
 								</div>
-								<button class="btn btn-primary" type="submit">Оплатить</button>
+								<input id="paymentType" name="paymentType" type="hidden"/>
+								<a href="#" id="btnPayKaznackey" class="btn btn-primary">Оплатить картой</a>
+								<a href="#" id="btnPayLiqPay" class="btn btn-primary">Оплатить через LiqPay</a>
 								@foreach (var ticket in Model.Tickets.Where(t => !string.IsNullOrEmpty(t.TicketNotes)))
 								{
 									<div style="width: 400px; margin-top: 15px; display: none;" data-bind="visible: '@ticket.TicketType' == selectedTicket()" class="alert alert-warning">@ticket.TicketNotes</div>
@@ -246,6 +248,21 @@
 
 				ko.applyBindings(ticketModel, document.getElementById('divTicket'));
 			})();
+
+			$('#btnPayKaznackey').click(function() {
+				$('#paymentType').val('Kaznackey');
+				setTimeout(function () {
+					modal.showModal();
+				});
+				$('#formPay').submit();
+			});
+			$('#btnPayLiqPay').click(function () {
+				$('#paymentType').val('LiqPay');
+				setTimeout(function () {
+					modal.showModal();
+				});
+				$('#formPay').submit();
+			});
 		});
 
 		function renderGravatarProfile(profile) {
