@@ -29,6 +29,8 @@ namespace TeamSpark.AzureDay.WebSite.Data.Entity.Table
 
 		public double Price { get; set; }
 
+		public string PaymentType { get; set; }
+
 		public Ticket()
 		{
 			PartitionKey = Configuration.Year;
