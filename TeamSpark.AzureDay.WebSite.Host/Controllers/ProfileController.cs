@@ -201,25 +201,6 @@ namespace TeamSpark.AzureDay.WebSite.Host.Controllers
 			return Redirect("~/");
 		}
 
-		[Authorize]
-		public async Task<ActionResult> Pay(Ticket ticket)
-		{
-			if (ticket == null)
-			{
-				return RedirectToAction("My");
-			}
-			
-			if (ticket.Attendee == null)
-			{
-				var email = User.Identity.Name;
-				ticket.Attendee = await AppFactory.AttendeeService.Value.GetAttendeeByEmailAsync(email);
-			}
-
-			var model = GetPaymentForm(ticket);
-
-			return View("PayForm", model);
-		}
-
 		private PayFormModel GetPaymentForm(Ticket ticket)
 		{
 			KaznacheyPaymentSystem kaznachey;
@@ -319,7 +300,15 @@ namespace TeamSpark.AzureDay.WebSite.Host.Controllers
 			}
 			else
 			{
-				return RedirectToAction("Pay", ticket);
+				if (ticket.Attendee == null)
+				{
+					var email = User.Identity.Name;
+					ticket.Attendee = await AppFactory.AttendeeService.Value.GetAttendeeByEmailAsync(email);
+				}
+
+				var payForm = GetPaymentForm(ticket);
+
+				return View("PayForm", payForm);
 			}
 		}
 
