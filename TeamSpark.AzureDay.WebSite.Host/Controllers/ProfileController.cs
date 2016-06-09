@@ -213,9 +213,23 @@ namespace TeamSpark.AzureDay.WebSite.Host.Controllers
 
 		private PayFormModel GetPaymentForm(Ticket ticket)
 		{
-			var kaznachey = new KaznacheyPaymentSystem(Configuration.KaznackeyMerchantId, Configuration.KaznackeyMerchantSecreet);
-
-			var paySystemId = kaznachey.GetMerchantInformation().PaySystems[0].Id;
+			KaznacheyPaymentSystem kaznachey;
+			int paySystemId;
+			switch (ticket.PaymentType.ToLowerInvariant())
+			{
+				case "kaznackey":
+					kaznachey = new KaznacheyPaymentSystem(Configuration.KaznackeyMerchantId, Configuration.KaznackeyMerchantSecreet);
+					paySystemId = kaznachey.GetMerchantInformation().PaySystems[0].Id;
+					break;
+				case "liqpay":
+					kaznachey = new KaznacheyPaymentSystem(Configuration.LiqPayMerchantId, Configuration.LiqPayMerchantSecreet);
+					paySystemId = kaznachey.GetMerchantInformation().PaySystems[3].Id;
+					break;
+				default:
+					kaznachey = new KaznacheyPaymentSystem(Configuration.KaznackeyMerchantId, Configuration.KaznackeyMerchantSecreet);
+					paySystemId = kaznachey.GetMerchantInformation().PaySystems[0].Id;
+					break;
+			}
 
 			var paymentRequest = new PaymentRequest(paySystemId);
 			paymentRequest.Language = "RU";
@@ -263,7 +277,8 @@ namespace TeamSpark.AzureDay.WebSite.Host.Controllers
 			var ticket = new Ticket
 			{
 				Price = (double)ticketPrice,
-				TicketType = model.TicketType
+				TicketType = model.TicketType,
+				PaymentType = model.PaymentType
 			};
 
 			if (!string.IsNullOrEmpty(model.PromoCode))
