@@ -205,20 +205,28 @@ namespace TeamSpark.AzureDay.WebSite.Host.Controllers
 		{
 			KaznacheyPaymentSystem kaznachey;
 			int paySystemId;
-			switch (ticket.PaymentType.ToLowerInvariant())
+			if (string.IsNullOrEmpty(ticket.PaymentType))
 			{
-				case "kaznackey":
-					kaznachey = new KaznacheyPaymentSystem(Configuration.KaznackeyMerchantId, Configuration.KaznackeyMerchantSecreet);
-					paySystemId = kaznachey.GetMerchantInformation().PaySystems[0].Id;
-					break;
-				case "liqpay":
-					kaznachey = new KaznacheyPaymentSystem(Configuration.LiqPayMerchantId, Configuration.LiqPayMerchantSecreet);
-					paySystemId = kaznachey.GetMerchantInformation().PaySystems[3].Id;
-					break;
-				default:
-					kaznachey = new KaznacheyPaymentSystem(Configuration.KaznackeyMerchantId, Configuration.KaznackeyMerchantSecreet);
-					paySystemId = kaznachey.GetMerchantInformation().PaySystems[0].Id;
-					break;
+				kaznachey = new KaznacheyPaymentSystem(Configuration.KaznackeyMerchantId, Configuration.KaznackeyMerchantSecreet);
+				paySystemId = kaznachey.GetMerchantInformation().PaySystems[0].Id;
+			}
+			else
+			{
+				switch (ticket.PaymentType.ToLowerInvariant())
+				{
+					case "kaznackey":
+						kaznachey = new KaznacheyPaymentSystem(Configuration.KaznackeyMerchantId, Configuration.KaznackeyMerchantSecreet);
+						paySystemId = kaznachey.GetMerchantInformation().PaySystems[0].Id;
+						break;
+					case "liqpay":
+						kaznachey = new KaznacheyPaymentSystem(Configuration.LiqPayMerchantId, Configuration.LiqPayMerchantSecreet);
+						paySystemId = kaznachey.GetMerchantInformation().PaySystems[3].Id;
+						break;
+					default:
+						kaznachey = new KaznacheyPaymentSystem(Configuration.KaznackeyMerchantId, Configuration.KaznackeyMerchantSecreet);
+						paySystemId = kaznachey.GetMerchantInformation().PaySystems[0].Id;
+						break;
+				}
 			}
 
 			var paymentRequest = new PaymentRequest(paySystemId);
