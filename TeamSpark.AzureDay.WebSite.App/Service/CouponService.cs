@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using TeamSpark.AzureDay.WebSite.App.Entity;
 using TeamSpark.AzureDay.WebSite.Config;
 using TeamSpark.AzureDay.WebSite.Data;
@@ -17,7 +19,11 @@ namespace TeamSpark.AzureDay.WebSite.App.Service
 
 			var normalizedCode = code.ToLower().Trim();
 
-			var coupon = await DataFactory.CouponService.Value.GetByKeysAsync(Configuration.Year, normalizedCode);
+			var coupon = (await DataFactory.CouponService.Value.GetByFilterAsync(new Dictionary<string, string>
+			{
+				{ "PartitionKey", Configuration.Year },
+				{ "RowKey", normalizedCode }
+			})).FirstOrDefault();
 
 			if (coupon == null)
 			{
