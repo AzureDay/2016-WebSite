@@ -5,3 +5,9 @@
 .thumbnail h4 {
 	line-height: 1.1em !important;
 }
+
+.eventSelecter {
+    position: absolute;
+    right: 23px;
+    top: 20px;
+}

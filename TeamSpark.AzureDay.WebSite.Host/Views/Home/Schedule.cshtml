@@ -1,113 +1,143 @@
 ﻿@using TeamSpark.AzureDay.WebSite.Data.Enum
 @model TeamSpark.AzureDay.WebSite.Host.Models.Home.ScheduleModel
-
 @{
-	ViewBag.Title = "AzureDay 2016 - расписание";
+    ViewBag.Title = "AzureDay 2016 - расписание";
 }
-
 <div class="boxedcontent">
-	@Html.Action("Header", "Layout")
+    @Html.Action("Header", "Layout")
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="titleborder center">
+                    <div>
+                        <h1 class="animated fadeInDownBig">Расписание AZUREday</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @for (var i = 0; i < Model.Rooms.Count; i++)
+            {
+                <div class="col-md-3 col-sm-3">
+                    <div class="box effect2 @string.Format("myAreaContainer{0}", i + 1)">
+                        @Model.Rooms[i].Title
+                    </div>
+                </div>
+            }
+        </div>
+        @foreach (var timetables in Model.Timetables)
+        {
+            <div class="row">
+                @if (timetables.Count == 1)
+                {
+                    if (timetables[0].Room.RoomType == RoomType.CoffeeRoom)
+                    {
+                        <div class="col-md-12 col-sm-12">
+                            <div class="box">
+                                <div class="mySlotTime">
+                                    @string.Format("{0}:{1}", timetables[0].TimeStartHours, timetables[0].TimeStartMinutes.ToString("D2")) -
+                                    @string.Format("{0}:{1}", timetables[0].TimeEndHours, timetables[0].TimeEndMinutes.ToString("D2"))
+                                </div>
+                                <div style="text-align: center;">
+                                    <i>@timetables[0].Topic.Title</i>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-md-12 col-sm-12">
+                            <div class="box effect6 myAreaBoxBorder1">
+                                <div class="mySlotTime">
+                                    @string.Format("{0}:{1}", timetables[0].TimeStartHours, timetables[0].TimeStartMinutes.ToString("D2")) -
+                                    @string.Format("{0}:{1}", timetables[0].TimeEndHours, timetables[0].TimeEndMinutes.ToString("D2"))
+                                </div>
+                                @if (timetables[0].Topic.Speakers.Any())
+                                {
+                                    <div class="mySlotAuthor">
+                                        @string.Join(", ", timetables[0].Topic.Speakers.Select(s => s.FullName))
+                                    </div>
+                                }
+                                <div style="text-align: center;">
+                                    <b>@timetables[0].Topic.Title</b><br /><br />
+                                    @if (timetables[0].Topic.Language != null && !string.IsNullOrEmpty(timetables[0].Topic.Language.Title))
+                                    {
+                                        @Html.Raw(string.Format("Язык: {0}", timetables[0].Topic.Language.Title))
+                                    }
+                                    @*@timetables[0].Topic.Description*@
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    for (var i = 0; i < timetables.Count; i++)
+                    {
+                        <div class="col-md-3 col-sm-3" style="@Html.Raw(timetables[i].HasLanguage ? string.Empty : "opacity: 0.5;")">
+                            <div class="box effect2 @string.Format("myAreaBoxBorder{0}", i + 1)">
 
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="titleborder center">
-					<div>
-						<h1 class="animated fadeInDownBig">Расписание AZUREday</h1>
-					</div>
-				</div>
-			</div>
-		</div>
 
-		<div class="row">
-			@for (var i = 0; i < Model.Rooms.Count; i++)
-			{
-				<div class="col-md-3 col-sm-3">
-					<div class="box effect2 @string.Format("myAreaContainer{0}", i + 1)">
-						@Model.Rooms[i].Title
-					</div>
-				</div>
-			}
-		</div>
+                                @if (!Request.IsAuthenticated)
+                                {
 
-		@foreach (var timetables in Model.Timetables)
-		{
-			<div class="row">
-				@if (timetables.Count == 1)
-				{
-					if (timetables[0].Room.RoomType == RoomType.CoffeeRoom)
-					{
-						<div class="col-md-12 col-sm-12">
-							<div class="box">
-								<div class="mySlotTime">
-									@string.Format("{0}:{1}", timetables[0].TimeStartHours, timetables[0].TimeStartMinutes.ToString("D2")) -
-									@string.Format("{0}:{1}", timetables[0].TimeEndHours, timetables[0].TimeEndMinutes.ToString("D2"))
-								</div>
-								<div style="text-align: center;">
-									<i>@timetables[0].Topic.Title</i>
-								</div>
-							</div>
-						</div>
-					}
-					else
-					{
-						<div class="col-md-12 col-sm-12">
-							<div class="box effect6 myAreaBoxBorder1">
-								<div class="mySlotTime">
-									@string.Format("{0}:{1}", timetables[0].TimeStartHours, timetables[0].TimeStartMinutes.ToString("D2")) -
-									@string.Format("{0}:{1}", timetables[0].TimeEndHours, timetables[0].TimeEndMinutes.ToString("D2"))
-								</div>
-								@if (timetables[0].Topic.Speakers.Any())
-								{
-								<div class="mySlotAuthor">
-									@string.Join(", ", timetables[0].Topic.Speakers.Select(s => s.FullName))
-								</div>
-								}
-								<div style="text-align: center;">
-									<b>@timetables[0].Topic.Title</b><br /><br />
-									@if (timetables[0].Topic.Language != null && !string.IsNullOrEmpty(timetables[0].Topic.Language.Title))
-									{
-										@Html.Raw(string.Format("Язык: {0}", timetables[0].Topic.Language.Title))
-									}
-									@*@timetables[0].Topic.Description*@
-								</div>
-							</div>
-						</div>
-					}
-				}
-				else
-				{
-					for (var i = 0; i < timetables.Count; i++)
-					{
-						<div class="col-md-3 col-sm-3" style="@Html.Raw(timetables[i].HasLanguage ? string.Empty : "opacity: 0.5;")">
-							<div class="box effect2 @string.Format("myAreaBoxBorder{0}", i + 1)">
-								<div class="mySlotTime">
-									@string.Format("{0}:{1}", timetables[i].TimeStartHours, timetables[i].TimeStartMinutes.ToString("D2")) -
-									@string.Format("{0}:{1}", timetables[i].TimeEndHours, timetables[i].TimeEndMinutes.ToString("D2"))
-								</div>
-								@if (timetables[i].Topic.Speakers.Any())
-								{
-									<div class="mySlotAuthor">
-										@Html.Raw(string.Join(",<br/>", timetables[i].Topic.Speakers.Select(s => s.FullName)))
-									</div>
-								}
-								<div>
-									<b>@timetables[i].Topic.Title</b><br /><br />
-									@if (timetables[i].HasLanguage)
-									{
-										@Html.Raw(string.Format("Язык: {0}<br /><br />", timetables[i].Topic.Language.Title))
-									}
-									@timetables[i].Topic.Description
-								</div>
-							</div>
-						</div>
-					}
-				}
-			</div>
-		}
+                                    <input type="checkbox" class="eventSelecter" id="@timetables[i].Topic.Id" />
 
-	</div>
+                                    <script type="text/javascript">
+                                        $(document).ready(function () {
+                                            $("#@timetables[i].Topic.Id").click(function () {
 
-	@Html.Action("Footer", "Layout")
+                                                if ($("#@timetables[i].Topic.Id").is(':checked')) {
+                                                    $.ajax({
+                                                        url: '/api/schedule/@timetables[i].Topic.Id',
+                                                        method: 'POST',
+                                                        success: function (result) {
+                                                            // Do something with the result
+                                                            @*console.log("#@timetables[i].Topic.Id checked");*@
+                                                        }
+                                                    });
+                                                } else {
 
+                                                    $.ajax({
+                                                        url: '/api/schedule/@timetables[i].Topic.Id',
+                                                        method: 'DELETE',
+                                                        success: function (result) {
+                                                            // Do something with the result
+                                                            @*console.log("#@timetables[i].Topic.Id unchecked");*@
+                                                        }
+                                                    });
+                                                };
+                                            });
+
+                                        });
+
+                                    </script>
+
+                                }
+
+                                <div class="mySlotTime">
+                                    @string.Format("{0}:{1}", timetables[i].TimeStartHours, timetables[i].TimeStartMinutes.ToString("D2")) -
+                                    @string.Format("{0}:{1}", timetables[i].TimeEndHours, timetables[i].TimeEndMinutes.ToString("D2"))
+                                </div>
+                                @if (timetables[i].Topic.Speakers.Any())
+                                {
+                                    <div class="mySlotAuthor">
+                                        @Html.Raw(string.Join(",<br/>", timetables[i].Topic.Speakers.Select(s => s.FullName)))
+                                    </div>
+                                }
+                                <div>
+                                    <b>@timetables[i].Topic.Title</b><br /><br />
+                                    @if (timetables[i].HasLanguage)
+                                    {
+                                        @Html.Raw(string.Format("Язык: {0}<br /><br />", timetables[i].Topic.Language.Title))
+                                    }
+                                    @timetables[i].Topic.Description
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>}
+    </div>
+    @Html.Action("Footer", "Layout")
 </div><!-- end boxedcontent -->
