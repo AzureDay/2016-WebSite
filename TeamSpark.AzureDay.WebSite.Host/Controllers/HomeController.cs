@@ -85,10 +85,13 @@ namespace TeamSpark.AzureDay.WebSite.Host.Controllers
 
 			model.Rooms = roomsTask.Result
 				.Where(r => r.RoomType != RoomType.CoffeeRoom)
+				.OrderBy(r => r.ColorNumber)
 				.ToList();
 
 			model.Timetables = timetableTask.Result
-				.GroupBy(t => t.TimeStartHours * 100 + t.TimeStartMinutes, (key, timetables) => timetables.ToList())
+				.GroupBy(
+					t => t.TimeStartHours * 100 + t.TimeStartMinutes,
+					(key, timetables) => timetables.OrderBy(t => t.Room.ColorNumber).ToList())
 				.ToList();
 
 			return View(model);
