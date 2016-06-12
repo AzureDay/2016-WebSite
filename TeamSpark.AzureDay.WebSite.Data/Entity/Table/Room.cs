@@ -24,6 +24,8 @@ namespace TeamSpark.AzureDay.WebSite.Data.Entity.Table
 
 		public int RoomTypeId { get; set; }
 
+		public int ColorNumber { get; set; }
+
 		public Room()
 		{
 			PartitionKey = Configuration.Year;
