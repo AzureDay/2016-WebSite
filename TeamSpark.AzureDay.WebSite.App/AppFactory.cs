@@ -46,7 +46,29 @@ namespace TeamSpark.AzureDay.WebSite.App
 
 				cfg.CreateMap<Ticket, Data.Entity.Table.Ticket>();
 				cfg.CreateMap<Data.Entity.Table.Ticket, Ticket>();
-			});
+
+                //API
+
+                cfg.CreateMap<Entity.Api.Room, Data.Entity.Table.Room>();
+                cfg.CreateMap<Data.Entity.Table.Room, Entity.Api.Room>();
+
+                cfg.CreateMap<Entity.Api.Language, Data.Entity.Table.Language>();
+                cfg.CreateMap<Data.Entity.Table.Language, Entity.Api.Language>();
+
+                cfg.CreateMap<Entity.Api.Speaker, Data.Entity.Table.Speaker>();
+                cfg.CreateMap<Data.Entity.Table.Speaker, Entity.Api.Speaker>();
+
+                cfg.CreateMap<Entity.Api.SpeakerTopic, Data.Entity.Table.SpeakerTopic>();
+                cfg.CreateMap<Data.Entity.Table.SpeakerTopic, Entity.Api.SpeakerTopic>();
+
+                cfg.CreateMap<Entity.Api.Country, Data.Entity.Table.Country>();
+                cfg.CreateMap<Data.Entity.Table.Country, Entity.Api.Country>();
+
+                cfg.CreateMap<Entity.Api.Topic, Data.Entity.Table.Topic>();
+                cfg.CreateMap<Data.Entity.Table.Topic, Entity.Api.Topic>();
+
+
+            });
 
 			var mapper = config.CreateMapper();
 
@@ -62,5 +84,7 @@ namespace TeamSpark.AzureDay.WebSite.App
 		public static readonly Lazy<PartnerService> PartnerService = new Lazy<PartnerService>(() => new PartnerService());
 		public static readonly Lazy<CouponService> CouponService = new Lazy<CouponService>(() => new CouponService());
 		public static readonly Lazy<TicketService> TicketService = new Lazy<TicketService>(() => new TicketService());
-	}
+        public static readonly Lazy<EventService> EventService = new Lazy<EventService>(() => new EventService());
+
+    }
 }

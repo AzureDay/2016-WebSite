@@ -90,6 +90,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppFactory.cs" />
+    <Compile Include="Entity\Api\Country.cs" />
+    <Compile Include="Entity\Api\Language.cs" />
+    <Compile Include="Entity\Api\Room.cs" />
+    <Compile Include="Entity\Api\Speaker.cs" />
+    <Compile Include="Entity\Api\SpeakerTopic.cs" />
+    <Compile Include="Entity\Api\Topic.cs" />
     <Compile Include="Entity\Attendee.cs" />
     <Compile Include="Entity\Coupon.cs" />
     <Compile Include="Entity\Language.cs" />
@@ -107,6 +113,7 @@
     <Compile Include="Service\AttendeeService.cs" />
     <Compile Include="Service\CountryService.cs" />
     <Compile Include="Service\CouponService.cs" />
+    <Compile Include="Service\EventService.cs" />
     <Compile Include="Service\PartnerService.cs" />
     <Compile Include="Service\QuickAuthTokenService.cs" />
     <Compile Include="Service\QuizService.cs" />
@@ -133,6 +140,7 @@
       <Name>TeamSpark.AzureDay.WebSite.Notification</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

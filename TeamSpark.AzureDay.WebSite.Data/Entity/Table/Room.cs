@@ -21,7 +21,7 @@ namespace TeamSpark.AzureDay.WebSite.Data.Entity.Table
 			get { return (RoomType)RoomTypeId; }
 			set { RoomTypeId = (int)value; }
 		}
-
+        
 		public int RoomTypeId { get; set; }
 
 		public Room()
