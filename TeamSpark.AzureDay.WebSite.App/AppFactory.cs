@@ -67,6 +67,8 @@ namespace TeamSpark.AzureDay.WebSite.App
                 cfg.CreateMap<Entity.Api.Topic, Data.Entity.Table.Topic>();
                 cfg.CreateMap<Data.Entity.Table.Topic, Entity.Api.Topic>();
 
+                cfg.CreateMap<Entity.Api.Attendee, Data.Entity.Table.Attendee>();
+                cfg.CreateMap<Data.Entity.Table.Attendee, Entity.Api.Attendee>();
 
             });
 
@@ -85,6 +87,7 @@ namespace TeamSpark.AzureDay.WebSite.App
 		public static readonly Lazy<CouponService> CouponService = new Lazy<CouponService>(() => new CouponService());
 		public static readonly Lazy<TicketService> TicketService = new Lazy<TicketService>(() => new TicketService());
         public static readonly Lazy<EventService> EventService = new Lazy<EventService>(() => new EventService());
+        public static readonly Lazy<AppUserService> AppUserService = new Lazy<AppUserService>(() => new AppUserService());
 
     }
 }

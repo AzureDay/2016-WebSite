@@ -16,7 +16,7 @@ namespace TeamSpark.AzureDay.WebSite.Host.Controllers.Api
         [Route("api/attendee/info")]
         public async Task<IHttpActionResult> GetAttendeeByEmail()
         {
-            var score = await AppFactory.AttendeeService.Value.GetAttendeeByEmailAsync(RequestContext.Principal.Identity.Name);
+            var score = await AppFactory.AppUserService.Value.GetAttendeeByEmailAsync(RequestContext.Principal.Identity.Name);
 
             return Ok(score);
         }
