@@ -7,6 +7,7 @@ namespace TeamSpark.AzureDay.WebSite.Host
         public static void Register(HttpConfiguration config)
         {
             config.MapHttpAttributeRoutes();
+           // config.MessageHandlers.Add(new TokenValidationHandler());
         }
     }
 }
