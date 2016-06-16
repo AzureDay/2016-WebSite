@@ -11,7 +11,6 @@ namespace TeamSpark.AzureDay.WebSite.Host.Controllers.Api
 {
     public class EventController : ApiController
     {
-        
         [HttpGet]
         [Route("api/event/rooms")]
         public async Task<IHttpActionResult> GetAllRooms()
@@ -25,7 +24,7 @@ namespace TeamSpark.AzureDay.WebSite.Host.Controllers.Api
         [Route("api/event/topics")]
         public async Task<IHttpActionResult> GetAllTopics()
         {
-            var topics = await AppFactory.EventService.Value.GetAllSpeakerTopicsAsync();
+            var topics = await AppFactory.EventService.Value.GetAllTopicsAsync();
 
             return Ok(topics);
         }
@@ -40,8 +39,8 @@ namespace TeamSpark.AzureDay.WebSite.Host.Controllers.Api
         }
 
         [HttpGet]
-        [Route("api/event/speaker")]
-        public async Task<IHttpActionResult> GetAllSpeaker()
+        [Route("api/event/speakers")]
+        public async Task<IHttpActionResult> GetAllSpeakers()
         {
             var speaker = await AppFactory.EventService.Value.GetAllSpeakersAsync();
 
@@ -65,7 +64,5 @@ namespace TeamSpark.AzureDay.WebSite.Host.Controllers.Api
 
             return Ok(countries);
         }
-
-
     }
 }
