@@ -60,7 +60,7 @@ namespace TeamSpark.AzureDay.WebSite.Host.Controllers.Api
         [Route("api/event/countries")]
         public async Task<IHttpActionResult> GetAllСountries()
         {
-            var countries = await AppFactory.EventService.Value.GetAllSpeakerTopicsAsync();
+            var countries = await AppFactory.EventService.Value.GetAllСountriesAsync();
 
             return Ok(countries);
         }
