@@ -251,6 +251,7 @@
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="AuthorizationServerProvider.cs" />
+    <Compile Include="Controllers\Api\AttendeeController.cs" />
     <Compile Include="Controllers\Api\EventController.cs" />
     <Compile Include="Controllers\Api\PriceController.cs" />
     <Compile Include="Controllers\Api\QuizController.cs" />

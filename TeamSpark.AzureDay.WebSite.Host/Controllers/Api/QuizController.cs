@@ -23,13 +23,14 @@ namespace TeamSpark.AzureDay.WebSite.Host.Controllers.ApiControllers
 
             return Ok(score);
         }
+
         [Authorize]
         [HttpGet]
         [Route("api/quiz/user")]
         public async Task<IHttpActionResult> GetUserScore()
         {
             var score = await AppFactory.QuizScoreService.Value.GetUserScore(RequestContext.Principal.Identity.Name);
-
+           
             return Ok(score);
         }
 
