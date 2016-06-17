@@ -74,7 +74,7 @@
 
 					@if (Model.PayedTicket == null)
 					{
-						<div>
+						@*<div>
 							<form id="formPay" method="POST" action="/profile/pay">
 								<div class="input-group myInputGroupdivider">
 									<span class="input-group-addon" style="width: 150px;">Тип билета</span>
@@ -96,6 +96,12 @@
 									<div style="width: 400px; margin-top: 15px; display: none;" data-bind="visible: '@ticket.TicketType' == selectedTicket()" class="alert alert-warning">@ticket.TicketNotes</div>
 								}
 							</form>
+						</div>*@
+						<div>
+							Продажа билетов закрыта.
+						</div>
+						<div>
+							Вы сможете купить билет на AZUREday за ниличные в день конференции.
 						</div>
 					}
 					else
