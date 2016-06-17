@@ -64,5 +64,14 @@ namespace TeamSpark.AzureDay.WebSite.Host.Controllers.Api
 
             return Ok(countries);
         }
+
+        [HttpGet]
+        [Route("api/event/timetable")]
+        public async Task<IHttpActionResult> GetTimeTable()
+        {
+            var table = await AppFactory.TimetableService.Value.GetTimetableAsync();
+
+            return Ok(table);
+        }
     }
 }
