@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Security;
-
 using System.Threading.Tasks;
 using System.Web.Http;
 using TeamSpark.AzureDay.WebSite.App;
@@ -26,17 +20,17 @@ namespace TeamSpark.AzureDay.WebSite.Host.Controllers.ApiControllers
 
         [Authorize]
         [HttpGet]
-        [Route("api/quiz/user")]
-        public async Task<IHttpActionResult> GetUserScore()
+        [Route("api/quiz/score")]
+        public async Task<IHttpActionResult> GetScore()
         {
             var score = await AppFactory.QuizScoreService.Value.GetUserScore(RequestContext.Principal.Identity.Name);
-           
+
             return Ok(score);
         }
 
         [Authorize]
         [HttpPost]
-        [Route("api/quiz/postscore")]
+        [Route("api/quiz/score")]
         public async Task<IHttpActionResult> PostScore([FromBody] int score)
         {
             if (!ModelState.IsValid)
@@ -50,6 +44,5 @@ namespace TeamSpark.AzureDay.WebSite.Host.Controllers.ApiControllers
 
             return Ok();
         }
-
     }
 }
